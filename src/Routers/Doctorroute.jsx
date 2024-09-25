@@ -8,7 +8,7 @@ function Doctorroute() {
 
   return (
     <div>
-        { IsDoctor ?  <Outlet></Outlet> : <Navigate to="/doctorlogin"/> }
+      { IsDoctor ?  <Outlet></Outlet> : <Navigate to="/doctorlogin"/> }
     </div>
   )
 }
