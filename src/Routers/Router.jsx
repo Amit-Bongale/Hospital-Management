@@ -11,6 +11,7 @@ import Staffroute from './Staffroute'
 
 import Adminlogin from '../Pages/Admin/Adminlogin'
 import AdminDashboard from '../Pages/Admin/AdminDashboard'
+import Users from '../Pages/Admin/Users'
 
 import Doctorlogin from '../Pages/Doctor/Doctorlogin'
 import Doctordashboard from '../Pages/Doctor/Doctordashboard'
@@ -40,7 +41,7 @@ function Router() {
 
       <Route path="/doctor" element={ <Doctorroute/> }>
         <Route path='dashboard' element={ <Doctordashboard/> } />
-
+    
       </Route>
 
 
@@ -62,7 +63,8 @@ function Router() {
       
       <Route path="/admin" element={<Adminroute />}>
         <Route path='dashboard' element={ <AdminDashboard/> } />
-
+        <Route path='manageusers' element={<Users/>} />
+        
       </Route>
 
     </Routes>
