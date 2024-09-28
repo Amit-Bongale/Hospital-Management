@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react'
 
-function Doctorstable() {
+function Stafftable() {
   return (
-    <div className="w-full">
-      <h1 className="font-bold text-xl p-4">Doctors Details</h1>
+    <div className="w-full mt-6">
+      <h1 className="font-bold text-xl p-4">Staff Details</h1>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
             <tr>
               <th scope="col" class="px-6 py-3">
-                Doctor id
+                Staff id
               </th>
               <th scope="col" class="px-6 py-3">
                 name
               </th>
               <th scope="col" class="px-6 py-3">
-                Specialization
+                Role
               </th>
               <th scope="col" class="px-6 py-3">
                 mail id
@@ -63,7 +63,7 @@ function Doctorstable() {
         </table>
       </div>
     </div>
-  );
+  )
 }
 
-export default Doctorstable;
+export default Stafftable
