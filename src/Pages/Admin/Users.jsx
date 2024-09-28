@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 
 import Adminnav from '../../Components/Admin/Adminnav'
 
-import Doctorstable from '../../Components/Admin/Doctorstable'
-import Stafftable from '../../Components/Admin/Stafftable'
-import Patientstable from '../../Components/Admin/Patientstable'
+import Doctorstable from '../../Components/Admin/DetailsTable/Doctorstable'
+import Stafftable from '../../Components/Admin/DetailsTable/Stafftable'
+import Patientstable from '../../Components/Admin/DetailsTable/Patientstable'
 
-import Adddoctor from '../../Components/Admin/Adddoctor'
-import Addstaff from '../../Components/Admin/Addstaff'
+import Adddoctor from '../../Components/Admin/Addusers/Adddoctor'
+import Addstaff from '../../Components/Admin/Addusers/Addstaff'
 
 function Users() {
 
