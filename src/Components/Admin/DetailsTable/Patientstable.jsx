@@ -56,8 +56,9 @@ function Patientstable() {
               <td class="px-6 py-4">abcdefghijklmnop sfahk@gmail</td>
               <td class="px-6 py-4">1234567890</td>
               <td class="px-6 py-4">Male</td>
+              
               <td class="px-6 py-4">
-                <span className="bg-yellow-400 py-2 px-6 text-black rounded-2xl"> Not Treated </span>
+                <span className="bg-yellow-400 py-2 px-6 text-black rounded-2xl"> Treating </span>
               </td>
               <td class="px-6 py-4 text-right">
                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
