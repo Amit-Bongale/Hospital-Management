@@ -1,8 +1,17 @@
 import React from 'react'
+import { useState } from 'react'
+
+import DeletePatient from '../DeleteUser/DeletePatient'
 
 function Patientstable() {
+
+  let [deleteitem , setdelete] = useState(false)
+
   return (
     <div className="w-full mt-6">
+
+      { deleteitem ? <DeletePatient setisopen={setdelete}/> : <></>}
+
       <h1 className="font-bold text-xl p-4">Patient Details</h1>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -56,7 +65,7 @@ function Patientstable() {
                 </button>
               </td>
               <td class="px-6 py-4 text-right">
-                <button class="font-medium text-red-600 dark:text-blue-500 hover:underline">
+                <button class="font-medium text-red-600 dark:text-blue-500 hover:underline" onClick={() => setdelete(true)}>
                   Delete
                 </button>
               </td>

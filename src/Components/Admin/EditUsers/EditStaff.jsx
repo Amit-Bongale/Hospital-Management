@@ -1,11 +1,10 @@
 import React from 'react'
 
-
-function Addstaff({setisopen}) {
+function EditStaff( {setisopen} ) {
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
-        <h2 className="text-2xl font-bold py-2 mb-5 ">Add Staff</h2>
+        <h2 className="text-2xl font-bold py-2 mb-5 ">Edit Staff Details</h2>
         <form>
           <div class="grid gap-6 mb-6 md:grid-cols-2">
             <div>
@@ -118,7 +117,7 @@ function Addstaff({setisopen}) {
           
           <button
             type="submit"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="text-white  bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Submit
           </button>
@@ -139,4 +138,4 @@ function Addstaff({setisopen}) {
   )
 }
 
-export default Addstaff
+export default EditStaff

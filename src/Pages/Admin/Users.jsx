@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Adminnav from '../../Components/Admin/Adminnav'
+import Adminnav from '../../Components/Admin/Nav/Adminnav'
 
 import Doctorstable from '../../Components/Admin/DetailsTable/Doctorstable'
 import Stafftable from '../../Components/Admin/DetailsTable/Stafftable'

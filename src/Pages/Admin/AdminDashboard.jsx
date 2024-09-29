@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Adminnav from '../../Components/Admin/Adminnav'
+import Adminnav from '../../Components/Admin/Nav/Adminnav'
 
 import ActiveDoctors from '../../Components/Admin/Dashboard/ActiveDoctors'
 import ActivePatients from '../../Components/Admin/Dashboard/ActivePatients'

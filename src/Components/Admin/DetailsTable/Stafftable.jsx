@@ -1,8 +1,21 @@
 import React from 'react'
+import { useState } from 'react'
+
+import EditStaff from '../EditUsers/EditStaff'
+import DeleteStaff from '../DeleteUser/DeleteStaff'
 
 function Stafftable() {
+
+  let [edit , setedit ] = useState(false)
+  let [deleteitem , setdelete] = useState(false)
+
+
   return (
     <div className="w-full mt-6">
+
+      { edit ? <EditStaff setisopen={setedit}/> : <></>}
+      { deleteitem ? <DeleteStaff setisopen={setdelete}/> : <></> }
+
       <h1 className="font-bold text-xl p-4">Staff Details</h1>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -49,12 +62,12 @@ function Stafftable() {
               <td class="px-6 py-4">Male</td>
               <td class="px-6 py-4"> <span className="bg-green-700 py-2 px-6 text-white rounded-2xl"> active </span></td>
               <td class="px-6 py-4 text-right">
-                <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onClick={() => setedit(true)}>
                   Edit
                 </button>
               </td>
               <td class="px-6 py-4 text-right">
-                <button class="font-medium text-red-600 dark:text-blue-500 hover:underline">
+                <button class="font-medium text-red-600 dark:text-blue-500 hover:underline" onClick={() => setdelete(true)}>
                   Delete
                 </button>
               </td>
