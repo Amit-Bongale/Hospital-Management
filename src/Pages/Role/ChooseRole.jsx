@@ -7,7 +7,7 @@ import adminicon from '../../Assets/Icons/admin.png'
 import doctoricon from '../../Assets/Icons/doctor.png'
 import stafficon from '../../Assets/Icons/staff.png'
 
-function Login() {
+function ChooseRole() {
 
   return (
     <div className='h-[100vh]'>
@@ -87,4 +87,4 @@ function Login() {
   )
 }
 
-export default Login
+export default ChooseRole

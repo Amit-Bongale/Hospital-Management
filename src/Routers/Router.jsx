@@ -3,7 +3,7 @@ import { Routes , Route } from 'react-router-dom'
 
 import Home from '../Pages/Home'
 
-import Login from '../Pages/Login/Login'
+import ChooseRole from '../Pages/Role/ChooseRole'
 
 import Doctorroute from './Doctorroute'
 import Adminroute from './Adminroute'
@@ -12,15 +12,16 @@ import Staffroute from './Staffroute'
 import Adminlogin from '../Pages/Admin/Adminlogin'
 import AdminDashboard from '../Pages/Admin/AdminDashboard'
 import Mangedoctors from '../Pages/Admin/Manageusers/Mangedoctors'
-
+import ManageStaff from '../Pages/Admin/Manageusers/ManageStaff'
+import ManagePatients from '../Pages/Admin/Manageusers/ManagePatients'
 
 import Doctorlogin from '../Pages/Doctor/Doctorlogin'
 import Doctordashboard from '../Pages/Doctor/Doctordashboard'
 
+
 import Stafflogin from '../Pages/Staff/Stafflogin'
 import StaffDashboard from '../Pages/Staff/StaffDashboard'
-import ManageStaff from '../Pages/Admin/Manageusers/ManageStaff'
-import ManagePatients from '../Pages/Admin/Manageusers/ManagePatients'
+
 
 function Router() {
 
@@ -31,13 +32,15 @@ function Router() {
       {/* Patient Routers */}
       <Route path="/" element={<Home />} />
 
+
       {/* Patient must login to use these routes */}
       <Route path="/user" element={" "}>
+        {/* here */}
 
       </Route>
 
       {/* Admin/doc/staff login */}
-      <Route path="/login" element={<Login></Login>}> </Route>
+      <Route path="/chooserole" element={<ChooseRole/>}> </Route>
 
       {/* Doctor Routes */}
       <Route path='/doctorlogin' element={<Doctorlogin/>} />

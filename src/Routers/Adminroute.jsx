@@ -4,7 +4,7 @@ import { Outlet , Navigate } from 'react-router-dom'
 
 function Adminroute() {
 
-    const IsAdmin = useSelector((state) => state.admin.loggedin)
+  const IsAdmin = useSelector((state) => state.admin.loggedin)
 
   return (
     <div>
