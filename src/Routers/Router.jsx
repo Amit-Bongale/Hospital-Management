@@ -14,6 +14,9 @@ import AdminDashboard from '../Pages/Admin/AdminDashboard'
 import Mangedoctors from '../Pages/Admin/Manageusers/Mangedoctors'
 import ManageStaff from '../Pages/Admin/Manageusers/ManageStaff'
 import ManagePatients from '../Pages/Admin/Manageusers/ManagePatients'
+import SalaryDetails from '../Pages/Admin/SalaryDetails'
+
+
 
 import Doctorlogin from '../Pages/Doctor/Doctorlogin'
 import Doctordashboard from '../Pages/Doctor/Doctordashboard'
@@ -69,9 +72,11 @@ function Router() {
       
       <Route path="/admin" element={<Adminroute />}>
         <Route path='dashboard' element={ <AdminDashboard/> } />
-        <Route path ='managedoctors' element ={<Mangedoctors/>} />
-        <Route path ='managestaff' element ={<ManageStaff/>} />
-        <Route path ='managepatient' element ={<ManagePatients/>} />
+        <Route path ='managedoctors' element ={<Mangedoctors/> } />
+        <Route path ='managestaff' element ={<ManageStaff/> } />
+        <Route path ='managepatient' element ={<ManagePatients/> } />
+        <Route path ='salarydetails' element ={<SalaryDetails/> } />
+
         
       </Route>
 

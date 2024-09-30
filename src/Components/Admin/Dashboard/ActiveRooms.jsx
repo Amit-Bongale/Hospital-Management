@@ -2,19 +2,19 @@ import React from 'react'
 
 import { Gauge } from '@mui/x-charts/Gauge';
 
-function ActivePatients() {
+function ActiveRooms() {
   return (
     <div className='border-2 p-6 rounded-3xl  max-h-fit'>
-      <h1 className='font-bold text-2xl text-center'>Patients Active</h1>
+      <h1 className='font-bold text-2xl text-center'>Rooms Available</h1>
       <Gauge
-      value={20}
+      value={40}
       width={200} height={150}
       startAngle={-90} endAngle={90}
       valueMin={0}
-      valueMax={100}
+      valueMax={60}
       innerRadius="75%" outerRadius="100%" />
     </div>
   )
 }
 
-export default ActivePatients
+export default ActiveRooms
