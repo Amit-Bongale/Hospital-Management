@@ -12,7 +12,7 @@ function Home() {
       Home
 
       <div>
-        login : <Link to={'/login'}> <Button  variant="contained"> Login page </Button> </Link> 
+        Choose Role : <Link to={'/login'}> <Button  variant="contained"> choose </Button> </Link> 
       </div>
 
     </div>

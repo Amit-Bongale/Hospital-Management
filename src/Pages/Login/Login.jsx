@@ -14,10 +14,10 @@ function Login() {
 
         <div className='flex-col justify-center  h-full '>
 
-            <h1 className='text-4xl text-center relative top-20 font-bold uppercase'> welcome! Please Login </h1> 
+            <h1 className='text-4xl text-center relative top-14 font-bold uppercase'> welcome! Please Login </h1> 
             
             {/* cards div */}
-            <div className='flex-col items-center justify-center relative top-[20%] flex-wrap'>
+            <div className='flex-col items-center justify-center relative top-[18%] flex-wrap'>
 
                 <div className='flex justify-around items-center'>
 
@@ -72,7 +72,7 @@ function Login() {
                     </div>
                 </div>
 
-                <div className='m-8 flex items-center justify-center my-28'>
+                <div className='m-8 flex items-center justify-center my-16'>
                     <Link to={'/'} >
                          <button class="flex items-center justify-center  text-base px-10 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-white focus:outline-none focus-visible:outline-black  focus-visible:ring-black" >  Home </button> 
                     </Link>
