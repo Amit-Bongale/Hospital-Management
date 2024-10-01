@@ -24,6 +24,13 @@ import Doctordashboard from '../Pages/Doctor/Doctordashboard'
 
 import Stafflogin from '../Pages/Staff/Stafflogin'
 import StaffDashboard from '../Pages/Staff/StaffDashboard'
+import StaffDashboardInfo from '../Components/Staff/Dashboard/StaffDashboardInfo'
+
+
+
+import Doctorcard from '../Components/Patient/Home/Doctor/Doctorcard'
+import AppointmentBooking from '../Pages/Patient/AppointmentBooking'
+import LoginForm from '../Pages/Patient/LoginForm'
 
 
 function Router() {
@@ -35,9 +42,14 @@ function Router() {
       {/* Patient Routers */}
       <Route path="/" element={<Home />} />
 
+      <Route path="/doctorcard" element={<Doctorcard/>}/>
+      <Route path="/appointmentbooking" element={<AppointmentBooking/>}/>
+      <Route path="/loginform" element={<LoginForm/>}/>
 
       {/* Patient must login to use these routes */}
       <Route path="/user" element={" "}>
+      {/* <Route path="/doctorcard" element={<Doctorcard/>}/>
+      <Route path="/appointmentbooking" element={<AppointmentBooking/>}/> */}
         {/* here */}
 
       </Route>
@@ -60,10 +72,9 @@ function Router() {
 
       <Route path="/staff" element={<Staffroute />}>
         <Route path='dashboard' element={ <StaffDashboard/> } />
+        <Route path='staffdashboardinfo' element={<StaffDashboardInfo/>}/>
 
       </Route>
-
-
 
 
       

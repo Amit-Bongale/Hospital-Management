@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doctorlogout } from "../../../Redux/Doctor/Doctor";
 
-import Doctordashboard from "../../../Pages/Doctor/Doctordashboard"
+
 
 
 function Doctornav() {
