@@ -17,9 +17,9 @@ function Nav() {
             <div >
                 <Link to='/'>  <button className="mx-8 my-5 ">Home</button> </Link>
                 
-                <Link to='/Appointment'> <button className="mx-8 my-5 ">Appointment</button>  </Link>
+                <Link to='/appointmentbooking'> <button className="mx-8 my-5 ">Appointment</button>  </Link>
 
-                <Link to='/login'> <button className="mx-8 my-5"> Login </button> </Link>
+                <Link to='/loginform'> <button className="mx-8 my-5"> Login </button> </Link>
 
                 <Link to='/contactus'> <button className="mx-8 my-5 "> Contact us </button> </Link>
 

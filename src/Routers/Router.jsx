@@ -30,6 +30,7 @@ import StaffDashboardInfo from '../Components/Staff/Dashboard/StaffDashboardInfo
 
 import Doctorcard from '../Components/Patient/Home/Doctor/Doctorcard'
 import AppointmentBooking from '../Pages/Patient/AppointmentBooking'
+import LoginForm from '../Pages/Patient/LoginForm'
 
 
 function Router() {
@@ -43,7 +44,7 @@ function Router() {
 
       <Route path="/doctorcard" element={<Doctorcard/>}/>
       <Route path="/appointmentbooking" element={<AppointmentBooking/>}/>
-
+      <Route path="/loginform" element={<LoginForm/>}/>
 
       {/* Patient must login to use these routes */}
       <Route path="/user" element={" "}>
