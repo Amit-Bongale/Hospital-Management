@@ -1,22 +1,27 @@
 import React from 'react'
-import { Button } from '@mui/material'
+import Nav from '../Components/Patient/Nav/Nav'
+import Herosection from '../Components/Patient/Home/Herosection'
+import Footersection from '../Components/Patient/Home/Footersection'
 
 
-import { Link } from 'react-router-dom'
+
 
 function Home() {
 
   return (
-    <div className='text-3xl font-bold'>
-      
-      Home
-
-      <div>
-        Choose Role : <Link to={'/chooserole'}> <Button  variant="contained"> choose </Button> </Link> 
-      </div>
+  
+    <div >
+    
+    <Nav></Nav>
+    <Herosection></Herosection>  
+    <Footersection></Footersection>
+    
 
     </div>
+    
+
   )
 }
 
 export default Home
+

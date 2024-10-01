@@ -5,6 +5,8 @@ import { adminlogout } from "../../../Redux/Admin/Admin";
 
 import { Link } from "react-router-dom";
 
+import arrow from '../../../Assets/Icons/trianglearrow.png'
+
 function Adminnav() {
 
   const dispatch = useDispatch();
@@ -28,11 +30,12 @@ function Adminnav() {
           <Link 
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" onClick={() => setusers(!showusers)} >
             <button> Manage Users </button>
+            <img src={arrow} alt="arrow" className="h-3 rotate-180" />
           </Link>
         </span>
 
         { showusers ?
-        <div>
+        <div className="bg-gray-100">
           <span className="grid items-start px-2 text-xl font-medium lg:px-4">
             <Link
               to="/admin/managedoctors"
@@ -58,6 +61,15 @@ function Adminnav() {
         </span>
 
         </div> : <></>}
+
+        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+          <Link
+            to="/admin/salarydetails"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
+          >
+            <button> Salary </button>
+          </Link>
+        </span>
 
         <button
           onClick={() => dispatch(adminlogout())}
