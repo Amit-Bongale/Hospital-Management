@@ -14,9 +14,9 @@ function Doctordashboard() {
     <div class="flex">
 
       <Doctornav/>
-      
-      <Appointments/>
-      <button onClick={() => dispatch(doctorlogout())} className='bg-black text-white py-3 px-6 rounded-3xl m-4'> logout </button>
+      <div>
+        <Appointments/>
+      </div>
       
     </div>
   )

@@ -18,10 +18,7 @@ function Doctornav() {
           <Link
             to="/doctor/dashboard"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" >
-            <button> 
-            <Doctordashboard/>  
-            </button>
-
+            <button> Doctordashboard </button>
           </Link>
         </span>
 
