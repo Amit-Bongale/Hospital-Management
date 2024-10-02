@@ -39,9 +39,9 @@ function Footersection() {
 
                 <Link to='/appointmentbooking'><p class="ml-28 pl-6 text-2xl ">Appointment</p></Link>
 
-                <Link to='/login'><p class="ml-28 pl-6 my-4 text-2xl">Login</p></Link>
+                <Link to='/loginform'><p class="ml-28 pl-6 my-4 text-2xl">Login</p></Link>
 
-                <Link to='/contactus'><p class="ml-28 pl-6 my-4 text-2xl">Contact Us</p></Link>
+                <Link to='/contactusform'><p class="ml-28 pl-6 my-4 text-2xl">Contact Us</p></Link>
             
             </div>
 
