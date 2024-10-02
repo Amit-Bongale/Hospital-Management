@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import EditDoctor from "../EditUsers/EditDoctor";
 import DeleteDocotor from "../DeleteUser/DeleteDocotor";
@@ -8,11 +8,28 @@ function Doctorstable() {
   let [edit , setedit ] = useState(false)
   let [deleteitem , setdelete] = useState(false)
 
+  let [doctorsinfo , setdoctsinfo] = useState([])
+  let [doctorid , setdoctorid] = useState('')
+
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
+      .then((res) => res.json())
+      .then((data) => setdoctsinfo(data))
+      .catch((err) => console.log("Error Fetching Data :" , err))
+    } catch (error) {
+      console.log("Error :" , error)
+    }
+
+  },[edit,deleteitem])
+
+  console.log(doctorsinfo);
+
   return (
 
     <div className="w-full">
 
-      { edit ? <EditDoctor setisopen={setedit}/> : <></>}
+      { edit ? <EditDoctor setisopen={setedit} doctorid={doctorid}/> : <></>}
       { deleteitem ? <DeleteDocotor setisopen={setdelete}/> : <></>}
 
       <h1 className="font-bold text-xl p-4">Doctors Details</h1>
@@ -49,20 +66,21 @@ function Doctorstable() {
               </th>
             </tr>
           </thead>
-          <tbody>
+          {doctorsinfo.map((doctor) => (
+            <tbody>
             <tr class="bg-white border-b font-medium text-gray-700  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
               <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                d1
+              {doctor.id}
               </td>
-              <td class="px-6 py-4">abcssdfhas</td>
-              <td class="px-6 py-4">ortho adfsdf</td>
-              <td class="px-6 py-4">abcdefghijklmnop sfahk@gmail</td>
-              <td class="px-6 py-4">1234567890</td>
-              <td class="px-6 py-4">Male</td>
+              <td class="px-6 py-4">{doctor.name}</td>
+              <td class="px-6 py-4">{doctor.specialization}</td>
+              <td class="px-6 py-4">{doctor.email}</td>
+              <td class="px-6 py-4">{doctor.phone}</td>
+              <td class="px-6 py-4">{doctor.gender}</td>
               <td class="px-6 py-4"> <span className="bg-green-700 py-2 px-6 text-white rounded-2xl"> active </span></td>
               <td class="px-6 py-4 text-right">
                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                onClick={() => setedit(true)}>
+                onClick={() => {setedit(true); setdoctorid(doctor.id)}} >
                   Edit
                 </button >
               </td>
@@ -73,6 +91,7 @@ function Doctorstable() {
               </td>
             </tr>
           </tbody>
+          ))}
         </table>
       </div>
     </div>
