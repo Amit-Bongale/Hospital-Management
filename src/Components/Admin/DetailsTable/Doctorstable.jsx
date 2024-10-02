@@ -9,10 +9,11 @@ function Doctorstable() {
   let [deleteitem , setdelete] = useState(false)
 
   let [doctorsinfo , setdoctsinfo] = useState([])
+  let [doctorid , setdoctorid] = useState('')
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors`)
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
       .then((res) => res.json())
       .then((data) => setdoctsinfo(data))
       .catch((err) => console.log("Error Fetching Data :" , err))
@@ -28,7 +29,7 @@ function Doctorstable() {
 
     <div className="w-full">
 
-      { edit ? <EditDoctor setisopen={setedit}/> : <></>}
+      { edit ? <EditDoctor setisopen={setedit} doctorid={doctorid}/> : <></>}
       { deleteitem ? <DeleteDocotor setisopen={setdelete}/> : <></>}
 
       <h1 className="font-bold text-xl p-4">Doctors Details</h1>
@@ -79,7 +80,7 @@ function Doctorstable() {
               <td class="px-6 py-4"> <span className="bg-green-700 py-2 px-6 text-white rounded-2xl"> active </span></td>
               <td class="px-6 py-4 text-right">
                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                onClick={() => setedit(true)}>
+                onClick={() => {setedit(true); setdoctorid(doctor.id)}} >
                   Edit
                 </button >
               </td>
