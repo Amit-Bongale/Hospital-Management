@@ -20,7 +20,6 @@ function Doctorstable() {
     } catch (error) {
       console.log("Error :" , error)
     }
-
   },[edit,deleteitem])
 
   console.log(doctorsinfo);
@@ -30,7 +29,7 @@ function Doctorstable() {
     <div className="w-full">
 
       { edit ? <EditDoctor setisopen={setedit} doctorid={doctorid}/> : <></>}
-      { deleteitem ? <DeleteDocotor setisopen={setdelete}/> : <></>}
+      { deleteitem ? <DeleteDocotor setisopen={setdelete} doctorid={doctorid} /> : <></>}
 
       <h1 className="font-bold text-xl p-4">Doctors Details</h1>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -85,7 +84,7 @@ function Doctorstable() {
                 </button >
               </td>
               <td class="px-6 py-4 text-right">
-                <button class="font-medium text-red-600 dark:text-blue-500 hover:underline" onClick={() => setdelete(true)}>
+                <button class="font-medium text-red-600 dark:text-blue-500 hover:underline" onClick={() => {setdelete(true); setdoctorid(doctor.id)}}>
                   Delete
                 </button>
               </td>
