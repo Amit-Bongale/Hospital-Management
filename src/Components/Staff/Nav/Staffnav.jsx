@@ -19,11 +19,22 @@ function Staffnav() {
         </div>
 
         <div>
+          <button>Doctor Status</button>
+        </div>
+
+        <div>
           <button>Appointment</button>
         </div>
 
         <div>
-          <button>Admit</button>
+        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+          <Link
+            to="/staff/admit"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
+          >
+            <button> Admit </button>
+          </Link>
+        </span>
         </div>
 
         <div>
