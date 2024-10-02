@@ -25,7 +25,7 @@ import Doctordashboard from '../Pages/Doctor/Doctordashboard'
 import Stafflogin from '../Pages/Staff/Stafflogin'
 import StaffDashboard from '../Pages/Staff/StaffDashboard'
 import StaffDashboardInfo from '../Components/Staff/Dashboard/StaffDashboardInfo'
-import StaffAdmit from '../Pages/Staff/StaffAdmit'
+import StaffAdmit from '../Pages/Staff/Admit'
 
 
 import Doctorcard from '../Components/Patient/Home/Doctor/Doctorcard'

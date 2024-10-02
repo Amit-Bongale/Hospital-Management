@@ -1,8 +1,14 @@
 import React from 'react'
 
+import { useDispatch } from 'react-redux'
+import { stafflogout } from '../../../Redux/Staff/Staff'
+
 import { Link } from "react-router-dom";
 
 function Staffnav() {
+
+  const dispatch = useDispatch()
+
   return (
     <nav className="bg-gray-50 w-2/12 z-50">
       <div>
@@ -46,6 +52,7 @@ function Staffnav() {
         </div>
 
       </div>
+      <button onClick={() => dispatch(stafflogout())} className='bg-black text-white py-3 px-6 rounded-3xl m-4'> logout </button>
     </nav>
   )
 }
