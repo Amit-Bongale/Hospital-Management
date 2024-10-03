@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { doctorlogout } from "../../../Redux/Doctor/Doctor";
 
-
+//import Admission from '../../Doctor/Dashboard/Admission'
 
 
 function Doctornav() {
@@ -23,7 +23,7 @@ function Doctornav() {
         </span>
 
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
-          <Link 
+          <Link to = "/doctor/admission"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" >
             <button> Admission </button>
           </Link>
