@@ -1,9 +1,30 @@
 import React from 'react'
 
-function DeleteStaff({setisopen}) {
+function DeleteStaff({setisopen , staffid }) {
+
+  function deletestaff(){
+
+    console.log(staffid)
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/staff/deletestaff`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 'id' : staffid }),
+      })
+      .then((res) => res.json())
+      .then((data) => alert(data.message))
+      .catch((err) => console.error("Error fetching api:", err));
+    
+    } catch (error) {
+      console.log("Error:", error)
+    }
+  }
+
   return (
     <div className="w-[100vw] h-[100vh]  absolute top-0 left-0 flex justify-center items-center">
       <div className="z-20">
+        
         <div class="fixed inset-0 w-screen overflow-y-auto ">
           <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
@@ -16,9 +37,10 @@ function DeleteStaff({setisopen}) {
                     >
                       Delete Account
                     </h3>
+                
                     <div class="mt-2">
                       <p class="text-sm text-gray-500">
-                        Are you sure you want to Delete all the information Related to the Staff
+                        Are you sure you want to Delete all the information Related to the Staff with Id: {staffid}
                       </p>
                     </div>
                   </div>
@@ -28,6 +50,7 @@ function DeleteStaff({setisopen}) {
                 <button
                   type="button"
                   class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                  onClick={() => {deletestaff(); setisopen(false);}}
                 >
                   Delete
                 </button>
@@ -48,7 +71,7 @@ function DeleteStaff({setisopen}) {
         onClick={() => setisopen(false)}
       ></div>
     </div>
-  )
+  );
 }
 
 export default DeleteStaff
