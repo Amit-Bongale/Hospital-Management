@@ -15,16 +15,16 @@ function StaffDashboardInfo() {
           <span className="grid items-start px-2 text-xl font-medium lg:px-4">
             <button
             onClick={() => setnewpatient(true)}
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"> New Patient  </button>
+            className="bg-black text-white py-3 px-6 rounded-3xl my-4"> New Patient  </button>
           </span>
 
           <span className="grid items-start px-2 text-xl font-medium lg:px-4">
             <button 
             onClick={() => setoldpatient(true)}
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"> Old Patient  </button>
+            className="bg-black text-white py-3 px-6 rounded-3xl my-4"> Old Patient  </button>
           </span>
 
-          <form class="form relative">
+          {/* <form class="form relative">
             <button class="absolute left-2 -translate-y-1/2 top-1/2 p-1">
               <svg
                 width="17"
@@ -65,7 +65,7 @@ function StaffDashboardInfo() {
             ></path>
           </svg>
         </button>
-      </form>
+      </form> */}
 
 
       </div>
