@@ -12,7 +12,7 @@ function AdminDashboard() {
   return (
     <div className='flex'>
       <Adminnav/>
-      <div className='ml-4 flex flex-wrap gap-6'>
+      <div className=' ml-1 flex flex-wrap gap-6'>
         <ActiveDoctors/>
         <ActiveStaff/>
         <ActivePatients/>
