@@ -43,34 +43,26 @@ function EditDoctor({ setisopen, doctorid }) {
 
   function update() {
     let data = {
-      id: id,
-      name: name,
-      gender: gender,
-      email: email,
-      password: password,
-      specialization: specialization,
-      phone: phone,
-      experience: experience,
-      dob: dob,
+      'id': id,
+      'name': name,
+      'gender': gender,
+      'email': email,
+      'password': password,
+      'specialization': specialization,
+      'phone': phone,
+      'experience': experience,
+      'dob': dob,
     };
 
     try {
-      fetch(
-        `${process.env.REACT_APP_API_URL}/doctor/updatedoctor/${doctorid}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message) {
-            console.log(data.message);
-            alert(data.message);
-          }
-        })
-        .catch((error) => console.log("Fetching Error:", error));
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/updatedoctor/${doctorid}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => alert(data.message))
+      .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }
@@ -111,11 +103,10 @@ function EditDoctor({ setisopen, doctorid }) {
                 name="gender"
                 id="gender"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-                Value={gender}
+                defaultValue={gender}
                 onChange={(val) => setgender(val.target.value)}
               >
-                <option value="" key=""> Select Gender </option>
+                <option value="" key=""> </option>
                 <option value="Male" key="Male"> Male </option>
                 <option value="Female" key="Female"> Female </option>
                 <option value="Others" key="Others"> Others </option>
