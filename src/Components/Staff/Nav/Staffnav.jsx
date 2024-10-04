@@ -44,11 +44,25 @@ function Staffnav() {
         </div>
 
         <div>
-          <button>Test</button>
+        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+          <Link
+            to="/staff/test"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
+          >
+            <button> Test </button>
+          </Link>
+        </span>
         </div>
 
         <div>
-          <button>Billing</button>
+        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+          <Link
+            to="/staff/bill"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
+          >
+            <button> Bill </button>
+          </Link>
+        </span>
         </div>
 
       </div>
