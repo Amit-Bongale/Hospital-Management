@@ -47,6 +47,8 @@ function Addstaff({setisopen}) {
       console.log("error :", error);
     }
   }
+
+
     
 
 
@@ -56,6 +58,10 @@ function Addstaff({setisopen}) {
         <h2 className="text-2xl font-bold py-2 mb-5 ">Add Staffr</h2>
         <form onSubmit={() => Send()} >
           <div className="grid gap-6 mb-6 md:grid-cols-2">
+
+          
+
+
           <div>
               <label
                 for="id"

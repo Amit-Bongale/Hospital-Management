@@ -26,6 +26,7 @@ function Doctorstable() {
 
   return (
 
+    
     <div className="w-full">
 
       { edit ? <EditDoctor setisopen={setedit} doctorid={doctorid}/> : <></>}
@@ -36,8 +37,11 @@ function Doctorstable() {
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
             <tr>
-              <th scope="col" class="px-6 py-3">
+            <th scope="col" class="px-6 py-3">
                 Doctor id
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Image
               </th>
               <th scope="col" class="px-6 py-3">
                 name
@@ -71,11 +75,13 @@ function Doctorstable() {
               <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
               {doctor.id}
               </td>
+              <td class="px-6 py-4"><img src={doctor.image} alt="profile" className="h-5"/></td>
               <td class="px-6 py-4">{doctor.name}</td>
               <td class="px-6 py-4">{doctor.specialization}</td>
               <td class="px-6 py-4">{doctor.email}</td>
               <td class="px-6 py-4">{doctor.phone}</td>
               <td class="px-6 py-4">{doctor.gender}</td>
+
               <td class="px-6 py-4"> <span className="bg-green-700 py-2 px-6 text-white rounded-2xl"> active </span></td>
               <td class="px-6 py-4 text-right">
                 <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
