@@ -12,8 +12,8 @@ function Adddoctor({ setisopen }) {
   let [phone , setphone] = useState('')
   let [experience , setexperience] = useState('')
   let [dob , setdob] = useState('')
+  let [image , setimage ] = useState('')
 
-  
   function Send(){
 
     let data = {
@@ -25,7 +25,8 @@ function Adddoctor({ setisopen }) {
       "specialization": specialization,
       "phone": phone,
       "experience": experience,
-      "dob": dob
+      "dob": dob,
+      "image" : image
     }
 
     try {
@@ -43,11 +44,25 @@ function Adddoctor({ setisopen }) {
         console.log(data);
       })
       .catch((error) => console.log("Fetching Error:" , error));
-
     } catch (error) {
       console.log("error :", error);
     }
   }
+
+  
+  // Convert the image to Base64 when the user selects an image
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setimage(reader.result); // Base64 string of the image
+        // setPreview(reader.result); // Preview the image
+      };
+       reader.readAsDataURL(file);
+    }
+    console.log(image)
+  };
     
 
 
@@ -56,8 +71,26 @@ function Adddoctor({ setisopen }) {
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
         <h2 className="text-2xl font-bold py-2 mb-5 ">Add Doctor</h2>
         <form onSubmit={() => Send()} >
-          <div className="grid gap-6 mb-6 md:grid-cols-2">
-          <div>
+          <div className="grid gap-6 mb-5  md:grid-cols-2">
+
+            <div>
+              <label
+                for="image"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                image
+              </label>
+              <input
+                type="file"
+                name="image" 
+                id="image"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="choose file"
+                required
+                accept="image/*" onChange={handleImageChange}
+              />
+            </div>
+
+            <div>
               <label
                 for="id"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -82,7 +115,7 @@ function Adddoctor({ setisopen }) {
                 type="text"
                 id="name"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Your Name"
+                placeholder="Enter Doctor Name"
                 required
                 onChange={(val) => setname(val.target.value)}
               />
@@ -96,10 +129,10 @@ function Adddoctor({ setisopen }) {
                 required
                 onChange={(val) => setgender(val.target.value)}
               >
-                <option value="" key=""></option>
-                <option value="Male" key="">Male</option>
-                <option value="Female" key="">Female</option>
-                <option value="Others" key="">Others</option>
+                <option value=""></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
               </select>
             </div>
             <div>
@@ -130,7 +163,7 @@ function Adddoctor({ setisopen }) {
                 id="phone"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="123-45-678"
-                pattern="[0-9]{10}"
+                // pattern="[0-9]{10}"
                 required
                 onChange={(val) => setphone(val.target.value)}
               />
@@ -149,7 +182,6 @@ function Adddoctor({ setisopen }) {
                 placeholder="Specialization"
                 required
                 onChange={(val) => setspecialization(val.target.value)}
-                
               />
             </div>
             <div>
@@ -183,9 +215,7 @@ function Adddoctor({ setisopen }) {
                 onChange={(val) => setdob(val.target.value)}
               />
             </div>
-          </div>
-          
-          <div className="mb-6">
+            <div>
             <label
               for="password"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -195,13 +225,13 @@ function Adddoctor({ setisopen }) {
             <input
               type="password"
               id="password"
-              className="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="•••••••••"
               required
               onChange={(val) => setpassword(val.target.value)}
             />
+            </div>
           </div>
-          
           
           <button
             type="submit"

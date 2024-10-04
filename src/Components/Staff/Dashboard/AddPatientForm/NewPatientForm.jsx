@@ -7,14 +7,13 @@ function NewPatientForm({ setisopen }){
           <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
             <h2 className="text-2xl font-bold py-2 mb-5 ">New Patient</h2>
             <form>
-
               <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
                   <label
                     for="first_name"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Name
+                  Name
                   </label>
                   <input
                     type="text"
@@ -27,11 +26,14 @@ function NewPatientForm({ setisopen }){
 
                 <div>
                   <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    gender
+                  Gender
                   </label>
-                  <select name="gender" id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="gender"
-                    required>
+                  <select 
+                  name="gender" 
+                  id="gender" 
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="gender"
+                  required>
                     <option value="" key=""></option>
                     <option value="Male" key="">Male</option>
                     <option value="Female" key="">Female</option>
@@ -44,7 +46,7 @@ function NewPatientForm({ setisopen }){
                     for="company"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Email
+                  Email
                   </label>
                   <input
                     type="email"
@@ -60,7 +62,7 @@ function NewPatientForm({ setisopen }){
                     for="phone"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Phone number
+                  Phone number
                   </label>
                   <input
                     type="tel"
@@ -77,7 +79,7 @@ function NewPatientForm({ setisopen }){
                     for="age"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Age
+                  Age
                   </label>
                   <input
                     type="number"
@@ -93,7 +95,7 @@ function NewPatientForm({ setisopen }){
                     for="visitors"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Date of Birth
+                  Date of Birth
                   </label>
                   <input
                     type="date"
@@ -109,7 +111,7 @@ function NewPatientForm({ setisopen }){
                       for="location"
                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                     >
-                        Address
+                    Address
                     </label>
                     <input
                       type="text"
@@ -121,19 +123,22 @@ function NewPatientForm({ setisopen }){
                 </div>
 
                 <div>
-                    <label
-                      for="blood"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >
-                        Blood Group
-                    </label>
-                    <input
-                      type="text"
-                      id="blood"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder=""
-                    required
-                  />
+                  <label for="blood" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Blood Group
+                  </label>
+                  <select name="blood" id="blood" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="blood group"
+                    required>
+                    <option value="" key=""></option>
+                    <option value="A+" key="">A+</option>
+                    <option value="A-" key="">A-</option>
+                    <option value="B+" key="">B+</option>
+                    <option value="B-" key="">B-</option>
+                    <option value="O+" key="">O+</option>
+                    <option value="O-" key="">O-</option>
+                    <option value="AB+" key="">AB+</option>
+                    <option value="AB-" key="">AB-</option>
+                  </select>
                 </div>
 
                 <div>
@@ -152,11 +157,6 @@ function NewPatientForm({ setisopen }){
                       required
                     />
                 </div>
-
-                <div>
-                    
-                </div>
-
               </div>
               
               
@@ -164,22 +164,21 @@ function NewPatientForm({ setisopen }){
                 type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Submit
+              Submit
               </button>
-    
-              
+     
             </form>
             <button
             onClick={() => setisopen(false)}
-                class="my-4 text-white bg-black hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                close
-              </button>
+            class="my-4 text-white bg-black hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+            Close
+            </button>
           </div>
           <div
             className="w-[100vw] h-[100vh] bg-slate-400 opacity-90  top-0 left-0 flex justify-center items-center z-10 fixed"
-            onClick={() => setisopen(false)}
-          ></div>
+            onClick={() => setisopen(false)}>
+          </div>
         </div>
   )
 }
