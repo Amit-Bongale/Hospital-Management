@@ -1,7 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+//import { Link } from 'react-router-dom'
+
+import Viewpatient from '../Patientdetails/Viewpatient'
+
 
 function Appointments() {
+  let [view,setview] = useState(false)
   return (
     <div className="w-full mt-6">
       <div class=" w-full flex text-xl ml-20 text-gray-700 uppercase bg-gray-50 text-center border-spacing-5 shadow-md">
@@ -14,11 +19,16 @@ function Appointments() {
           <div class = "mr-20 ml-20" >
             <p>Disease</p>
           </div>
-          <Link>
           <div class = "mr-10 ml-20 b" >
-            <button>View</button>
+            <button
+            onClick={() => setview(true)}>
+            View
+            </button>
+            
           </div>
-          </Link>
+          {view ?<Viewpatient setview={setview}/>
+            :<></>}
+
       </div>
     </div>
   )

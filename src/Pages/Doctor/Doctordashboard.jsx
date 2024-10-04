@@ -2,6 +2,7 @@ import React from 'react'
 
 import Doctornav from '../../Components/Doctor/Nav/Doctornav'
 import Appointments from '../../Components/Doctor/Dashboard/Appointments'
+import Viewpatient from '../../Components/Doctor/Patientdetails/Viewpatient'
 
 
 function Doctordashboard() {
@@ -12,7 +13,8 @@ function Doctordashboard() {
       <div>
         <Appointments/>
       </div>
-      
+
+      <Viewpatient/>
     </div>
   )
 }
