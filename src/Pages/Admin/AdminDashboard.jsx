@@ -6,18 +6,26 @@ import ActiveDoctors from '../../Components/Admin/Dashboard/ActiveDoctors'
 import ActivePatients from '../../Components/Admin/Dashboard/ActivePatients'
 import ActiveStaff from '../../Components/Admin/Dashboard/ActiveStaff'
 import ActiveRooms from '../../Components/Admin/Dashboard/ActiveRooms'
+import Performance from '../../Components/Admin/Dashboard/Performance'
 
 function AdminDashboard() {
 
   return (
     <div className='flex'>
       <Adminnav/>
-      <div className=' ml-1 flex flex-wrap gap-6'>
-        <ActiveDoctors/>
-        <ActiveStaff/>
-        <ActivePatients/>
-        <ActiveRooms/>
+      <div className='ml-1'>
+        
+        <div className='  flex flex-wrap gap-6'>
+          <ActiveDoctors/>
+          <ActiveStaff/>
+          <ActivePatients/>
+          <ActiveRooms/>
+        </div>
+
+        <Performance/>  
+
       </div>
+
     </div>
   )
 }
