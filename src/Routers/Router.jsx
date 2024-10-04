@@ -25,6 +25,8 @@ import Doctordashboard from '../Pages/Doctor/Doctordashboard'
 import Stafflogin from '../Pages/Staff/Stafflogin'
 import StaffDashboard from '../Pages/Staff/StaffDashboard'
 import StaffAdmit from '../Pages/Staff/StaffAdmit'
+import StaffTest from '../Pages/Staff/StaffTest'
+import StaffBill from '../Pages/Staff/StaffBill'
 
 
 import Doctorcard from '../Components/Patient/Home/Doctor/Doctorcard'
@@ -74,6 +76,8 @@ function Router() {
       <Route path="/staff" element={<Staffroute />}>
         <Route path='dashboard' element={ <StaffDashboard/> } />
         <Route path='admit' element={<StaffAdmit/>}/>
+        <Route path='test' element={<StaffTest/>}/>
+        <Route path='bill' element={<StaffBill/>}/>
 
       </Route>
 
