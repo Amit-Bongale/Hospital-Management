@@ -3,7 +3,8 @@ import { LineChart } from '@mui/x-charts/LineChart';
 
 function Performance() {
   return (
-    <LineChart
+    <div className='border-2 p-2 rounded-3xl max-h-fit mt-4' >
+      <LineChart
       xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
       series={[
         {
@@ -13,8 +14,11 @@ function Performance() {
         },
       ]}
       width={1100}
-      height={450}
+      height={400}
     />
+
+    </div>
+    
   )
 }
 

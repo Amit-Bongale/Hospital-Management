@@ -24,7 +24,7 @@ function ActiveDoctors() {
   },[ totaldoctor , activeDoctor])
 
   return (
-    <div className='border-2 p-6 rounded-3xl max-h-fit'>
+    <div className='border-2 p-8 rounded-3xl max-h-fit'>
         <h1 className='font-bold text-2xl text-center'> Doctors Active</h1>
         <Gauge
         value={activeDoctor}
