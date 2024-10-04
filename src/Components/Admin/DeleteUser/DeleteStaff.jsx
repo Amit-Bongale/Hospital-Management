@@ -2,9 +2,9 @@ import React from 'react'
 
 function DeleteStaff({setisopen , staffid }) {
 
+  console.log(staffid)
   function deletestaff(){
 
-    console.log(staffid)
 
     try {
       fetch(`${process.env.REACT_APP_API_URL}/staff/deletestaff`, {

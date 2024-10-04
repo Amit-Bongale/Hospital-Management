@@ -85,7 +85,7 @@ function Stafftable() {
                     </button>
                   </td>
                   <td class="px-6 py-4 text-right">
-                    <button class="font-medium text-red-600 dark:text-blue-500 hover:underline" onClick={() => setdelete(true)}>
+                    <button class="font-medium text-red-600 dark:text-blue-500 hover:underline" onClick={() => {setdelete(true); setstaffid(staff.id) }}>
                       Delete
                     </button>
                   </td>
