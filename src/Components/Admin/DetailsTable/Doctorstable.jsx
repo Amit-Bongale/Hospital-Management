@@ -54,15 +54,16 @@ function Doctorstable() {
           {doctorsinfo.map((doctor) => (
             <tbody>
               <tr class="bg-white border-b font-medium text-gray-700  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {doctor.id} </td>
-                <td class="px-6 py-4"><img src={doctor.image} alt="profile" className="h-5"/></td>
+                <td class="px-6 py-4"> <img class="w-8 h-8 rounded-full" src={doctor.image} alt="profile"/> </td>
                 <td class="px-6 py-4"> {doctor.name} </td>
                 <td class="px-6 py-4"> {doctor.specialization} </td>
                 <td class="px-6 py-4"> {doctor.email} </td>
                 <td class="px-6 py-4"> {doctor.phone} </td>
                 <td class="px-6 py-4"> {doctor.gender} </td>
-                
+
                 <td class="px-6 py-4">
                   {
                     doctor.status ?  <span className="bg-green-700 py-2 px-6 text-white rounded-2xl"> Active </span> : <span className="bg-red-700 py-2 px-6 text-white rounded-2xl"> Inactive </span>
