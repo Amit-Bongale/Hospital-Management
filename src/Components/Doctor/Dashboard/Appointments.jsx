@@ -7,6 +7,7 @@ import Viewpatient from '../Patientdetails/Viewpatient'
 
 function Appointments() {
   let [view,setview] = useState(false)
+
   return (
     <div className="w-full mt-6">
       <div class=" w-full flex text-xl ml-20 text-gray-700 uppercase bg-gray-50 text-center border-spacing-5 shadow-md">
