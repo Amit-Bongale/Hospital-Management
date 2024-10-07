@@ -45,6 +45,25 @@ function Footersection() {
             
             </div>
 
+            <div class="w-[500px] h-[500px]">
+                <h1 class="text-5xl pl-20 mt-14 font-semibold">About Hospital</h1>
+                <div className="ml-20 mt-4">
+                    {/* <div class="flex items-center ml-4">
+                    </div>
+                    <div class="flex items-center ml-4">
+                        
+                    </div>
+                    <div class="flex items-center ml-4">
+                        
+                    </div>
+                    <div class="flex items-center ml-4">
+                       
+                    </div>
+                    <div class="flex items-center ml-4">
+                        
+                    </div> */}
+                </div>
+            </div>
             
         </div>
     )
