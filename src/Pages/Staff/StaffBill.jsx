@@ -1,24 +1,20 @@
 import React from 'react'
 
 import Staffnav from '../../Components/Staff/Nav/Staffnav'
+import PatientBillInfo from '../../Components/Staff/Bill/PatientBillInfo'
 
-
-import StaffDashboardInfo from '../../Components/Staff/Dashboard/StaffDashboardInfo'
-
-function StaffDashboard() {
-
+function StaffBill() {
   return (
     <div>
       <div className='flex'>
         <Staffnav/>
         <div>
-          <StaffDashboardInfo/>
+          <PatientBillInfo/>
         </div>
       </div>
- 
 
     </div>
   )
 }
 
-export default StaffDashboard
+export default StaffBill

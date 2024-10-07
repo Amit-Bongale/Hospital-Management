@@ -14,7 +14,7 @@ function Adminnav() {
   const [showusers , setusers] = useState(true)
 
   return (
-    <nav className="bg-gray-50 w-2/12 z-50">
+    <nav className="bg-gray-50 w-2/12 z-50 mr-4">
       <div className="fixed w-2/12 bg-gray-50 h-[100vh] border-r-2">
 
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">

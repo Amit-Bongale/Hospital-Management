@@ -20,12 +20,14 @@ import SalaryDetails from '../Pages/Admin/SalaryDetails'
 
 import Doctorlogin from '../Pages/Doctor/Doctorlogin'
 import Doctordashboard from '../Pages/Doctor/Doctordashboard'
+import Admission from '../Pages/Doctor/Admission'
 
 
 import Stafflogin from '../Pages/Staff/Stafflogin'
 import StaffDashboard from '../Pages/Staff/StaffDashboard'
-import StaffDashboardInfo from '../Components/Staff/Dashboard/StaffDashboardInfo'
-
+import StaffAdmit from '../Pages/Staff/StaffAdmit'
+import StaffTest from '../Pages/Staff/StaffTest'
+import StaffBill from '../Pages/Staff/StaffBill'
 
 
 import Doctorcard from '../Components/Patient/Home/Doctor/Doctorcard'
@@ -64,6 +66,7 @@ function Router() {
 
       <Route path="/doctor" element={ <Doctorroute/> }>
         <Route path='dashboard' element={ <Doctordashboard/> } />
+        <Route path='admission' element={ <Admission/> } />
     
       </Route>
 
@@ -74,7 +77,9 @@ function Router() {
 
       <Route path="/staff" element={<Staffroute />}>
         <Route path='dashboard' element={ <StaffDashboard/> } />
-        <Route path='staffdashboardinfo' element={<StaffDashboardInfo/>}/>
+        <Route path='admit' element={<StaffAdmit/>}/>
+        <Route path='test' element={<StaffTest/>}/>
+        <Route path='bill' element={<StaffBill/>}/>
 
       </Route>
 

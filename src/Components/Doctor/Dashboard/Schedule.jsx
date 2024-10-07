@@ -1,37 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import EditDoctor from "../EditUsers/EditDoctor";
-import DeleteDocotor from "../DeleteUser/DeleteDocotor";
-
-function Doctorstable() {
-
-  let [edit , setedit ] = useState(false)
-  let [deleteitem , setdelete] = useState(false)
-
-  let [doctorsinfo , setdoctsinfo] = useState([])
-  let [doctorid , setdoctorid] = useState('')
-
-  useEffect(() => {
-    try {
-      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
-      .then((res) => res.json())
-      .then((data) => setdoctsinfo(data))
-      .catch((err) => console.log("Error Fetching Data :" , err))
-    } catch (error) {
-      console.log("Error :" , error)
-    }
-  },[edit,deleteitem])
-
-  console.log(doctorsinfo);
-
-  return (
-
-    <div className="w-full">
-
-      { edit ? <EditDoctor setisopen={setedit} doctorid={doctorid}/> : <></>}
-      { deleteitem ? <DeleteDocotor setisopen={setdelete} doctorid={doctorid} /> : <></>}
-
-      <h1 className="font-bold text-xl p-4">Doctors Details</h1>
+function Schedule(){
+    return(
+        <div>
+        <h1 className="font-bold text-xl p-4">Doctors Details</h1>
 
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -85,7 +57,8 @@ function Doctorstable() {
         </table>
       </div>
     </div>
-  );
+
+    )
 }
 
-export default Doctorstable;
+export default Schedule
