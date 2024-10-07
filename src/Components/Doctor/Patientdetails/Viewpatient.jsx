@@ -1,10 +1,19 @@
 import React from 'react'
+import { useState } from 'react'
+
+
+import Addtest from './Addtest'
+import Admit from './Admit'
 
 
 function Viewpatient({setview} ) {
+  let [test, settest] = useState(false)
+  let [admit, setadmit] = useState(false)
+
+
         return(
             <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
-            <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20   shadow-xl rounded-3xl">
+            <div className=" bg-white w-[65%] h-[100%] py-6 px-8 z-20   shadow-xl rounded-3xl">
                 <h2 className="text-2xl font-bold py-2 mb-5 ">View Patient</h2>
             < div className="grid gap-6 mb-6 md:grid-cols-2">
 
@@ -100,19 +109,48 @@ function Viewpatient({setview} ) {
 
             </div>
 
-            <div class = "mt-10">
-                <div>
-                    <h1 class = "text-bold 2xl"> Prescription </h1>
-                </div>
-                <div class = "mt-5">
-                    <input class = "border-spacing-5">
+            <div class = "mt-5">
+                <h1 class = "text-bold text-2xl"> Prescription </h1>
+                <div class = "mt-3">
+                    <input class="w-[55%] h-[100%] shadow-md">
 
                     </input>
                 </div>
             </div>
 
-            <div>
-                <button onClick={() => setview(false)}>Close</button>
+            <div class = "mt-5">
+                <h1 class = "text-bold text-2xl"> Test Details </h1>
+                <div class = "mt-3">
+                    <input class = "w-[55%] h-[100%] shadow-md">
+
+                    </input>
+                </div>
+            </div>
+
+            <div class = "mt-10 ml-[23%] mr-20 flex ">
+              <div>
+                <button 
+                  class=" text-2xl"
+                  onClick={() => settest(true)}>
+                  Add Test 
+                </button>
+              </div>
+              {test ?<Addtest settest={settest}/>
+              :<></>}
+
+              <div>
+                <button 
+                  class="ml-[90%] mr-20 text-2xl"
+                  onClick={() => setadmit(true)}>
+                  Admit
+                </button>
+              </div>
+              {admit ?<Admit setadmit={setadmit}/>
+              :<></>}
+
+              <div>
+                <button  class="ml-[150%] mr-20 text-2xl"  onClick={() => setview(false)}>Close</button>
+              </div>
             </div>
 
 
