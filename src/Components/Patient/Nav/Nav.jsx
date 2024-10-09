@@ -15,29 +15,30 @@ function Nav() {
           </Link>
         </div>
 
-        <div>
+        <div class="my-5">
             <Link to="/">
-              <button className="mx-8 my-5 ">Home</button>
+              <button className="mr-10 ml-20">Home</button>
             </Link>
-
-            <Link to="/appointmentbooking">
-              <button className="mx-8 my-5 ">Appointment</button>
-            </Link>
-
 
             <Link to="/contactusform">
-              <button className="mx-8 my-5 "> Contact Us </button>
+              <button className=" mr-10"> Contact Us </button>
             </Link>
 
             <Link to="/chooserole">
-              <button className="mx-8 my-5 "> Roles </button>
+              <button className="mr-10"> Roles </button>
             </Link>
-        </div>
+        
 
         <Link to="/loginform">
-            <button className="px-6 py-2 rounded-full bg-white text-black "> Login </button>
+            <button className="mr-10 ml-10"> Login </button>
         </Link>
 
+        </div>
+        <div>
+            <Link to="/appointmentbooking">
+              <button className="px-6 py-2 rounded-full bg-white text-black ">Book Appointment</button>
+            </Link>
+            </div>
       </div>
     </nav>
   );
