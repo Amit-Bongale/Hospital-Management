@@ -30,7 +30,7 @@ function Doctornav() {
         </span>
 
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
-          <Link 
+          <Link to = "/doctor/schedule"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" >
             <button> Schedule </button>
           </Link>

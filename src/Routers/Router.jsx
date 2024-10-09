@@ -21,6 +21,7 @@ import SalaryDetails from '../Pages/Admin/SalaryDetails'
 import Doctorlogin from '../Pages/Doctor/Doctorlogin'
 import Doctordashboard from '../Pages/Doctor/Doctordashboard'
 import Admission from '../Pages/Doctor/Admission'
+import Schedule from '../Pages/Doctor/Schedule'
 
 
 import Stafflogin from '../Pages/Staff/Stafflogin'
@@ -67,6 +68,7 @@ function Router() {
       <Route path="/doctor" element={ <Doctorroute/> }>
         <Route path='dashboard' element={ <Doctordashboard/> } />
         <Route path='admission' element={ <Admission/> } />
+        <Route path='schedule' element={ <Schedule/> } />
     
       </Route>
 
