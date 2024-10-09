@@ -1,8 +1,10 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import AppointmentForm from "../AppointmentForm/AppointmentForm";
+
 function Nav() {
+  let [appointment, setappointment] = useState(false)
   return (
     <nav>
       <div className="flex items-center justify-around bg-blue-500 text-white font-semibold">
@@ -35,10 +37,11 @@ function Nav() {
 
         </div>
         <div>
-            <Link to="/appointmentbooking">
-              <button className="px-6 py-2 rounded-full bg-white text-black ">Book Appointment</button>
-            </Link>
-            </div>
+              <button onClick={() => setappointment(true)} className="px-6 py-2 rounded-full bg-white text-black ">Book Appointment</button>
+        </div>
+
+        {appointment ?<AppointmentForm setappointment={setappointment}/>
+        :<></>}       
       </div>
     </nav>
   );
