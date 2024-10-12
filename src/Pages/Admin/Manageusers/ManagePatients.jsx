@@ -8,7 +8,7 @@ function ManagePatients() {
     <div className='flex'>
         <Adminnav />
         <div className='ml-8'>
-            <Patientstable/>
+          <Patientstable/>
         </div>
     </div>
   )
