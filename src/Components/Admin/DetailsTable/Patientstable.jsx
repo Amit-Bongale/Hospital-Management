@@ -21,7 +21,7 @@ function Patientstable() {
     } catch (error) {
       console.log("Error :" , error)
     }
-  },[edit , deleteitem])
+  },[edit , deleteitem , patientid ])
 
   return (
     <div className="w-full mt-6">
