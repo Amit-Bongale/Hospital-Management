@@ -1,66 +1,90 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react'
+import { useState , useEffect } from 'react'
 
-function NewPatientForm({ setisopen }) {
+function EditPatient({setisopen , patientid}) {
 
-  let [id, setid] = useState()
-  let [aadharno , setaadharno] = useState()
-  let [name , setname ] = useState()
-  let [gender , setgender] = useState()
-  let [age , setage] = useState()
-  let [email , setemail] = useState()
-  let [phone , setphone] = useState()
-  let [dob , setdob ] = useState()
-  let [address , setaddress] = useState()
-  let [bloodgroup , setbloodgroup] = useState()
-  let [emergencycontact , setemergencycontact] = useState()
-  let [history , sethistory] = useState()
-  // let [disease , setdisease] = useState()
+    let [id, setid] = useState()
+    let [adharno , setaadharno] = useState()
+    let [name , setname ] = useState()
+    let [gender , setgender] = useState()
+    let [age , setage] = useState()
+    let [email , setemail] = useState()
+    let [phone , setphone] = useState()
+    let [dob , setdob ] = useState()
+    let [address , setaddress] = useState()
+    let [bloodgroup , setbloodgroup] = useState()
+    let [emergencycontact , setemergencycontact] = useState()
+    let [history , sethistory] = useState()
 
-  
-  function Send(){
+    useEffect(() => {
 
-    let data = {
-      "id": id,
-      "name": name,
-      "gender": gender,
-      "email": email,
-      "phone" : phone,
-      "dob" : dob,
-      "age" :age,
-      "address" : address,
-      "emergencycontact" : emergencycontact,
-      "bloodgroup" : bloodgroup,
-      "adharno": aadharno,
-      "medicalhistory" : history,
-    }
-
-    try {
-      fetch(`${process.env.REACT_APP_API_URL}/patient/createnewpatient`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) {
-          console.log(data.message);
-          alert(data.message);
+        if (!patientid) return;
+    
+        try {
+          fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${patientid}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              setid(data.id);
+              setname(data.name);
+              setgender(data.gender);
+              setemail(data.email);   ;
+              setphone(data.phone);
+              setaadharno(data.adharno);
+              setdob(data.dob);
+              setaddress(data.address);
+              setbloodgroup(data.bloodgroup);
+              setemergencycontact(data.emergencycontact);
+              sethistory(data.medicalhistory);
+              setage(data.age)
+              console.log(data);
+            })
+            .catch((err) => console.log("Error Fetching Data :", err));
+        } catch (error) {
+          console.log("Error :", error);
         }
-        console.log(data);
-      })
-      .catch((error) => console.log("Fetching Error:" , error));
-    } catch (error) {
-      console.log("error :", error);
-    }
-  }
+    }, [patientid, id]);
+    
 
+    function update() {
+
+        let data = {
+
+            "name": name,
+            "gender": gender,
+            "email": email,
+            "phone" : phone,
+            "dob" : dob,
+            "age" :age,
+            "address" : address,
+            "emergencycontact" : emergencycontact,
+            "bloodgroup" : bloodgroup,
+            "adharno": adharno,
+            "medicalhistory" : history,
+        };
+    
+        try {
+          fetch(`${process.env.REACT_APP_API_URL}/patient/updatepatient/${patientid}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          })
+          .then((res) => res.json())
+          .then((data) => { alert(data.message) })
+          .catch((error) => console.log("Fetching Error:", error));
+        } catch (error) {
+          console.log("error :", error);
+        }
+    }
+    
 
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
-        <h2 className="text-2xl font-bold py-2 mb-5 "> Add New Patient</h2>
-        <form onSubmit={() => Send()}>
+        <h2 className="text-2xl font-bold py-2 mb-5 "> Edit Patient Details </h2>
+        <form onSubmit={() => update()}>
           <div class="grid gap-6 mb-4 md:grid-cols-2">
             <div>
               <label
@@ -75,6 +99,7 @@ function NewPatientForm({ setisopen }) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Enter Aadhar Number"
                 required
+                value={adharno}
                 onChange={(e) => {setaadharno(e.target.value); setid(e.target.value)}}
               />
             </div>
@@ -91,6 +116,7 @@ function NewPatientForm({ setisopen }) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Enter Patient name"
                 required
+                value={name}
                 onChange={(e) => {setname(e.target.value)}}
               />
             </div>
@@ -108,6 +134,7 @@ function NewPatientForm({ setisopen }) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="gender"
                 required
+                value={gender}
                 onChange={(e) => setgender(e.target.value)}
               >
                 <option value="" key=""></option>
@@ -130,6 +157,7 @@ function NewPatientForm({ setisopen }) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="eg..15"
                 required
+                value={age}
                 onChange={(e) => setage(e.target.value)}
               />
             </div>
@@ -146,6 +174,7 @@ function NewPatientForm({ setisopen }) {
                 id="email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="xyz@gmail.com"
+                value={email}
                 onChange={(e) => setemail(e.target.value)}
               />
             </div>
@@ -164,6 +193,7 @@ function NewPatientForm({ setisopen }) {
                 placeholder="123-45-678"
                 pattern="[0-9]{10}"
                 required
+                value={phone}
                 onChange={(e) => setphone(e.target.value)}
               />
             </div>
@@ -183,6 +213,7 @@ function NewPatientForm({ setisopen }) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
                 required
+                value={dob ? dob.split("T")[0] : ""}
                 onChange={(e) => setdob(e.target.value)}
               />
             </div>
@@ -200,6 +231,7 @@ function NewPatientForm({ setisopen }) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="location / street"
                 required
+                value={address}
                 onChange={(e) => setaddress(e.target.value)}
               />
             </div>
@@ -217,6 +249,7 @@ function NewPatientForm({ setisopen }) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="blood group"
                 required
+                value={bloodgroup}
                 onChange={(e) => setbloodgroup(e.target.value)}
               >
                 <option value="" key=""></option>
@@ -261,6 +294,7 @@ function NewPatientForm({ setisopen }) {
                 placeholder="123-456-6789"
                 pattern="[0-9]{10}"
                 required
+                value={emergencycontact}
                 onChange={(e) => setemergencycontact(e.target.value)}
               />
             </div>
@@ -278,6 +312,7 @@ function NewPatientForm({ setisopen }) {
               id="medical history"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Allery / Mediacl conditions"
+              value={history}
               onChange={(e) => sethistory(e.target.value)}
             />
           </div>
@@ -307,7 +342,7 @@ function NewPatientForm({ setisopen }) {
       </div>
 
     </div>
-  );
+  )
 }
 
-export default NewPatientForm;
+export default EditPatient

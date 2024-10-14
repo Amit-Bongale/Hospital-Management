@@ -11,7 +11,7 @@ function StaffDashboardInfo() {
   let [oldpatient,setoldpatient] = useState(false)
   return (
     <div>
-        <div className="flex">
+        <div className="flex justify-center">
           <span className="grid items-start px-2 text-xl font-medium lg:px-4">
             <button
             onClick={() => setnewpatient(true)}
@@ -67,7 +67,25 @@ function StaffDashboardInfo() {
         </button>
       </form> */}
 
+      </div>
 
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg justify-center ml-32">
+        <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+          <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
+            <tr>
+              <th scope="col" class="px-6 py-3"> ID </th>
+              <th scope="col" class="px-6 py-3"> NAME </th>
+              <th scope="col" class="px-6 py-3"> GENDER </th>
+              <th scope="col" class="px-6 py-3"> EMAIL </th>
+              <th scope="col" class="px-6 py-3"> PHONE NUMBER </th>
+              <th scope="col" class="px-6 py-3"> DOB </th>
+              <th scope="col" class="px-6 py-3"> AGE </th>
+              <th scope="col" class="px-6 py-3"> ADDRESS </th>
+              <th scope="col" class="px-6 py-3"> BLOOD GROUP </th>
+              <th scope="col" class="px-6 py-3"> EMERGENCY NUMBER </th>
+            </tr>
+          </thead>
+        </table>
       </div>
       {newpatient ?  <NewPatientForm setisopen={setnewpatient}/> : <></>}
       {oldpatient ?  <OldPatientForm setisopen={setoldpatient}/> : <></>}

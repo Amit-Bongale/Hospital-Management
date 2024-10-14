@@ -1,6 +1,24 @@
 import React from 'react'
 
-function DeletePatient({setisopen}) {
+function DeletePatient({setisopen , patientid}) {
+
+  function deletepatient(){
+    console.log(patientid )
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/patient/deletepatient`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 'id' : patientid }),
+      })
+      .then((res) => res.json())
+      .then((data) => alert(data.message))
+      .catch((err) => console.error("Error fetching api:", err));
+    
+    } catch (error) {
+      console.log("Error:", error)
+    }
+  }
+
   return (
     <div className="w-[100vw] h-[100vh]  absolute top-0 left-0 flex justify-center items-center">
       <div className="z-20">
@@ -18,7 +36,7 @@ function DeletePatient({setisopen}) {
                     </h3>
                     <div class="mt-2">
                       <p class="text-sm text-gray-500">
-                        Are you sure you want to Delete all the information Related to the Patient
+                        Are you sure you want to Delete all the information Related to the Patient; {patientid}
                       </p>
                     </div>
                   </div>
@@ -28,6 +46,7 @@ function DeletePatient({setisopen}) {
                 <button
                   type="button"
                   class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                  onClick={() => {deletepatient(); setisopen(false);}}
                 >
                   Delete
                 </button>
