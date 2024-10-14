@@ -9,8 +9,8 @@ function Appointments() {
   let [view,setview] = useState(false)
 
   return (
-    <div className="w-full mt-6">
-      <div class=" w-full flex text-xl ml-20 text-gray-700 uppercase bg-gray-50 text-center border-spacing-5 shadow-md">
+    <div className=" w-full mt-10">
+      <div class=" w-full flex text-lg font-bold ml-20 text-gray-700 uppercase bg-gray-50 text-center border-spacing-5 shadow-md">
           <div class = "mr-20 ml-20" >
             <p>Gender</p>
           </div>
