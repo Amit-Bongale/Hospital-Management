@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react'
 import 'swiper/css'; // Import core Swiper styles
 import 'swiper/css/navigation'; // Import Navigation module styles
 import 'swiper/css/pagination'; // Import Pagination module styles
