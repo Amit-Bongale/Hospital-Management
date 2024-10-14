@@ -5,14 +5,14 @@ function AboutHospital() {
   return (
     <div>
         <div className="mt-14">
-          <h1 class="text-3xl font-bold text-gray-900 m-4 ml-48">About Hospital</h1>
+          <h1 class="text-6xl font-bold text-gray-900 m-4 ml-48">About Hospital</h1>
         </div>
         <div className="flex flex-nowrap">
           <div class="text-justify mr-40">
             <h1 class="text-xl ml-28 mt-8 font-medium">A hospital is an institution specifically designed, staffed, and equipped to offer comprehensive care for individuals suffering from illness, injury, or other health conditions. This includes both the diagnosis and treatment of diseases through a combination of medical, surgical, and therapeutic interventions. Hospitals serve as a key component of healthcare systems, providing inpatient care where patients can be housed during their treatment and recovery.In modern healthcare systems, hospitals have evolved beyond just treating the sick and injured. Many are equipped with advanced technology for medical imaging, laboratory tests, and surgeries, facilitating accurate diagnoses and effective treatments. They often encompass specialized departments such as emergency rooms, intensive care units (ICUs), surgical theaters, maternity wards, and oncology units, among others.</h1>
           </div>
           <div class="mr-32">
-            <img src="https://cdn.pixabay.com/photo/2024/04/10/00/46/hospital-8687007_640.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
+            <img src="https://img.freepik.com/premium-photo/hospital-building-red-cross-medical-institution-health-treatment-disease-wallpaper-background_1337460-30882.jpg?w=360" alt='' class="max-w-sm h- shadow-md shadow-slate-500" />
           </div>
         </div>
         <div className="flex flex-nowrap">

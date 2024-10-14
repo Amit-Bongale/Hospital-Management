@@ -19,22 +19,22 @@ function Herosection() {
             >
                 <SwiperSlide>
                     <img
-                        src="https://thumbs.dreamstime.com/b/big-build-note-hospital-big-build-note-hospital-d-illustration-101484001.jpg"
-                        className="w-full h-full object-cover"
+                        src="https://images.unsplash.com/photo-1579684288599-e6b7e7a940ad?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        className="w-auto h-auto object-cover"
                         alt="Slide 1"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img
-                        src="https://img.freepik.com/premium-photo/hospital-building-with-white-walls-red-cross-modern-building-white-with-red-cross_483949-29966.jpg"
-                        className="w-full h-full object-cover"
+                        src="https://images.unsplash.com/photo-1545225088-15d3178518e3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        className="w-auto h-auto object-cover"
                         alt="Slide 2"
                     />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img
-                        src="https://thehospitallocation.co.uk/wp-content/uploads/2022/06/IMG_8854-1024x768.webp" 
-                        className="w-full h-full object-cover"
+                        src="https://plus.unsplash.com/premium_photo-1673953509975-576678fa6710?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                        className="w-auto h-auto object-cover"
                         alt="Slide 3"
                     />
                 </SwiperSlide>
