@@ -38,17 +38,6 @@ function Staffnav() {
         <div>
           <span className="grid items-start px-2 text-xl font-medium lg:px-4">
             <Link
-              to=""
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
-            >
-              <button> Admission </button>
-            </Link>
-          </span>
-        </div>
-
-        <div>
-          <span className="grid items-start px-2 text-xl font-medium lg:px-4">
-            <Link
               to="/staff/admit"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
             >
