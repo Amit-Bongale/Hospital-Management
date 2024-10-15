@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 import { doctorlogin } from '../../Redux/Doctor/Doctor'
-import { useState } from 'react'
+// import { useState } from 'react'
 
 function Doctorlogin() {
     const dispatch = useDispatch()
-    let [username , setusername] = use
+    // let [username , setusername] = useState()
 
   return (
     <div>
