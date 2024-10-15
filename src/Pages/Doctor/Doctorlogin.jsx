@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 import { doctorlogin } from '../../Redux/Doctor/Doctor'
+import { useState } from 'react'
 
 function Doctorlogin() {
     const dispatch = useDispatch()
+    let [username , setusername] = use
 
   return (
     <div>
@@ -34,7 +36,7 @@ function Doctorlogin() {
                                 class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-3 text-center mt-6 "> Log in </button>
                             </Link>
 
-                            <Link to={'/'}>
+                            <Link to={'/chooserole'}>
                                 <button  type="submit" 
                                 class="w-full text-black hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-3 text-center mt-6 ">
                                 Back to Home</button>
