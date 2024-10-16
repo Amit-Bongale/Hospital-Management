@@ -25,21 +25,20 @@ function AboutHospital() {
             <div class="flex flex-wrap">
               <div class="ml-28 mr-16 flex">
                 <div>
-                  <img src="https://png.pngtree.com/thumb_back/fh260/background/20230613/pngtree-hospital-room-with-long-row-of-beds-image_2953664.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
+                  <div class="mr-2">
+                    <img src="https://images.unsplash.com/photo-1619975101891-8dc1c752aece?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM0fHxob3NwaXRhbHxlbnwwfHwwfHx8MA%3D%3D " alt='' class="max-w-sm h-72 w-96 shadow-md shadow-slate-500" />
+                  </div>
+                  <div class="mr-2 mt-2">
+                    <img src="https://velammalmedicalcollege.edu.in/wp-content/uploads/2021/07/DSC06932.jpg " alt='' class="max-w-sm h-72 w-96 shadow-md shadow-slate-500" />
+                  </div>
                 </div>
                 <div>
-                  <img src="https://pikwizard.com/pw/medium/3383b72f013bbffee69b8741dea1bb93.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
-                </div>
-                </div>
-                <div class="ml-28 mr-16 flex">
                   <div>
-                    <img src="https://png.pngtree.com/thumb_back/fh260/background/20230613/pngtree-hospital-room-with-long-row-of-beds-image_2953664.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
-                  </div>
-                  <div>
-                    <img src="https://pikwizard.com/pw/medium/3383b72f013bbffee69b8741dea1bb93.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
+                    <img src="https://images.unsplash.com/photo-1550831106-f8d5b6f1abe9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </div>
     </div>
