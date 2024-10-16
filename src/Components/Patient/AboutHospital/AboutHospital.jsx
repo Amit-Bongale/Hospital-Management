@@ -22,14 +22,24 @@ function AboutHospital() {
             Overall, hospitals are central to the delivery of healthcare, playing a multifaceted role in providing immediate medical care, supporting medical education, fostering innovation in treatment methods, and contributing to the broader public health ecosystem.</h1>
           </div>
           <div class="flex items-center mt-2.5 mb-2 ">
-          <div class="flex flex-wrap p-1 m-1.5 ">
-          <div class="ml-28 mr-16">
-            <img src="https://png.pngtree.com/thumb_back/fh260/background/20230613/pngtree-hospital-room-with-long-row-of-beds-image_2953664.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
-          </div>
-          <div class="ml-28 mr-16">
-            <img src="https://pikwizard.com/pw/medium/3383b72f013bbffee69b8741dea1bb93.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
-          </div>
-          </div>
+            <div class="flex flex-wrap">
+              <div class="ml-28 mr-16 flex">
+                <div>
+                  <img src="https://png.pngtree.com/thumb_back/fh260/background/20230613/pngtree-hospital-room-with-long-row-of-beds-image_2953664.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
+                </div>
+                <div>
+                  <img src="https://pikwizard.com/pw/medium/3383b72f013bbffee69b8741dea1bb93.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
+                </div>
+                </div>
+                <div class="ml-28 mr-16 flex">
+                  <div>
+                    <img src="https://png.pngtree.com/thumb_back/fh260/background/20230613/pngtree-hospital-room-with-long-row-of-beds-image_2953664.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
+                  </div>
+                  <div>
+                    <img src="https://pikwizard.com/pw/medium/3383b72f013bbffee69b8741dea1bb93.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
+                  </div>
+                </div>
+              </div>
           </div>
         </div>
     </div>
