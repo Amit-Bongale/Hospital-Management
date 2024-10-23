@@ -4,6 +4,7 @@ import 'swiper/css/navigation'; // Import Navigation module styles
 import 'swiper/css/pagination'; // Import Pagination module styles
 import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper React components
 import { Navigation, Pagination } from 'swiper/modules'; // Import necessary Swiper modules
+
 function Herosection() {
 
     return (
@@ -23,6 +24,7 @@ function Herosection() {
                         className="w-auto h-auto object-cover"
                         alt="Slide 1"
                     />
+                 
                 </SwiperSlide>
                 <SwiperSlide>
                     <img
@@ -40,8 +42,6 @@ function Herosection() {
                 </SwiperSlide>
             </Swiper>
         </section>
-
-
       {/* <div class="flex items-center mt-2.5 mb-2 ">
         <div class="flex flex-wrap p-1 m-1.5">
           <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow s ml-3 mr-3">

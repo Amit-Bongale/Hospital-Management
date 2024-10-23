@@ -35,6 +35,7 @@ function Nav() {
             <button className="mr-10"> Login </button>
         </Link>
 
+
         </div>
         <div>
               <button onClick={() => setappointment(true)} className="px-6 py-2 rounded-full bg-white text-black ">Book Appointment</button>

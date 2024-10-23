@@ -22,14 +22,23 @@ function AboutHospital() {
             Overall, hospitals are central to the delivery of healthcare, playing a multifaceted role in providing immediate medical care, supporting medical education, fostering innovation in treatment methods, and contributing to the broader public health ecosystem.</h1>
           </div>
           <div class="flex items-center mt-2.5 mb-2 ">
-          <div class="flex flex-wrap p-1 m-1.5 ">
-          <div class="ml-28 mr-16">
-            <img src="https://png.pngtree.com/thumb_back/fh260/background/20230613/pngtree-hospital-room-with-long-row-of-beds-image_2953664.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
-          </div>
-          <div class="ml-28 mr-16">
-            <img src="https://pikwizard.com/pw/medium/3383b72f013bbffee69b8741dea1bb93.jpg" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
-          </div>
-          </div>
+            <div class="flex flex-wrap">
+              <div class="ml-28 mr-16 flex">
+                <div>
+                  <div class="mr-2">
+                    <img src="https://images.unsplash.com/photo-1619975101891-8dc1c752aece?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM0fHxob3NwaXRhbHxlbnwwfHwwfHx8MA%3D%3D " alt='' class="max-w-sm h-72 w-96 shadow-md shadow-slate-500" />
+                  </div>
+                  <div class="mr-2 mt-2">
+                    <img src="https://velammalmedicalcollege.edu.in/wp-content/uploads/2021/07/DSC06932.jpg " alt='' class="max-w-sm h-72 w-96 shadow-md shadow-slate-500" />
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <img src="https://images.unsplash.com/photo-1550831106-f8d5b6f1abe9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt='' class="max-w-sm  shadow-md shadow-slate-500" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
     </div>
