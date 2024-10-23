@@ -19,7 +19,7 @@ function Nav() {
 
         <div class="my-5">
             <Link to="/">
-              <button className="mr-10 ml-20">Home</button>
+              <button className="mr-10">Home</button>
             </Link>
 
             <Link to="/contactusform">
@@ -32,7 +32,7 @@ function Nav() {
         
 
         <Link to="/loginform">
-            <button className="mr-10 ml-10"> Login </button>
+            <button className="mr-10"> Login </button>
         </Link>
 
         </div>
