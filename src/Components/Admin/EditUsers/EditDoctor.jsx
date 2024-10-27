@@ -70,7 +70,7 @@ function EditDoctor({ setisopen, doctorid }) {
 
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center">
-      <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl rounded-3xl">
+      <div className=" bg-white w-[55%] h-[95%] py-6 px-8 z-20 border-2 shadow-xl rounded-3xl">
         <h2 className="text-2xl font-bold py-2 mb-5 ">Edit Doctor Details</h2>
         <form onSubmit={() => update()}>
           <div className="grid gap-6 mb-6 md:grid-cols-2">
