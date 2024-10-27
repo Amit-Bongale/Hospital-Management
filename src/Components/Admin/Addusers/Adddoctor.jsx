@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { useState } from "react";
 
 function Adddoctor({ setisopen }) {
@@ -12,9 +12,59 @@ function Adddoctor({ setisopen }) {
   let [phone , setphone] = useState('')
   let [experience , setexperience] = useState('')
   let [dob , setdob] = useState('')
-  let [image , setimage ] = useState('')
+  let [image , setimage ] = useState(null)
 
-  function Send(){
+
+  async function Send(e){
+
+    e.preventDefault();
+
+    console.log("called send")
+
+    const uploadPreset = process.env.REACT_APP_cloudinary_api_upload_preset;
+    const cloudName = process.env.REACT_APP_cloudinary_cloud_name;
+
+    if (!uploadPreset || !cloudName) {
+      alert("Cloudinary configuration is missing.");
+      return;
+    }
+
+
+    // Cloudinary image uploader
+    const formData = new FormData();
+    formData.append('file', image);
+    formData.append('upload_preset', uploadPreset );
+    formData.append('cloud_name', cloudName);
+
+    try {
+      await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload/`, {
+        method: "POST",
+        body: formData,
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // alert("image inserted sucessfully")
+        let id = data.public_id;
+        let version = data.version;
+        let format = data.format
+        let imageurl = `https://res.cloudinary.com/${cloudName}/image/upload/c_thumb,g_face,w_1080,h_1080/v${version}/${id}.${format}`
+
+        if(data.secure_url){
+          Insert(imageurl);
+        }
+      })
+      .catch((error) => {console.log("Image upload error:" , error , error.message)});
+        
+    } catch (error) {
+      console.log("error :", error);
+      return;
+    }
+    
+  }
+
+  // doctor data uploder
+  function Insert(imageurl){
 
     let data = {
       "id": id,
@@ -26,7 +76,7 @@ function Adddoctor({ setisopen }) {
       "phone": phone,
       "experience": experience,
       "dob": dob,
-      "image" : image
+      "image" : imageurl,
     }
 
     try {
@@ -40,6 +90,7 @@ function Adddoctor({ setisopen }) {
         if (data.message) {
           console.log(data.message);
           alert(data.message);
+          window.location.reload()
         }
         console.log(data);
       })
@@ -47,45 +98,31 @@ function Adddoctor({ setisopen }) {
     } catch (error) {
       console.log("error :", error);
     }
+
   }
 
-  
-  // Convert the image to Base64 when the user selects an image
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setimage(reader.result); // Base64 string of the image
-        // setPreview(reader.result); // Preview the image
-      };
-       reader.readAsDataURL(file);
-    }
-    console.log(image)
-  };
-    
 
 
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
         <h2 className="text-2xl font-bold py-2 mb-5 ">Add Doctor</h2>
-        <form onSubmit={() => Send()} >
+        <form onSubmit={Send} >
           <div className="grid gap-6 mb-5  md:grid-cols-2">
 
             <div>
               <label
-                for="image"
+                for="file"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 image
               </label>
               <input
                 type="file"
-                name="image" 
-                id="image"
+                name="file"
+                id="file"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="choose file"
-                accept="image/*" onChange={handleImageChange}
+                accept="image/*" onChange={(e) => setimage(e.target.files[0])}
               />
             </div>
 
@@ -161,7 +198,7 @@ function Adddoctor({ setisopen }) {
                 type="tel"
                 id="phone"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="123-45-678"
+                placeholder=" +91 123-245-6780"
                 // pattern="[0-9]{10}"
                 required
                 onChange={(val) => setphone(val.target.value)}
@@ -193,7 +230,7 @@ function Adddoctor({ setisopen }) {
                 type="number"
                 id="experience"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Your Name"
+                placeholder="Enter Doctor Experience"
                 required
                 onChange={(val) => setexperience(val.target.value)}
               />

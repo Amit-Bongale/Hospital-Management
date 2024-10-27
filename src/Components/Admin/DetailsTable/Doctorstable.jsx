@@ -26,7 +26,7 @@ function Doctorstable() {
 
   return (
 
-    <div className="w-full">
+    <div className="w-full absolute overflow-x-auto p-4 m-[-20px]">
 
       { edit ? <EditDoctor setisopen={setedit} doctorid={doctorid}/> : <></>}
       { deleteitem ? <DeleteDocotor setisopen={setdelete} doctorid={doctorid} /> : <></>}

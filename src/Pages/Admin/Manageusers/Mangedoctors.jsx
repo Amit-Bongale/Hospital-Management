@@ -14,7 +14,7 @@ function Mangedoctors() {
   return (
     <div className='flex'>
         <Adminnav />
-        <div className='ml-1'>
+        <div className='ml-6'>
             
             <button className='bg-black text-white py-3 px-6 rounded-3xl my-4' onClick={() => setadddoc(!adddoc)} > Add Doctor </button>
             { adddoc ? <Adddoctor setisopen={setadddoc}/> : <></>}
