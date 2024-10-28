@@ -264,22 +264,37 @@ function NewPatientForm({ setisopen }) {
                 onChange={(e) => setemergencycontact(e.target.value)}
               />
             </div>
-          </div>
           
-          <div>
-            <label
-              for="medical history"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Medical History
-            </label>
-            <input
-              type="text"
-              id="medical history"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Allery / Mediacl conditions"
-              onChange={(e) => sethistory(e.target.value)}
-            />
+            <div>
+              <label
+                for="medical history"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Allergy / Symptoms
+              </label>
+              <input
+                type="text"
+                id="medical history"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+                onChange={(e) => sethistory(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label
+                for="reason"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Patient Condition
+              </label>
+              <input
+                type="text"
+                id="reason"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+              />
+            </div>
           </div>
 
           <div className="mt-6">
