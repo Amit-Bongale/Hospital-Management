@@ -29,6 +29,7 @@ import StaffDashboard from '../Pages/Staff/StaffDashboard'
 import StaffAdmit from '../Pages/Staff/StaffAdmit'
 import StaffTest from '../Pages/Staff/StaffTest'
 import StaffBill from '../Pages/Staff/StaffBill'
+import StaffDoctorStatus from '../Pages/Staff/StaffDoctorStatus'
 
 
 import Doctorcard from '../Components/Patient/Home/Doctor/Doctorcard'
@@ -84,6 +85,7 @@ function Router() {
         <Route path='admit' element={<StaffAdmit/>}/>
         <Route path='test' element={<StaffTest/>}/>
         <Route path='bill' element={<StaffBill/>}/>
+        <Route path='status' element={<StaffDoctorStatus/>} />
 
       </Route>
 
