@@ -1,9 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import AppointmentForm from "../../AppointmentForm/AppointmentForm";
 
 function Doctorcard() {
-  let [appointment, setappointment] = useState(false);
+
+  let [doctorinfo, setdoctorinfo] = useState([])
+
+  useEffect(()=>{ 
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors`)
+      .then((res)=>{res.json()})
+      .then((data)=>{setdoctorinfo(data)})
+      .catch((error)=>{console.log('error fetching data',error)})
+      
+    } catch (error) {
+      console.log('error:', error)
+
+    }
+  },[])
 
   return (
     <div>
@@ -14,7 +27,9 @@ function Doctorcard() {
       </div>
       <div class="flex items-center mt-2.5 mb-2 ">
         <div class="flex flex-wrap p-1 m-1.5 ">
-          <div class="ml-28 mr-16">
+          {doctorinfo.map((doctor)=>(
+
+            <div class="ml-28 mr-16">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvxv-aOP1Kg25NKYqPdJj3hx0jmJEydfAGYCaLywnW6kiyFkrYsockTqIZOArz2v9SRuY&usqp=CAU"
               alt=""
@@ -22,86 +37,16 @@ function Doctorcard() {
             <h1 class="mx-12 my-2"> Name:Dr Anusha</h1>
             <div>
               <button
-                onClick={() => setappointment(true)}
+            
                 className="mx-11 my-2 "
               >
                 {" "}
                 Book Appointment{" "}
               </button>
             </div>
-
-            {appointment ? (
-              <AppointmentForm setappointment={setappointment} />
-            ) : (
-              <></>
-            )}
           </div>
-          <div class="ml-10 mr-20">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvxv-aOP1Kg25NKYqPdJj3hx0jmJEydfAGYCaLywnW6kiyFkrYsockTqIZOArz2v9SRuY&usqp=CAU"
-              alt=""
-            />
-            <h1 class="mx-12 my-2"> Name:Dr Apoorva</h1>
-            <div>
-              <button
-                onClick={() => setappointment(true)}
-                className="mx-11 my-2 "
-              >
-                {" "}
-                Book Appointment{" "}
-              </button>
-            </div>
-
-            {appointment ? (
-              <AppointmentForm setappointment={setappointment} />
-            ) : (
-              <></>
-            )}
-          </div>
-          <div class="ml-10 mr-20">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvxv-aOP1Kg25NKYqPdJj3hx0jmJEydfAGYCaLywnW6kiyFkrYsockTqIZOArz2v9SRuY&usqp=CAU"
-              alt=""
-            />
-            <h1 class="mx-12 my-2"> Name:Dr Lekhana</h1>
-            <div>
-              <button
-                onClick={() => setappointment(true)}
-                className="mx-11 my-2 "
-              >
-                {" "}
-                Book Appointment{" "}
-              </button>
-            </div>
-
-            {appointment ? (
-              <AppointmentForm setappointment={setappointment} />
-            ) : (
-              <></>
-            )}
-          </div>
-          <div class="ml-10 mr-20">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvxv-aOP1Kg25NKYqPdJj3hx0jmJEydfAGYCaLywnW6kiyFkrYsockTqIZOArz2v9SRuY&usqp=CAU"
-              alt=""
-            />
-            <h1 class="mx-12 my-2"> Name:Dr kavana</h1>
-            <div>
-              <button
-                onClick={() => setappointment(true)}
-                className="mx-11 my-2 "
-              >
-                {" "}
-                Book Appointment{" "}
-              </button>
-            </div>
-
-            {appointment ? (
-              <AppointmentForm setappointment={setappointment} />
-            ) : (
-              <></>
-            )}
-          </div>
+          ))}
+          
         </div>
       </div>
     </div>
