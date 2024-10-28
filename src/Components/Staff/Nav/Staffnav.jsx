@@ -27,7 +27,7 @@ function Staffnav() {
         <div>
           <span className="grid items-start px-2 text-xl font-medium lg:px-4">
             <Link
-              to=""
+              to="/staff/status"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
             >
               <button> Doctor Status </button>
