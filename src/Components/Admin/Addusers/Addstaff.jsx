@@ -1,8 +1,9 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState  } from 'react'
 
 
 function Addstaff({setisopen}) {
+
   let [id, setid ] = useState('')
   let [name , setname] = useState('')
   let [gender , setgender] = useState('')
@@ -12,9 +13,54 @@ function Addstaff({setisopen}) {
   let [phone , setphone] = useState('')
   let [experience , setexperience] = useState('')
   let [dob , setdob] = useState('')
+  let [image , setimage] = useState(null)
 
+  async function Send(e){
+
+    e.preventDefault();
+
+    const uploadPreset = process.env.REACT_APP_cloudinary_api_upload_preset;
+    const cloudName = process.env.REACT_APP_cloudinary_cloud_name;
+
+    if (!uploadPreset || !cloudName) {
+      alert("Cloudinary configuration is missing.");
+      return;
+    }
+
+
+    // Cloudinary image uploader
+    const formData = new FormData();
+    formData.append('file', image);
+    formData.append('upload_preset', uploadPreset );
+    formData.append('cloud_name', cloudName);
+
+    try {
+      await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload/`, {
+        method: "POST",
+        body: formData,
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // alert("image inserted sucessfully")
+        let id = data.public_id;
+        let version = data.version;
+        let format = data.format
+        let imageurl = `https://res.cloudinary.com/${cloudName}/image/upload/c_thumb,g_face,w_1080,h_1080/v${version}/${id}.${format}`
+
+        if(data.secure_url){
+          Insert(imageurl);
+        }
+      })
+      .catch((error) => {console.log("Image upload error:" , error , error.message)});
+        
+    } catch (error) {
+      console.log("error :", error);
+      return;
+    }
+  }
   
-  function Send(){
+  function Insert(imageurl){
 
     let data = {
       "id": id,
@@ -26,6 +72,7 @@ function Addstaff({setisopen}) {
       "experience": experience,
       "dob": dob,
       "password":password,
+      "image" : imageurl
     }
 
     try {
@@ -39,6 +86,7 @@ function Addstaff({setisopen}) {
         if (data.message) {
           console.log(data.message);
           alert(data.message);
+          window.location.reload()
         }
         console.log(data);
       })
@@ -49,17 +97,30 @@ function Addstaff({setisopen}) {
   }
 
 
-    
-
-
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
-        <h2 className="text-2xl font-bold py-2 mb-5 ">Add Staffr</h2>
-        <form onSubmit={() => Send()} >
-          <div className="grid gap-6 mb-6 md:grid-cols-2">
+        <h2 className="text-2xl font-bold py-2 mb-5 ">Add Staff</h2>
+        <form onSubmit={Send}>
+          <div className="grid gap-6 mb-1 md:grid-cols-2">
 
-          
+          <div>
+              <label
+                for="file"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                image
+              </label>
+              <input
+                type="file"
+                name="file"
+                id="file"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg bg-tra focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 "
+                placeholder="choose file"
+                required
+                accept="image/*"
+                onChange={(e) => setimage(e.target.files[0])}
+              />
+            </div>
 
 
           <div>
@@ -188,24 +249,26 @@ function Addstaff({setisopen}) {
                 onChange={(val) => setdob(val.target.value)}
               />
             </div>
+
+            <div className="mb-6">
+              <label
+                for="password"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                className="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="•••••••••"
+                required
+                onChange={(val) => setpassword(val.target.value)}
+              />
+            </div>
           </div>
           
-          <div className="mb-6">
-            <label
-              for="password"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="•••••••••"
-              required
-              onChange={(val) => setpassword(val.target.value)}
-            />
-          </div>
+          
           
           
           <button
