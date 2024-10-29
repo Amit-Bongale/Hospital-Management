@@ -33,7 +33,6 @@ import StaffBill from '../Pages/Staff/StaffBill'
 import StaffDoctorStatus from '../Pages/Staff/StaffDoctorStatus'
 
 
-import Doctorcard from '../Components/Patient/Home/Doctor/Doctorcard'
 import AppointmentBooking from '../Pages/Patient/AppointmentBooking'
 import LoginForm from '../Pages/Patient/LoginForm'
 import ContactUsForm from '../Pages/Patient/ContactUsForm'
@@ -48,7 +47,6 @@ function Router() {
       {/* Patient Routers */}
       <Route path="/" element={<Home />} />
 
-      <Route path="/doctorcard" element={<Doctorcard/>}/>
       <Route path="/appointmentbooking" element={<AppointmentBooking/>}/>
       <Route path="/loginform" element={<LoginForm/>}/>
       <Route path="/contactusform" element={<ContactUsForm/>}/>    

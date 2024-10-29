@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
-import { useState } from 'react'
-
-import AppointmentForm from "../AppointmentForm/AppointmentForm";
 
 function Footersection() {
-
-  let [appointment,setappointment] = useState(false)
-
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -17,7 +11,7 @@ function Footersection() {
 
 
     return(
-        <div class="flex flex-wrap items-center justify-evenly bg-green text-black mt-10">
+        <div class="flex flex-wrap items-center justify-evenly bg-blue-500 text-white mt-10">
 
             <div class="w-[500px] h-[500px]">
                 <h1 class="text-5xl ml-28 mt-14 font-semibold">Hospital Management</h1>
@@ -43,12 +37,10 @@ function Footersection() {
 
                 <button onClick={scrollToTop} class=" ml-28 pl-6 my-5 pt-3 text-2xl">Home</button>
 
-                <div>
-                    <button onClick={() => setappointment(true)} class="ml-28 pl-6 text-2xl ">Appointment</button>
-                </div>
-
-                {appointment ?<AppointmentForm setappointment={setappointment}/>
-                :<></>}
+                <Link to="/appointmentbooking">
+                    <button class="ml-28 pl-6 text-2xl ">Appointment</button>
+                </Link>
+                    
 
                 <Link to='/loginform'><p class="ml-28 pl-6 my-4 text-2xl">Login</p></Link>
 
