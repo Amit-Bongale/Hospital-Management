@@ -1,46 +1,58 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 
 function Doctorcard() {
+  let [doctorinfo, setdoctorinfo] = useState([]);
 
-  let [doctorinfo, setdoctorinfo] = useState([])
-
-  useEffect(()=>{
+  useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
-      .then((res)=> res.json())
-      .then((data)=>{ setdoctorinfo(data); console.log(data) })
-      .catch((error)=>console.log('error fetching data',error))
-      
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setdoctorinfo(data);
+          console.log(data);
+        })
+        .catch((error) => console.log("error fetching data", error));
     } catch (error) {
-      console.log('error:', error)
-
+      console.log("error:", error);
     }
-  },[])
+  }, []);
 
   return (
     <div>
       <div className="mt-14">
         <h1 class="text-3xl font-bold text-gray-900 m-4 ml-24">
-          Our Greate Doctors
+          Our Great Doctors
         </h1>
       </div>
-      <div class="flex items-center mt-2.5 mb-2 ">
-        <div class="flex flex-wrap p-1 m-1.5 ">
-          { doctorinfo.map((doctor)=>(
-
-            <div class="ml-28 mr-16">
-              <img
-                src={doctor.image}
-                alt="doctor profile"
-                className="w-56"
-              />
-              <h1 class="mx-12 my-2"> {doctor.name} </h1>
-              <div>
-                <button
-                  className="mx-11 my-2 ">
-                  Book Appointment
-                </button>
+      <div class="mt-2.5 mb-1">
+        <div class="flex flex-wrap items-center justify-around p-1 m-1.5 ">
+          {doctorinfo.map((doctor) => (
+            <div>
+              <div
+                class="p-6 max-w-lg border-2 border-indigo-300 rounded-2xl hover:shadow-xl hover:shadow-indigo-50 flex flex-col "
+                >
+                <img
+                  src={doctor.image}
+                  class="shadow rounded-lg overflow-hidden border w-52"
+                  alt="doctor profile"
+                />
+                <div class="mt-4">
+                  <h4 class="font-bold text-xl"> {doctor.name}</h4>
+                  <p class="mt-1 text-gray-600"> {doctor.specialization}</p>
+                  <div class="mt-4">
+                    <Link to="/appointmentbooking">
+                      <button
+                        type="button"
+                        class="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-blue-800"
+                      >
+                        Book Appointment
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
