@@ -9,7 +9,7 @@ function AdmitPatientInfo() {
   let [admitpatient,setadmitpatient] = useState(false)
   return (
     <div>
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg ml-32">
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
             <tr>
@@ -25,7 +25,7 @@ function AdmitPatientInfo() {
           </thead>
         </table>
       </div>
-        <div className="flex justify-center">
+        <div className="flex">
             <span className="grid items-start px-2 text-xl font-medium lg:px-4">
                 <button
                 onClick={() => setadmitpatient(true)}
