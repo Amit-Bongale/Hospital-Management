@@ -5,7 +5,7 @@ function Doctorcard() {
 
   let [doctorinfo, setdoctorinfo] = useState([])
 
-  useEffect(()=>{ 
+  useEffect(()=>{
     try {
       fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
       .then((res)=> res.json())
@@ -30,23 +30,20 @@ function Doctorcard() {
           { doctorinfo.map((doctor)=>(
 
             <div class="ml-28 mr-16">
-            <img
-              src={doctor.image}
-              alt="doctor profile"
-              className="w-56"
-            />
-            <h1 class="mx-12 my-2"> {doctor.name} </h1>
-            <div>
-              <button
-            
-                className="mx-11 my-2 "
-              >
-                Book Appointment
-              </button>
+              <img
+                src={doctor.image}
+                alt="doctor profile"
+                className="w-56"
+              />
+              <h1 class="mx-12 my-2"> {doctor.name} </h1>
+              <div>
+                <button
+                  className="mx-11 my-2 ">
+                  Book Appointment
+                </button>
+              </div>
             </div>
-          </div>
           ))}
-          
         </div>
       </div>
     </div>
