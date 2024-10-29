@@ -8,6 +8,7 @@ import ChooseRole from '../Pages/Role/ChooseRole'
 import Doctorroute from './AuthRoutes/Doctorroute'
 import Adminroute from './AuthRoutes/Adminroute'
 import Staffroute from './AuthRoutes/Staffroute'
+import Patientroute from './AuthRoutes/Patientroute'
 
 import Adminlogin from '../Pages/Admin/Adminlogin'
 import AdminDashboard from '../Pages/Admin/AdminDashboard'
@@ -55,10 +56,9 @@ function Router() {
        
 
       {/* Patient must login to use these routes */}
-      <Route path="/user" element={" "}>
-      {/* <Route path="/doctorcard" element={<Doctorcard/>}/>
-        <Route path="/appointmentbooking" element={<AppointmentBooking/>}/> */}
-        {/* here */}
+   
+      <Route path="/user" element={<Patientroute/>}>
+       
 
       </Route>
 
