@@ -36,7 +36,9 @@ import StaffDoctorStatus from '../Pages/Staff/StaffDoctorStatus'
 import AppointmentBooking from '../Pages/Patient/AppointmentBooking'
 import LoginForm from '../Pages/Patient/LoginForm'
 import ContactUsForm from '../Pages/Patient/ContactUsForm'
-import HospitalDetails from '../Pages/Patient/HospitalDetails'
+import Account from '../Pages/Patient/Account'
+
+
 
 function Router() {
 
@@ -47,10 +49,15 @@ function Router() {
       {/* Patient Routers */}
       <Route path="/" element={<Home />} />
 
-      <Route path="/appointmentbooking" element={<AppointmentBooking/>}/>
       <Route path="/loginform" element={<LoginForm/>}/>
-      <Route path="/contactusform" element={<ContactUsForm/>}/>    
-      <Route path="/hospitaldetails" element={<HospitalDetails/>}/>    
+
+      <Route path="/appointmentbooking" element={<AppointmentBooking/>}/>
+      <Route path="/contactusform" element={<ContactUsForm/>}/>
+    
+
+
+      <Route path="/user/details" element={<Account/>}/>
+
        
 
       {/* Patient must login to use these routes */}
