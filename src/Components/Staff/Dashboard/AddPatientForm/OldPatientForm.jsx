@@ -15,6 +15,8 @@ function OldPatientForm({ setisopen }) {
   let [bloodgroup , setbloodgroup] = useState()
   let [emergencycontact , setemergencycontact] = useState()
   let [history , sethistory] = useState()
+  let [disease , setdisease] = useState()
+  let [patientinfo , setpatientinfo] = useState([])
 
   
   function Send(){
@@ -34,11 +36,23 @@ function OldPatientForm({ setisopen }) {
       "medicalhistory" : history,
     }
 
+    
+    let queue = {
+      "id": id,
+      "name": name,
+      "gender": gender,
+      "mobileno" : phone,
+      "disease" : disease,
+      "status" : "queue"
+    }
+
+
+
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/patient/createnewpatient`, {
+      fetch(`${process.env.REACT_APP_API_URL}/queue/createqueue`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(queue),
       })
       .then((res) => res.json())
       .then((data) => {
@@ -55,11 +69,32 @@ function OldPatientForm({ setisopen }) {
   }
 
 
+  function Search(){
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${id}`, {
+        method: "GET",
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        setpatientinfo(data)
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+
+  }
+
+
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-5 "> Add Old Patient</h2>
-        <form onSubmit={() => Send()}>
 
           <div class="flex">
             <div class="grid mb-4">
@@ -78,22 +113,25 @@ function OldPatientForm({ setisopen }) {
                 onChange={(e) => {setaadharno(e.target.value); setid(e.target.value)}}
               />
             </div>
-            <button 
+            <button
+            onClick={() => Search()} 
             type="search"
             class="text-sm ml-8 hover:bg-blue-100"
             >
               Search
             </button>
           </div>
-
-          <div class="grid gap-6 mb-4 md:grid-cols-2">        
+          
+          <div class="grid gap-6 mb-4 md:grid-cols-2">
+          { patientinfo.map((patient)=>(
+            <div>   
             <div>
               <label
                 for="first_name"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Name : <h6 class="ml-2">Appu</h6>
+                  Name : <h6 class="ml-2">{patient.name}</h6>
                 </div>
               </label>
             </div>
@@ -104,7 +142,7 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Gender : <h6 class="ml-2">male</h6>
+                  Gender : <h6 class="ml-2">{patient.gender}</h6>
                 </div>
               </label>
             </div>
@@ -115,7 +153,7 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Age : <h3 class="ml-2">15</h3>
+                  Age : <h3 class="ml-2">{patient.age}</h3>
                 </div>
               </label>
             </div>
@@ -126,7 +164,7 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Email : <h3 class="ml-2">appu@gmail.com</h3>
+                  Email : <h3 class="ml-2">{patient.email}</h3>
                 </div>
               </label>
             </div>
@@ -137,7 +175,7 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Phone number : <h3 class="ml-2">1236547892</h3>
+                  Phone number : <h3 class="ml-2">{patient.phone}</h3>
                 </div>
               </label>
             </div>
@@ -148,7 +186,7 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Date of Birth : <h3 class="ml-2">12 jan 2005</h3>
+                  Date of Birth : <h3 class="ml-2">{patient.dob}</h3>
                 </div>
               </label>
             </div>
@@ -159,7 +197,7 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Address : <h3 class="ml-2">5th main</h3>
+                  Address : <h3 class="ml-2">{patient.address}</h3>
                 </div>
               </label>
             </div>
@@ -170,7 +208,7 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Blood Group : <h3 class="ml-2">A+</h3>
+                  Blood Group : <h3 class="ml-2">{patient.bloodgroup}</h3>
                 </div>
               </label>
             </div>
@@ -181,7 +219,7 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Emergency Contact : <h3 class="ml-2">1236547815</h3>
+                  Emergency Contact : <h3 class="ml-2">{patient.emergencycontact}</h3>
                 </div>
               </label>
             </div>
@@ -192,11 +230,12 @@ function OldPatientForm({ setisopen }) {
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 <div class="flex">
-                  Medical History : <h3 class="ml-2">viral fever</h3>
+                  Medical History : <h3 class="ml-2">{patient.medicalhistory}</h3>
                 </div>
               </label>
             </div>
-
+            </div>
+          ))}
             <div>
               <label
                 for="select"
@@ -209,7 +248,6 @@ function OldPatientForm({ setisopen }) {
                 id="select"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
-                required
               />
             </div>
 
@@ -225,7 +263,6 @@ function OldPatientForm({ setisopen }) {
                 id="timing"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
-                required
               />
             </div>
           </div>
@@ -235,7 +272,7 @@ function OldPatientForm({ setisopen }) {
               for="reason"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              Patient Condition
+              Disease
             </label>
             <input
               type="text"
@@ -249,6 +286,7 @@ function OldPatientForm({ setisopen }) {
 
           <div className="mt-6">
             <button 
+             onClick={()=>Send()}
             type="submit"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
@@ -262,8 +300,6 @@ function OldPatientForm({ setisopen }) {
               Close
             </button>
           </div>
-          
-        </form>
       </div>
 
       <div
