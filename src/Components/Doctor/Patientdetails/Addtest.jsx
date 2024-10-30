@@ -8,7 +8,6 @@ function Addtest({settest}){
         <h2 className="text-2xl font-bold py-2 mb-5 ">Add Test</h2>
         <form >
           <div className="grid gap-6 mb-5  md:grid-cols-2">
-
             <div>
               <label
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -21,7 +20,6 @@ function Addtest({settest}){
                 required
               />
             </div>
-
             <div>
               <label
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -106,7 +104,7 @@ function Addtest({settest}){
       ></div>
     </div>
 
-    )
+  )
 }
 
 export default Addtest
