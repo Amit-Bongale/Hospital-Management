@@ -31,6 +31,10 @@ function Nav() {
           <Link to="/loginform">
             <button className="mr-10"> Login </button>
           </Link>
+
+          <Link to="/user/details">
+            <button className="mr-10"> Account </button>
+          </Link>
         </div>
 
         <div>
