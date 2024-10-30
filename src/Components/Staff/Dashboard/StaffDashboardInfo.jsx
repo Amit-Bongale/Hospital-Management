@@ -1,14 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 import NewPatientForm from './AddPatientForm/NewPatientForm'
 import OldPatientForm from './AddPatientForm/OldPatientForm'
 
-// import { Link } from "react-router-dom";
-
 function StaffDashboardInfo() {
   let [newpatient,setnewpatient] = useState(false)
   let [oldpatient,setoldpatient] = useState(false)
+
+  let [queueinfo , setqueueinfo] = useState([]) 
+
+  useEffect(()=>{
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient`, {
+        method: "POST",
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+          setqueueinfo(data);
+        }
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+
+  },[newpatient,oldpatient])
+
+    
   return (
     <div>
         <div className="flex">
@@ -69,29 +93,35 @@ function StaffDashboardInfo() {
 
       </div>
 
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg justify-center">
-        <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
-          <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
-            <tr>
-              <th scope="col" class="px-6 py-3"> AADHAAR NUMBER </th>
-              <th scope="col" class="px-6 py-3"> PATIENT NAME </th>
-              <th scope="col" class="px-6 py-3"> PHONE NUMBER </th>
-              <th scope="col" class="px-6 py-3"> AGE </th>
-              <th scope="col" class="px-6 py-3"> EMERGENCY NUMBER </th>
-            </tr>
-          </thead>
+      {queueinfo.map((queue)=>(
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg justify-center">
+          <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+            <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
+              <tr>
+                <th scope="col" class="px-6 py-3"> PATIENT ID </th>
+                <th scope="col" class="px-6 py-3"> PATIENT NAME </th>
+                <th scope="col" class="px-6 py-3"> GENDER </th>
+                <th scope="col" class="px-6 py-3"> DISEASE </th>
+                <th scope="col" class="px-6 py-3"> MOBILENO </th>
+                <th scope="col" class="px-6 py-3"> STATUS </th>
+              </tr>
 
-          <tbody class="text-center">
-            <tr>
-              <td scope="col" class="px-6 py-3"> 458789652365 </td>
-              <td scope="col" class="px-6 py-3"> Anu </td>
-              <td scope="col" class="px-6 py-3"> 9452015896 </td>
-              <td scope="col" class="px-6 py-3"> 20 </td>
-              <td scope="col" class="px-6 py-3"> 8547962586 </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody class="text-center">
+              <tr>
+                <td  class="px-6 py-3"> {queue.id} </td>
+                <td  class="px-6 py-3"> {queue.name} </td>
+                <td  class="px-6 py-3"> {queue.gender} </td>
+                <td  class="px-6 py-3"> {queue.disease} </td>
+                <td  class="px-6 py-3"> {queue.mobileno} </td>
+                <td class="px-6 py-3"> {queue.status} </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      ))}
       {newpatient ?  <NewPatientForm setisopen={setnewpatient}/> : <></>}
       {oldpatient ?  <OldPatientForm setisopen={setoldpatient}/> : <></>}
        

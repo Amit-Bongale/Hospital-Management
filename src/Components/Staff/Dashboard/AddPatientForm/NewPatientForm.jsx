@@ -15,7 +15,8 @@ function NewPatientForm({ setisopen }) {
   let [bloodgroup , setbloodgroup] = useState()
   let [emergencycontact , setemergencycontact] = useState()
   let [history , sethistory] = useState()
-  // let [disease , setdisease] = useState()
+  let [disease , setdisease] = useState()
+
 
   
   function Send(){
@@ -31,8 +32,9 @@ function NewPatientForm({ setisopen }) {
       "address" : address,
       "emergencycontact" : emergencycontact,
       "bloodgroup" : bloodgroup,
-      "adharno": aadharno,
+      "aadharno": aadharno,
       "medicalhistory" : history,
+      "disease" : disease
     }
 
     try {
@@ -40,6 +42,37 @@ function NewPatientForm({ setisopen }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+  
+
+    let queue = {
+      "id": id,
+      "name": name,
+      "gender": gender,
+      "phone" : phone,
+      "disease" : disease,
+      "status" : "queue"
+    }
+
+
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/queue/createqueue`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(queue),
       })
       .then((res) => res.json())
       .then((data) => {
@@ -286,13 +319,15 @@ function NewPatientForm({ setisopen }) {
                 for="reason"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Patient Condition
+                Disease
               </label>
               <input
                 type="text"
                 id="reason"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
+                required
+                onChange={(e) => setdisease(e.target.value)}
               />
             </div>
 
