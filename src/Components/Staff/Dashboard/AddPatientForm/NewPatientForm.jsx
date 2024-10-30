@@ -36,9 +36,9 @@ function NewPatientForm({ setisopen }) {
       "bloodgroup" : bloodgroup,
       "aadharno": aadharno,
       "medicalhistory" : history,
-      "disease" : disease,
-      "doctor" : doctor,
-      "slot" : slot,
+      //"disease" : disease,
+      //"doctorid" : doctor,
+      // "slot" : slot,
     }
 
     try {
@@ -65,7 +65,7 @@ function NewPatientForm({ setisopen }) {
       "id": id,
       "name": name,
       "gender": gender,
-      "phone" : phone,
+      "mobileno" : phone,
       "disease" : disease,
       "status" : "queue"
     }
@@ -347,7 +347,7 @@ function NewPatientForm({ setisopen }) {
                 id="select"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
-                required
+                
                 onChange={(e) => setdoctor(e.target.value)}
               />
             </div>
@@ -364,7 +364,7 @@ function NewPatientForm({ setisopen }) {
                 id="timing"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
-                required
+                
                 onChange={(e) => setslot(e.target.value)}
               />
             </div>
