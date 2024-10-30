@@ -29,7 +29,7 @@ function Appointments() {
   return (
     <div className=" w-full mt-10">
       {queueinfo.map((queue) => (
-        <div class=" w-full flex text-lg font-bold ml-20 text-gray-700 border-cyan-400 border-2 rounded-lg text-center h-20 ">
+        <div class="flex text-lg font-semibold ml-20 text-gray-700 border-black border-2 rounded-lg h-20 mt-4">
           <div class="mr-20 ml-20 mt-4">
             <p>NAME</p>
             <p class="text-base font-medium">{queue.name} </p>
@@ -46,7 +46,7 @@ function Appointments() {
           </div>
 
           <div class="mr-10 ml-20 mt-7">
-            <button onClick={() => setview(true)}>VIEW</button>
+            <button onClick={() => setview(true)} class="text-blue-600 hover:cursor-pointer">VIEW</button>
           </div>
         </div>
       ))}
