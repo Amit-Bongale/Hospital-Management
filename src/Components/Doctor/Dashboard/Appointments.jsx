@@ -9,22 +9,17 @@ function Appointments() {
 
   let [queueinfo, setqueueinfo] = useState([]);
 
-
   useEffect(()=> {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient`, {
         method: "POST",
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message) {
-            console.log(data.message);
-            alert(data.message);
-            setqueueinfo(data);
-          }
-          console.log(data);
-        })
-        .catch((error) => console.log("Fetching Error:", error));
+      .then((res) => res.json())
+      .then((data) => {
+        setqueueinfo(data);
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }

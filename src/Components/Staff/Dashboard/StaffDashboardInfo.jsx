@@ -18,11 +18,7 @@ function StaffDashboardInfo() {
       })
       .then((res) => res.json())
       .then((data) => {
-        if (data.message) {
-          console.log(data.message);
-          alert(data.message);
-          setqueueinfo(data);
-        }
+        setqueueinfo(data);
         console.log(data);
       })
       .catch((error) => console.log("Fetching Error:" , error));
