@@ -9,7 +9,7 @@ function AdmitPatientInfo() {
   let [admitpatient,setadmitpatient] = useState(false)
   return (
     <div>
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg ml-32">
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
             <tr>
@@ -19,19 +19,27 @@ function AdmitPatientInfo() {
               <th scope="col" class="px-6 py-3"> AGE </th>
               <th scope="col" class="px-6 py-3"> DOCTOR NAME </th>
               <th scope="col" class="px-6 py-3"> STAFF ID </th>
-              <th scope="col" class="px-6 py-3"> WARD NUMBER </th>
-              <th scope="col" class="px-6 py-3"> BED NUMBER </th>
             </tr>
           </thead>
+
+          <tbody>
+            <tr class="text-center">
+              <td scope="col" class="px-6 py-3"> Amit </td>
+              <td scope="col" class="px-6 py-3"> male </td>
+              <td scope="col" class="px-6 py-3"> 9452015896 </td>
+              <td scope="col" class="px-6 py-3"> 20 </td>
+              <td scope="col" class="px-6 py-3"> Anu </td>
+              <td scope="col" class="px-6 py-3"> 86 </td>
+              <td scope="col" class="px-6 py-3"> 
+                <button scope="col" class="px-6 py-3"  onClick={() => setadmitpatient(true)} className="text-blue-600 hover:cursor-pointer"> Edit </button>
+              </td>
+              <td scope="col" class="px-6 py-3">  
+                <button scope="col" class="px-6 py-3"  className="text-red-600 hover:cursor-pointer"> Delete </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
-        <div className="flex justify-center">
-            <span className="grid items-start px-2 text-xl font-medium lg:px-4">
-                <button
-                onClick={() => setadmitpatient(true)}
-                className="bg-black text-white py-3 px-6 rounded-3xl my-4"> Admit Patient  </button>
-            </span>
-        </div>
         {admitpatient ?  <PatientAdmitForm setisopen={setadmitpatient}/> : <></>}
        
     </div>

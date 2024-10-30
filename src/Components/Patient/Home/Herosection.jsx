@@ -5,6 +5,8 @@ import 'swiper/css/pagination'; // Import Pagination module styles
 import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper React components
 import { Navigation, Pagination } from 'swiper/modules'; // Import necessary Swiper modules
 
+import { Link } from 'react-router-dom';
+
 function Herosection() {
 
     return (
@@ -19,12 +21,19 @@ function Herosection() {
                 className="swiper-container w-full h-full"
             >
                 <SwiperSlide>
-                    <img
+                    <div>
+                      <div className='absolute text-white text-center top-44'>
+                        <h1 className='text-9xl '>Advancing Health for Everyone, Every Day</h1>
+                        <Link to="/appointmentbooking">
+                          <button className='bg-blue-600  py-4 px-8 rounded-lg m-8'>Book Appointment</button>
+                        </Link>
+                      </div>
+                      <img
                         src="https://images.unsplash.com/photo-1579684288599-e6b7e7a940ad?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         className="w-auto h-auto object-cover"
                         alt="Slide 1"
                     />
-                 
+                    </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <img

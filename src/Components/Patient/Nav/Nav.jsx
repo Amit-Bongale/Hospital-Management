@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 
-import AppointmentForm from "../AppointmentForm/AppointmentForm";
-
 function Nav() {
-  let [appointment, setappointment] = useState(false)
+
   return (
     <nav>
       <div className="flex items-center justify-around bg-blue-500 text-white font-semibold">
@@ -18,31 +16,29 @@ function Nav() {
         </div>
 
         <div class="my-5">
-            <Link to="/">
-              <button className="mr-10">Home</button>
-            </Link>
+          <Link to="/">
+            <button className="mr-10">Home</button>
+          </Link>
 
-            <Link to="/contactusform">
-              <button className=" mr-10"> Contact Us </button>
-            </Link>
+          <Link to="/contactusform">
+            <button className=" mr-10"> Contact Us </button>
+          </Link>
 
-            <Link to="/chooserole">
-              <button className="mr-10"> Roles </button>
-            </Link>
-        
-
-        <Link to="/loginform">
+          <Link to="/chooserole">
+            <button className="mr-10"> Roles </button>
+          </Link>
+      
+          <Link to="/loginform">
             <button className="mr-10"> Login </button>
-        </Link>
-
-
+          </Link>
         </div>
+
         <div>
-              <button onClick={() => setappointment(true)} className="px-6 py-2 rounded-full bg-white text-black ">Book Appointment</button>
+          <Link to="/appointmentbooking">
+            <button className="px-6 py-2 rounded-full bg-white text-black ">Book Appointment</button>
+          </Link>
         </div>
-
-        {appointment ?<AppointmentForm setappointment={setappointment}/>
-        :<></>}       
+    
       </div>
     </nav>
   );
