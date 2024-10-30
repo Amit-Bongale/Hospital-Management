@@ -31,19 +31,18 @@ function StaffDashboardInfo() {
     
   return (
     <div>
-        <div className="flex">
-          <span className="grid items-start px-2 text-xl font-medium lg:px-4">
-            <button
-            onClick={() => setnewpatient(true)}
-            className="bg-black text-white py-3 px-6 rounded-3xl my-4"> New Patient  </button>
-          </span>
+      <div className="flex">
+        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+          <button
+          onClick={() => setnewpatient(true)}
+          className="bg-black text-white py-3 px-6 rounded-3xl my-4"> New Patient  </button>
+        </span>
 
-          <span className="grid items-start px-2 text-xl font-medium lg:px-4">
-            <button 
-            onClick={() => setoldpatient(true)}
-            className="bg-black text-white py-3 px-6 rounded-3xl my-4"> Old Patient  </button>
-          </span>
-
+        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+          <button 
+          onClick={() => setoldpatient(true)}
+          className="bg-black text-white py-3 px-6 rounded-3xl my-4"> Old Patient  </button>
+        </span>
       </div>
 
      

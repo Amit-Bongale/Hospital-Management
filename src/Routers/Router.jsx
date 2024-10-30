@@ -37,7 +37,9 @@ import AppointmentBooking from '../Pages/Patient/AppointmentBooking'
 import LoginForm from '../Pages/Patient/LoginForm'
 import ContactUsForm from '../Pages/Patient/ContactUsForm'
 import Account from '../Pages/Patient/Account'
-
+import MyAppointments from '../Pages/Patient/Account/MyAppointments'
+import MedicalHistory from '../Pages/Patient/Account/MedicalHistory'
+import TestReports from '../Pages/Patient/Account/TestReports'
 
 
 function Router() {
@@ -48,17 +50,18 @@ function Router() {
 
       {/* Patient Routers */}
       <Route path="/" element={<Home />} />
-
       <Route path="/loginform" element={<LoginForm/>}/>
+
 
       <Route path="/appointmentbooking" element={<AppointmentBooking/>}/>
       <Route path="/contactusform" element={<ContactUsForm/>}/>
     
 
-
       <Route path="/user/details" element={<Account/>}/>
+      <Route path="/user/appointment" element={<MyAppointments/>}/>
+      <Route path='/user/mediacalhistory' element={<MedicalHistory/>} />
+      <Route path='/user/testreport' element={<TestReports/>} />
 
-       
 
       {/* Patient must login to use these routes */}
    

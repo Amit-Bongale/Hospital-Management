@@ -5,10 +5,9 @@ import PatientDetails from '../../Components/Patient/Account/PatientDetails'
 
 function Account(){
     return(
-        <div>
+        <div className='flex gap-4'>
             <AccountNav/>
             <PatientDetails/>
-
         </div>
     )
 
