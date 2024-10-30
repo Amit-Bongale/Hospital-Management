@@ -16,6 +16,7 @@ function OldPatientForm({ setisopen }) {
   let [emergencycontact , setemergencycontact] = useState()
   let [history , sethistory] = useState()
   let [disease , setdisease] = useState()
+
   let [patientinfo , setpatientinfo] = useState([])
 
   
@@ -72,7 +73,7 @@ function OldPatientForm({ setisopen }) {
   function Search(){
     try {
       fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${id}`, {
-        method: "GET",
+        method: "POST",
       })
       .then((res) => res.json())
       .then((data) => {
@@ -80,14 +81,14 @@ function OldPatientForm({ setisopen }) {
           console.log(data.message);
           alert(data.message);
         }
-        setpatientinfo(data)
+        const patients = Array.isArray(data) ? data : [data];
+        setpatientinfo(patients)
         console.log(data);
       })
       .catch((error) => console.log("Fetching Error:" , error));
     } catch (error) {
       console.log("error :", error);
     }
-
   }
 
 
@@ -123,7 +124,7 @@ function OldPatientForm({ setisopen }) {
           </div>
           
           <div class="grid gap-6 mb-4 md:grid-cols-2">
-          { patientinfo.map((patient)=>(
+          {patientinfo.map((patient)=>(
             <div>   
             <div>
               <label
