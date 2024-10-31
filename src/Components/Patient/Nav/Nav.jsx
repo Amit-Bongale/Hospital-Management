@@ -1,7 +1,12 @@
 import React  from "react";
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 function Nav() {
+
+  const IsLoggedin = useSelector((state) => state.patient.loggedin)
+
 
   return (
     <nav>
@@ -27,14 +32,18 @@ function Nav() {
           <Link to="/chooserole">
             <button className="mr-10"> Roles </button>
           </Link>
-      
-          <Link to="/login">
-            <button className="mr-10"> Login </button>
-          </Link>
 
-          <Link to="/user/details">
-            <button className="mr-10"> Account </button>
-          </Link>
+
+          {IsLoggedin ? 
+            <Link to="/user/details">
+              <button className="mr-10"> Account </button>
+            </Link> :  <Link to="/login">
+              <button className="mr-10"> Login </button>
+            </Link>
+          }
+          
+
+         
         </div>
 
         <div>
