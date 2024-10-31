@@ -48,9 +48,11 @@ function Appointments() {
           <div class="mr-10 ml-20 mt-7">
             <button onClick={() => setview(true)} class="text-blue-600 hover:cursor-pointer">VIEW</button>
           </div>
+      {view ? <Viewpatient setview={setview} id={queue.id} /> : <></>}
+
         </div>
+        
       ))}
-      {view ? <Viewpatient setview={setview} /> : <></>}
     </div>
   );
 }
