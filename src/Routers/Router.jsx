@@ -54,21 +54,20 @@ function Router() {
       <Route path="/login" element={<LoginForm/>}/>
       <Route path="/register" element={<Register/>}/>
 
+      <Route path="contactusform" element={<ContactUsForm/>}/>
 
-      <Route path="/appointmentbooking" element={<AppointmentBooking/>}/>
-      <Route path="/contactusform" element={<ContactUsForm/>}/>
-    
-
-      <Route path="/user/details" element={<Account/>}/>
-      <Route path="/user/appointment" element={<MyAppointments/>}/>
-      <Route path='/user/mediacalhistory' element={<MedicalHistory/>} />
-      <Route path='/user/testreport' element={<TestReports/>} />
 
 
       {/* Patient must login to use these routes */}
    
       <Route path="/user" element={<Patientroute/>}>
-       
+
+        <Route path="appointmentbooking" element={<AppointmentBooking/>}/>
+
+        <Route path="details" element={<Account/>}/>
+        <Route path="appointment" element={<MyAppointments/>}/>
+        <Route path='mediacalhistory' element={<MedicalHistory/>} />
+        <Route path='testreport' element={<TestReports/>} />
 
       </Route>
 

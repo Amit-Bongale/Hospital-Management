@@ -2,7 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+import { useDispatch } from 'react-redux'
+import { patientlogin } from "../../../Redux/Patient/Patient";
+
 function Patientlogin() {
+
+    const dispatch = useDispatch()
+
   let [id, setid] = useState("");
   let [password, setpassword] = useState("");
 
@@ -28,8 +34,8 @@ function Patientlogin() {
             alert(data.message);
           }
           if (data.success) {
-            console.log('User Info:', data.user);
-            alert(data.message);
+            // console.log('User Info:', data.user);
+            dispatch(patientlogin())
             window.location.href = '/'
           } 
           console.log(data);
@@ -37,9 +43,7 @@ function Patientlogin() {
         .catch((error) => console.log("Fetching Error:" , error));
       } catch (error) {
         console.log("error :", error);
-      }
-
-    
+    }
   }
 
   return (

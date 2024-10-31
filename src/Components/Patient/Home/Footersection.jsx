@@ -37,14 +37,14 @@ function Footersection() {
 
                 <button onClick={scrollToTop} class=" ml-28 pl-6 my-5 pt-3 text-2xl">Home</button>
 
-                <Link to="/appointmentbooking">
+                <Link to="user/appointmentbooking">
                     <button class="ml-28 pl-6 text-2xl ">Appointment</button>
                 </Link>
                     
 
                 <Link to='/loginform'><p class="ml-28 pl-6 my-4 text-2xl">Login</p></Link>
 
-                <Link to='/contactusform'><p class="ml-28 pl-6 my-4 text-2xl">Contact Us</p></Link>
+                <Link to='contactusform'><p class="ml-28 pl-6 my-4 text-2xl">Contact Us</p></Link>
             
             </div>
 

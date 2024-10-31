@@ -38,7 +38,7 @@ function Nav() {
         </div>
 
         <div>
-          <Link to="/appointmentbooking">
+          <Link to="user/appointmentbooking">
             <button className="px-6 py-2 rounded-full bg-white text-black ">Book Appointment</button>
           </Link>
         </div>

@@ -44,7 +44,7 @@ function Doctorcard() {
                   <h4 class="font-bold text-xl"> {doctor.name}</h4>
                   <p class="mt-1 text-gray-600"> {doctor.specialization}</p>
                   <div class="mt-4">
-                    <Link to="/appointmentbooking">
+                    <Link to="user/appointmentbooking">
                       <button
                         type="button"
                         class="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-4 text-sm font-medium leading-4 text-white shadow-sm hover:bg-blue-800"
