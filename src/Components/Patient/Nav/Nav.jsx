@@ -28,7 +28,7 @@ function Nav() {
             <button className="mr-10"> Roles </button>
           </Link>
       
-          <Link to="/loginform">
+          <Link to="/login">
             <button className="mr-10"> Login </button>
           </Link>
 
