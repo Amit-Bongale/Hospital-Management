@@ -33,121 +33,62 @@ function Viewpatient({ setview, id }) {
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
-        <h2 className="text-2xl font-bold py-2 mb-5 "> View Patient</h2>
-        <div class="grid gap-6 mb-4 md:grid-cols-2 mt-5">
-          {patientinfo.map((patient)=>(
-          <div>
-            <div class="flex">
-              <label
-                for="id"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Aadhar No :
-              </label>
-              <h1 class="ml-5"> {patient.id} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="first_name"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Name :
-              </label>
-              <h1 class="ml-5">{patient.name}</h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="gender"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Gender :
-              </label>
-              <h1 class="ml-5"> {patient.gender} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="visitors"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Date of Birth :
-              </label>
-              <h1 class="ml-5"> {patient.dob} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="age"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Age :
-              </label>
-              <h1 class="ml-5"> {patient.age} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="email"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Email :
-              </label>
-              <h1 class="ml-5"> {patient.email} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="phone"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Phone number :
-              </label>
-              <h1 class="ml-5"> {patient.phone} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="location"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Address :
-              </label>
-              <h1 class="ml-5"> {patient.address} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="blood"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Blood Group :
-              </label>
-              <h1 class="ml-5"> {patient.bloodgroup} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="emergency"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Emergency Contact :
-              </label>
-              <h1 class="ml-5"> {patient.emergencycontact} </h1>
-            </div>
-
-            <div class="flex">
-              <label
-                for="medical history"
-                class="block mb-2 text-base font-medium text-gray-900 dark:text-white"
-              >
-                Medical History :
-              </label>
-              <h1 class="ml-5"> {patient.medicalhistory} </h1>
-            </div>
-          </div>
-          ))}
+        <h2 className="text-2xl font-bold py-2 mb-5 border-b-2 "> View Patient</h2>
+        <div class=" mb-4 mt-5">
+          <table className="w-full text-left">
+            { patientinfo.map((patient) => (
+              <tbody>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Patient ID : </td>
+                  <td className="py-1 px-4 text-gray-900">{patient.id}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Name : </td>
+                  <td className="py-1 px-4 text-gray-900">{patient.name}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Gender :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.gender}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Email :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.email}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Phone :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.phone}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Date of Birth :</td>
+                  <td className="py-1 px-4 text-gray-900">{(patient.dob).split('T')[0]}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Age :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.age}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Address :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.address}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Emergency Contact :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.emergencycontact}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Blood Group :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.bloodgroup}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Aaadhar Number :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.aadharno}</td>
+                </tr>
+                <tr className="">
+                  <td className="py-1 px-4 text-gray-600 font-medium">Medical History :</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.medicalhistory}</td>
+                </tr>
+              </tbody>
+            ))}
+          </table>
         </div>
 
         <div class="flex mt-10">
@@ -211,11 +152,11 @@ function Viewpatient({ setview, id }) {
         </div>
       </div>
 
-      {/* <div
-            className="w-[100vw] h-[100vh] bg-slate-400 opacity-90  top-0 left-0 flex justify-center items-center z-10 fixed"
-            onClick={() => setisopen(false)}>
-          </div>
-     */}
+      <div
+        className="w-[100vw] h-[100vh] bg-slate-400 opacity-90  top-0 left-0 flex justify-center items-center z-10 fixed"
+        onClick={() => setview(false)}>
+      </div>
+    
     </div>
   );
 }
