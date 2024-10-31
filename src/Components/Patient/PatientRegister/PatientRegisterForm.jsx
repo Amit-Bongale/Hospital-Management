@@ -46,11 +46,12 @@ function PatientRegisterForm() {
     .then((res) => res.json())
     .then((data) => {
         if (data.message) {
-            console.log(data.message);
-            alert(data.message);
-        } if (data.sucess) {
-            window.location.href = '/'
+          console.log(data.message);
+          alert(data.message);
         }
+        if (data.success) {
+          window.location.href = '/'
+        } 
         console.log(data);
     })
     .catch((error) => console.log("Fetching Error:" , error));
@@ -65,10 +66,10 @@ function PatientRegisterForm() {
       <div className="bg-white rounded-lg shadow-lg w-full max-w-6xl flex">
         
         {/* Left Image/Info Section */}
-        <div className="w-3/6 bg-cover bg-center rounded-l-lg" style={{ backgroundImage: "url('https://www.jnuhealthcare.com/Uploads/Blogs/25bs_LifeCareHospital.jpg')" }}>
+        <div className="w-3/6 bg-cover bg-center rounded-l-lg "  style={{ backgroundImage: "url('https://www.jnuhealthcare.com/Uploads/Blogs/25bs_LifeCareHospital.jpg')" }}>
           <div className="flex flex-col justify-center h-full p-8 text-white bg-black bg-opacity-50 rounded-l-lg">
             <h1 className="text-4xl font-bold mb-2">Welcome</h1>
-            <p className="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suspendisse aliquam varius rutrum purus maecenas ac. </p>
+            <p className="text-sm">Your health is our commitment. Experience compassionate care, advanced technology, and a dedicated team ready to support your Healing journey.</p>
             <Link to={'/login'} className='mt-2 hover:underline'>
                 <span> Alerady Have an Account ? </span> <span className=''>Login</span>
             </Link>
