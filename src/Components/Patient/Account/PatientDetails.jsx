@@ -3,11 +3,15 @@ import { useEffect } from "react"
 
 import { useSelector } from 'react-redux'
 
+import EditPatientDetails from './EditPatientDetails'
+
 function PatientDetails() {
 
   const id = useSelector((state) => state.patient.patientId)
 
   let [patientinfo , setpatientinfo] = useState([])
+
+  let [edit , setedit ] = useState(false)
 
 
   useEffect(() => {
@@ -33,6 +37,9 @@ function PatientDetails() {
 
   return (
     <div> 
+
+      { edit ? <EditPatientDetails setisopen={setedit} patientid={id}/> : <></>}
+
       <div className=" mx-auto p-8 bg-white  rounded-md">
         <h2 className="text-xl font-semibold mb-6">MY Details</h2>
         <table className="w-full text-left border-collapse">
@@ -86,15 +93,12 @@ function PatientDetails() {
                 <td className="py-2 px-4 text-gray-600 font-medium">Medical History</td>
                 <td className="py-2 px-4 text-gray-900">{patient.medicalhistory}</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-2 px-4 text-gray-600 font-medium">Password</td>
-                <td className="py-2 px-4 text-gray-900">{patient.password}</td>
-              </tr>
             </tbody>
           ))}
         </table>
 
-        <button className=' m-4 bg-blue-600 text-white py-3 px-6 rounded-lg '>Edit</button>
+        <button className='font-semibold mt-6 bg-blue-600 text-white py-3 px-7 rounded-lg hover:bg-blue-700'
+        onClick={() => {setedit(true)}} >Edit</button>
       </div>
     </div>
   )

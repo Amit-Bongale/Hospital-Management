@@ -1,88 +1,88 @@
 import React from 'react'
 import { useState , useEffect } from 'react'
 
+
 function EditPatient({setisopen , patientid}) {
 
-    let [id, setid] = useState()
-    let [adharno , setaadharno] = useState()
-    let [name , setname ] = useState()
-    let [gender , setgender] = useState()
-    let [age , setage] = useState()
-    let [email , setemail] = useState()
-    let [phone , setphone] = useState()
-    let [dob , setdob ] = useState()
-    let [address , setaddress] = useState()
-    let [bloodgroup , setbloodgroup] = useState()
-    let [emergencycontact , setemergencycontact] = useState()
-    let [history , sethistory] = useState()
+  let [id, setid] = useState()
+  let [aadharno , setaadharno] = useState()
+  let [name , setname ] = useState()
+  let [gender , setgender] = useState()
+  let [age , setage] = useState()
+  let [email , setemail] = useState()
+  let [phone , setphone] = useState()
+  let [dob , setdob ] = useState()
+  let [address , setaddress] = useState()
+  let [bloodgroup , setbloodgroup] = useState()
+  let [emergencycontact , setemergencycontact] = useState()
+  let [history , sethistory] = useState()
 
-    useEffect(() => {
+  useEffect(() => {
 
-        if (!patientid) return;
-    
-        try {
-          fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${patientid}`, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              setid(data.id);
-              setname(data.name);
-              setgender(data.gender);
-              setemail(data.email);   ;
-              setphone(data.phone);
-              setaadharno(data.adharno);
-              setdob(data.dob);
-              setaddress(data.address);
-              setbloodgroup(data.bloodgroup);
-              setemergencycontact(data.emergencycontact);
-              sethistory(data.medicalhistory);
-              setage(data.age)
-              console.log(data);
-            })
-            .catch((err) => console.log("Error Fetching Data :", err));
-        } catch (error) {
-          console.log("Error :", error);
-        }
-    }, [patientid, id]);
-    
+    console.log(patientid)
+    if (!patientid) return;
 
-    function update() {
-
-        let data = {
-
-            "name": name,
-            "gender": gender,
-            "email": email,
-            "phone" : phone,
-            "dob" : dob,
-            "age" :age,
-            "address" : address,
-            "emergencycontact" : emergencycontact,
-            "bloodgroup" : bloodgroup,
-            "adharno": adharno,
-            "medicalhistory" : history,
-        };
-    
-        try {
-          fetch(`${process.env.REACT_APP_API_URL}/patient/updatepatient/${patientid}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-          })
-          .then((res) => res.json())
-          .then((data) => { alert(data.message) })
-          .catch((error) => console.log("Fetching Error:", error));
-        } catch (error) {
-          console.log("error :", error);
-        }
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${patientid}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        setid(data.id);
+        setname(data.name);
+        setgender(data.gender);
+        setemail(data.email);   ;
+        setphone(data.phone);
+        setaadharno(data.aadharno);
+        setdob(data.dob);
+        setaddress(data.address);
+        setbloodgroup(data.bloodgroup);
+        setemergencycontact(data.emergencycontact);
+        sethistory(data.medicalhistory);
+        setage(data.age)
+        console.log(data);
+      })
+      .catch((err) => console.log("Error Fetching Data :", err));
+    } catch (error) {
+      console.log("Error :", error);
     }
-    
+  }, [patientid, id]);
+  
 
+  function update() {
+
+    let data = {
+      "name": name,
+      "gender": gender,
+      "email": email,
+      "phone" : phone,
+      "dob" : dob,
+      "age" :age,
+      "address" : address,
+      "emergencycontact" : emergencycontact,
+      "bloodgroup" : bloodgroup,
+      "aadharno": aadharno,
+      "medicalhistory" : history,
+    };
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/patient/updatepatient/${patientid}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => { alert(data.message) })
+      .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+  }
+    
   return (
-    <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
-      <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
+    <div className="w-[100vw] h-full absolute top-0 left-8 flex justify-center items-center">
+      <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar ">
         <h2 className="text-2xl font-bold py-2 mb-5 "> Edit Patient Details </h2>
         <form onSubmit={() => update()}>
           <div class="grid gap-6 mb-4 md:grid-cols-2">
@@ -99,7 +99,7 @@ function EditPatient({setisopen , patientid}) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Enter Aadhar Number"
                 required
-                value={adharno}
+                value={aadharno}
                 onChange={(e) => {setaadharno(e.target.value); setid(e.target.value)}}
               />
             </div>
@@ -138,9 +138,9 @@ function EditPatient({setisopen , patientid}) {
                 onChange={(e) => setgender(e.target.value)}
               >
                 <option value="" key=""></option>
-                <option value="Male" key="">  Male </option>
-                <option value="Female" key=""> Female </option>
-                <option value="Others" key=""> Others </option>
+                <option value="Male" key="male">  Male </option>
+                <option value="Female" key="female"> Female </option>
+                <option value="Others" key="others"> Others </option>
               </select>
             </div>
 
@@ -337,7 +337,7 @@ function EditPatient({setisopen , patientid}) {
       </div>
 
       <div
-        className="w-[100vw] h-[100vh] bg-slate-400 opacity-90  top-0 left-0 flex justify-center items-center z-10 fixed"
+        className="w-[100vw] h-[100vh] bg-slate-400 opacity-90  top-0 left-0 flex justify-center items-center z-10 fixed "
         onClick={() => setisopen(false)}>
       </div>
 
