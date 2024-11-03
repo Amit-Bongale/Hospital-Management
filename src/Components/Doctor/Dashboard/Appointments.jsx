@@ -7,6 +7,7 @@ import {
   Activity,
   ChevronRight,
   NotepadText,
+  UserSearch,
 } from 'lucide-react';
 
 import Viewpatient from "../Patientdetails/Viewpatient";
@@ -64,7 +65,7 @@ function Appointments() {
                     </div>
 
                     <div className="flex items-center text-gray-500 text-sm">
-                      <User className="w-4 h-4 mr-1" />
+                      <UserSearch className="w-4 h-4 mr-1" />
                       <span>{queue.gender}</span>
                     </div>
 

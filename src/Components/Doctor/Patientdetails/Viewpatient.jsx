@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Addtest from "./Addtest";
 import Admit from "./Admit";
 
+import { FilePlus2 , Plus, ChevronRight } from 'lucide-react';
+
 function Viewpatient({ setview, id }) {
   let [test, settest] = useState(false);
   let [admit, setadmit] = useState(false);
@@ -113,35 +115,42 @@ function Viewpatient({ setview, id }) {
           <div class="ml-3">Positive</div>
         </div>
 
-        <div className="mt-6 flex">
-          <div>
-            <button
-              onClick={() => settest(true)}
-              type="Add test"
-              class="text-white bg-blue-700 hover:bg-blue-800 mr-14 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Add test
-            </button>
-          </div>
-          {test ? <Addtest settest={settest} /> : <></>}
+        <div className="mt-6 flex justify-between items-center">
+          <div className="flex">
+            <div cals>
+              <button
+                onClick={() => settest(true)}
+                type="Add test"
+                class="text-white bg-blue-700 flex hover:bg-blue-800 mr-8 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 pr-6 py-3  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <FilePlus2 className="w-4 h-4 mr-2" />
+                Add test
+              </button>
+            </div>
+            {test ? <Addtest settest={settest} /> : <></>}
 
-          <div>
-            <button
-              onClick={() => setadmit(true)}
-              type="Admit"
-              class="text-white bg-blue-700 hover:bg-blue-800 mr-14 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Admit
-            </button>
-          </div>
-          {admit ? <Admit setadmit={setadmit} /> : <></>}
+            <div>
+              <button
+                onClick={() => setadmit(true)}
+                type="Admit"
+                class="text-white bg-blue-700 hover:bg-blue-800 mr-8 flex focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 pr-6 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Admit
+              </button>
+            </div>
+            {admit ? <Admit setadmit={setadmit} /> : <></>}
 
-          <button
-            type="submit"
-            class="text-white bg-blue-700 hover:bg-blue-800 mr-14 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Submit
-          </button>
+            <button
+              type="submit"
+              class="text-white bg-blue-700 hover:bg-blue-800 mr-14 flex focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-3  pl-6 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Submit
+              <ChevronRight className="w-5 h-5 ml-2" />
+            </button>
+
+          </div>
+          
 
           <button
             onClick={() => setview(false)}

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { adminlogout } from "../../../Redux/Admin/Admin";
 
-import { Link } from "react-router-dom";
-
-import arrow from '../../../Assets/Icons/trianglearrow.png'
+import { ChevronDown } from 'lucide-react';
 
 function Adminnav() {
 
@@ -30,7 +29,9 @@ function Adminnav() {
           <Link 
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" onClick={() => setusers(!showusers)} >
             <button> Manage Users </button>
-            <img src={arrow} alt="arrow" className="h-3 rotate-180" />
+            <ChevronDown 
+                className={`w-5 h-5 transition-transform duration-200 ${showusers ? 'transform rotate-180' : ''}`}
+              />
           </Link>
         </span>
 
@@ -63,14 +64,14 @@ function Adminnav() {
 
         </div> : <></>}
 
-        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+        {/* <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <Link
             to="/admin/salarydetails"
             className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
           >
             <button> Salary </button>
           </Link>
-        </span>
+        </span> */}
 
         <button
           onClick={() => dispatch(adminlogout())}

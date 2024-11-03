@@ -10,7 +10,6 @@ import {
   CheckCircle,
   CircleDashed,
   XCircle,
-  FileText,
   ChevronDown,
 } from "lucide-react";
 
