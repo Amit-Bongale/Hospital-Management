@@ -20,7 +20,7 @@ function AppointmentDetails() {
   const patientid = useSelector((state) => state.patient.patientId);
 
   const [appointmetsinfo, setappointmentsinfo] = useState([]);
-  const [noappointmentdata, setappointmentdata] = useState(true);
+  const [noAppointmentdata, setappointmentdata] = useState(true);
 
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -86,7 +86,7 @@ function AppointmentDetails() {
     }
   };
 
-  if (noappointmentdata) {
+  if (noAppointmentdata) {
     return (
       <div className="w-[80vw] h-[100vh] flex flex-col items-center justify-center">
         <h1 className="text-center p-2 font-medium text-2xl">  No Appointments Found</h1>

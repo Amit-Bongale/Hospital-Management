@@ -20,15 +20,15 @@ function PatientTestInfo() {
 
           <tbody class="text-center">
             <tr>
-              <td scope="col" class="px-6 py-3"> 587458966325 </td>
-              <td scope="col" class="px-6 py-3"> Appu </td>
-              <td scope="col" class="px-6 py-3"> 65 </td>
-              <td scope="col" class="px-6 py-3"> blood test </td> 
-              <td scope="col" class="px-6 py-3"> 
-                <button scope="col" class="px-6 py-3"  onClick={() => settestpatient(true)} className="text-blue-600 hover:cursor-pointer"> Edit </button>
+              <td  class="px-6 py-3"> 587458966325 </td>
+              <td  class="px-6 py-3"> Appu </td>
+              <td  class="px-6 py-3"> 65 </td>
+              <td  class="px-6 py-3"> blood test </td> 
+              <td  class="px-6 py-3"> 
+                <button class="px-6 py-3"  onClick={() => settestpatient(true)} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
-              <td scope="col" class="px-6 py-3">  
-                <button scope="col" class="px-6 py-3"  className="text-red-600 hover:cursor-pointer"> Delete </button>
+              <td class="px-6 py-3">  
+                <button class="px-6 py-3"  className="text-red-600 hover:cursor-pointer"> Delete </button>
               </td>
             </tr>
           </tbody>

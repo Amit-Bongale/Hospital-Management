@@ -24,13 +24,13 @@ function AdmitPatientInfo() {
 
           <tbody>
             <tr class="text-center">
-              <td scope="col" class="px-6 py-3"> Amit </td>
-              <td scope="col" class="px-6 py-3"> male </td>
-              <td scope="col" class="px-6 py-3"> 9452015896 </td>
-              <td scope="col" class="px-6 py-3"> 20 </td>
-              <td scope="col" class="px-6 py-3"> Anu </td>
-              <td scope="col" class="px-6 py-3"> 86 </td>
-              <td scope="col" class="px-6 py-3"> 
+              <td class="px-6 py-3"> Amit </td>
+              <td class="px-6 py-3"> male </td>
+              <td class="px-6 py-3"> 9452015896 </td>
+              <td class="px-6 py-3"> 20 </td>
+              <td class="px-6 py-3"> Anu </td>
+              <td class="px-6 py-3"> 86 </td>
+              <td  class="px-6 py-3"> 
                 <button scope="col" class="px-6 py-3"  onClick={() => setadmitpatient(true)} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
               <td scope="col" class="px-6 py-3">  

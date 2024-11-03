@@ -1,57 +1,93 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-//import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'+
+
+import {
+  User, 
+  Activity,
+  ChevronRight,
+  NotepadText,
+} from 'lucide-react';
 
 import Viewpatient from "../Patientdetails/Viewpatient";
 
 function Appointments() {
   let [view, setview] = useState(false);
-
   let [queueinfo, setqueueinfo] = useState([]);
 
-  useEffect(()=> {
+  useEffect(() => {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient`, {
         method: "POST",
       })
-      .then((res) => res.json())
-      .then((data) => {
-        setqueueinfo(data);
-        console.log(data);
-      })
-      .catch((error) => console.log("Fetching Error:", error));
+        .then((res) => res.json())
+        .then((data) => {
+          setqueueinfo(data);
+          console.log(data);
+        })
+        .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }
-  },[view])
-
+  }, [view]);
 
   return (
-    <div className=" w-full mt-10">
+    <div className=" w-[80vw] mt-6 ml-2">
       {queueinfo.map((queue) => (
-        <div class="flex text-lg font-semibold ml-20 text-gray-700 border-black border-2 rounded-lg h-20 mt-4">
-          <div class="mr-20 ml-20 mt-4">
-            <p>NAME</p>
-            <p class="text-base font-medium">{queue.name} </p>
+        <div>
+          <div className="w-full m-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border-2 border-gray-200">
+            <div className="p-4 flex items-center justify-between space-x-4">
+              {/* Patient Info Section */}
+              <div className="flex items-center space-x-4 flex-grow">
+                {/* User Icon */}
+                <div className="bg-blue-100 p-3 rounded-full">
+                  <User className="w-6 h-6 text-blue-600" />
+                </div>
+                <div className="flex-grow">
+                  <div className="flex items-center space-x-4">
+                    <h3 className="font-semibold text-lg text-gray-900">
+                      {queue.name}
+                    </h3>
+
+                    <span className="px-2 py-1 text-sm rounded-full bg-gray-100 text-gray-600 border border-gray-200">
+                      <div className="flex items-center text-gray-500 text-sm">
+                        <NotepadText className="w-4 h-4 mr-1" />
+                        <span>Regular Checkup</span>
+                      </div> 
+                    </span>
+                  </div>
+
+                  <div className="flex items-center space-x-8 mt-3">
+                    <div className="flex items-center text-gray-500 text-sm">
+                      <Activity className="w-4 h-4 mr-1" />
+                      <span>{queue.disease}</span>
+                    </div>
+
+                    <div className="flex items-center text-gray-500 text-sm">
+                      <User className="w-4 h-4 mr-1" />
+                      <span>{queue.gender}</span>
+                    </div>
+
+                    <div className="flex items-center">
+                      <span className="px-2 py-1 text-xs font-medium rounded-full bg-yellow-100 text-yellow-800">
+                        Waiting
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Buttons div */}
+              <div className="flex space-x-2">
+                <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={() => setview(true)}>
+                  View Details
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div class="mr-20 ml-20 mt-4">
-            <p>GENDER</p>
-            <p class="text-base font-medium ">{queue.gender} </p>
-          </div>
-
-          <div class="mr-20 ml-20 mt-4">
-            <p>DISEASE</p>
-            <p class="text-base font-medium">{queue.disease} </p>
-          </div>
-
-          <div class="mr-10 ml-20 mt-7">
-            <button onClick={() => setview(true)} class="text-blue-600 hover:cursor-pointer">VIEW</button>
-          </div>
-      {view ? <Viewpatient setview={setview} id={queue.id} /> : <></>}
-
+          {view ? <Viewpatient setview={setview} id={queue.id} /> : <></>}
         </div>
-        
       ))}
     </div>
   );
