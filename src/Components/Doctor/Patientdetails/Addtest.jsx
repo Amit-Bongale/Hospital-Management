@@ -1,6 +1,45 @@
 import React from "react";
+import { useEffect,useState } from "react";
 
 function Addtest({settest}){
+
+  let [staffid, setstaffid] = useState()
+  let [patientid , setpatientid] = useState()
+  let [doctorid , setdoctorid ] = useState()
+  let [testname , settestname] = useState()
+  let [result , setresult] = useState()
+  
+  function Send(){
+
+    let data = {
+      "staffid": staffid,
+      "patientid": patientid,
+      "doctorid": doctorid,
+      "testname": testname,
+      "result" : result,
+    }
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/test/create`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+
+  }
+ 
     
     return(
         <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
@@ -18,6 +57,8 @@ function Addtest({settest}){
                 placeholder="Enter Patient Id"
                 type="number"
                 required
+                onChange={(e) => {setpatientid(e.target.value)}}
+
               />
             </div>
             <div>
@@ -30,6 +71,8 @@ function Addtest({settest}){
                 placeholder="Enter Staff Id"
                 type="number"
                 required
+                onChange={(e) => {setstaffid(e.target.value)}}
+
               />
             </div>
             <div>
@@ -42,6 +85,8 @@ function Addtest({settest}){
                 placeholder="Enter Doctor Id"
                 type="number"
                 required
+                onChange={(e) => {setdoctorid(e.target.value)}}
+
               />
             </div>
             <div>
@@ -54,6 +99,8 @@ function Addtest({settest}){
                 placeholder="Enter Test Name"
                 type="text"
                 required
+                onChange={(e) => {settestname(e.target.value)}}
+
               />
             </div>
             <div>
@@ -66,6 +113,8 @@ function Addtest({settest}){
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
                 type="text"
+                onChange={(e) => {setresult(e.target.value)}}
+
               />
             </div>
             <div>
@@ -76,7 +125,7 @@ function Addtest({settest}){
               </label>
               <input
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
+                
               />
             </div>
             
