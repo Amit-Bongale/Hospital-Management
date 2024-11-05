@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
+// import { useDispatch } from "react-redux";
+// import { patientlogout } from '../../../Redux/Patient/Patient';
+
 function Nav() {
+
+  // const dispatch = useDispatch()
 
   const IsLoggedin = useSelector((state) => state.patient.loggedin)
 
@@ -41,6 +46,15 @@ function Nav() {
               <button className="mr-10"> Login </button>
             </Link>
           }
+
+          {/* <Link to='/'>
+            <button
+              onClick={() => dispatch(patientlogout())}
+              className="mr-10"
+            >
+              logout
+              </button> 
+              </Link> */}
          
         </div>
 
