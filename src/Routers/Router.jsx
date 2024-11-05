@@ -23,6 +23,7 @@ import Doctorlogin from '../Pages/Doctor/Doctorlogin'
 import Doctordashboard from '../Pages/Doctor/Doctordashboard'
 import Admission from '../Pages/Doctor/Admission'
 import Schedule from '../Pages/Doctor/Schedule'
+import Testdetails from '../Pages/Doctor/Testdetails'
 
 
 import Stafflogin from '../Pages/Staff/Stafflogin'
@@ -41,6 +42,7 @@ import Account from '../Pages/Patient/Account'
 import MyAppointments from '../Pages/Patient/Account/MyAppointments'
 import MedicalHistory from '../Pages/Patient/Account/MedicalHistory'
 import TestReports from '../Pages/Patient/Account/TestReports'
+
 
 
 function Router() {
@@ -81,6 +83,7 @@ function Router() {
         <Route path='dashboard' element={ <Doctordashboard/> } />
         <Route path='admission' element={ <Admission/> } />
         <Route path='schedule' element={ <Schedule/> } />
+        <Route path='testdetails' element={ <Testdetails/> } />
     
       </Route>
 
