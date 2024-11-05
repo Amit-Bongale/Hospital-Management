@@ -342,14 +342,22 @@ function NewPatientForm({ setisopen }) {
               >
                 Select Doctor
               </label>
-              <input
+              <select
                 type="text"
                 id="select"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
                 
                 onChange={(e) => setdoctor(e.target.value)}
-              />
+              >
+                <option value="" key=""></option>
+                <option value="ortho" key="">
+                  ortho
+                </option>
+                <option value="neuro" key="">
+                  neuro
+                </option>
+              </select>
             </div>
 
             <div>
@@ -359,14 +367,25 @@ function NewPatientForm({ setisopen }) {
               >
                 Slots
               </label>
-              <input
+              <select
                 type="text"
                 id="timing"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
                 
                 onChange={(e) => setslot(e.target.value)}
-              />
+              >
+                <option value="" key=""></option>
+                <option value="10am-11am" key="">
+                  10am-11am
+                </option>
+                <option value="11am-12pm" key="">
+                  11am-12pm
+                </option>
+                <option value="4pm-5pm" key="">
+                  4pm-5pm
+                </option>
+              </select>
             </div>
           </div>
 
