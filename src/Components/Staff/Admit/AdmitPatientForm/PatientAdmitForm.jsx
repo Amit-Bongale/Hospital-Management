@@ -1,6 +1,6 @@
 import React from "react";
 
-function OldPatientForm({ setisopen }) {
+function PatientAdmitForm({ setisopen }) {
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
@@ -81,13 +81,27 @@ function OldPatientForm({ setisopen }) {
               >
                 Ward Type
               </label>
-              <input
+              <select
                 type="text"
                 id="type"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
                 required
-              />
+              >
+                <option value="" key=""></option>
+                <option value="General" key="">
+                  General
+                </option>
+                <option value="ICU" key="">
+                  ICU
+                </option>
+                <option value="Emergency" key="">
+                  Emergency
+                </option>
+                <option value="Special" key="">
+                  Special 
+                </option>
+              </select>
             </div>
 
             <div>
@@ -183,4 +197,4 @@ function OldPatientForm({ setisopen }) {
   );
 }
 
-export default OldPatientForm;
+export default PatientAdmitForm;

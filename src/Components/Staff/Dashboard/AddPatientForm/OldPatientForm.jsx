@@ -123,7 +123,7 @@ function OldPatientForm({ setisopen }) {
             </button>
           </div>
           
-          <div class="grid gap-6 mb-4 md:grid-cols-2">
+          <div class="grid gap-6 mb-4 ">
           {patientinfo.map((patient)=>(
             <div>   
             <div>
@@ -244,12 +244,20 @@ function OldPatientForm({ setisopen }) {
               >
                 Select Doctor
               </label>
-              <input
+              <select
                 type="text"
                 id="select"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
-              />
+              >
+              <option value="" key=""></option>
+                <option value="ortho" key="">
+                  ortho
+                </option>
+                <option value="neuro" key="">
+                  neuro
+                </option>
+              </select>
             </div>
 
             <div>
@@ -259,12 +267,23 @@ function OldPatientForm({ setisopen }) {
               >
                 Slots
               </label>
-              <input
+              <select
                 type="text"
                 id="timing"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder=""
-              />
+              >
+               <option value="" key=""></option>
+                <option value="10am-11am" key="">
+                  10am-11am
+                </option>
+                <option value="11am-12pm" key="">
+                  11am-12pm
+                </option>
+                <option value="4pm-5pm" key="">
+                  4pm-5pm
+                </option>
+              </select>
             </div>
           </div>
 
