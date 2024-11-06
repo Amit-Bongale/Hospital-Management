@@ -76,22 +76,22 @@ function Footersection() {
                 <h1 className="text-4xl font-semibold mb-6">Quick Links</h1>
                 <div className="flex flex-col gap-4 text-xl">
                     <Link>
-                        <button onClick={scrollToTop} className="hover:text-blue-200 transition-colors">
+                        <button onClick={scrollToTop} className="hover:text-blue-200 transition-colors hover:underline">
                             Home
                         </button>
                     </Link>
                     
                     <Link to="user/appointmentbooking">
-                        <button className="hover:text-blue-200 transition-colors">
+                        <button className="hover:text-blue-200 transition-colors hover:underline">
                             Appointment
                         </button>
                     </Link>
 
                     { IsLoggedin ? 
                         <Link to="/user/details">
-                        <button className="mr-10"> Account </button>
+                        <button className="mr-10 hover:text-blue-200 transition-colors hover:underline"> Account </button>
                         </Link> :  <Link to="/login">
-                        <button className="mr-10"> Login </button>
+                        <button className="mr-10 hover:text-blue-200 transition-colors hover:underline"> Login </button>
                         </Link>
                     }
 

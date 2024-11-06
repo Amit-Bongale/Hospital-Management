@@ -10,8 +10,8 @@ import AdminReducer from './Admin/Admin.js';
 
 
 const persistConfig = {
-    key: 'root',
-    storage,
+  key: 'root',
+  storage,
 };
   
 const rootreducer = {
