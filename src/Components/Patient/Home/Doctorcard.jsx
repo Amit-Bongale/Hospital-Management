@@ -24,12 +24,12 @@ function Doctorcard() {
   return (
     <div>
       <div>
-        <h1 class="text-4xl font-bold text-gray-900 m-4 ml-10">
+        <h1 class="text-4xl font-bold text-gray-900 m-4 ml-10 ">
           Our Experienced Doctors
         </h1>
       </div>
       <div class="mt-2.5 mb-1">
-        <div class="flex flex-wrap items-center justify-around p-1 m-1.5 ">
+        <div class="flex flex-wrap items-center justify-around p-1 m-1.5 gap-8">
           {doctorinfo.map((doctor) => (
             <div>
               <div
