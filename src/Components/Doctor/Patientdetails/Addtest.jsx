@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect,useState } from "react";
+import { useState } from "react";
 
 function Addtest({settest}){
 
@@ -7,7 +7,6 @@ function Addtest({settest}){
   let [patientid , setpatientid] = useState()
   let [doctorid , setdoctorid ] = useState()
   let [testname , settestname] = useState()
-  let [result , setresult] = useState()
   
   function Send(){
 
@@ -16,7 +15,6 @@ function Addtest({settest}){
       "patientid": patientid,
       "doctorid": doctorid,
       "testname": testname,
-      "result" : result,
     }
 
     try {
@@ -37,15 +35,14 @@ function Addtest({settest}){
     } catch (error) {
       console.log("error :", error);
     }
-
   }
  
     
     return(
-        <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
+      <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
         <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
         <h2 className="text-2xl font-bold py-2 mb-5 ">Add Test</h2>
-        <form >
+        <form onSubmit={Send}>
           <div className="grid gap-6 mb-5  md:grid-cols-2">
             <div>
               <label
@@ -111,9 +108,7 @@ function Addtest({settest}){
               </label>
               <input
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
                 type="text"
-                onChange={(e) => {setresult(e.target.value)}}
 
               />
             </div>
