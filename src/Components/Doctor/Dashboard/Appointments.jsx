@@ -5,7 +5,6 @@ import { useState } from "react";
 import {
   User, 
   Activity,
-  ChevronRight,
   NotepadText,
   UserSearch,
 } from 'lucide-react';
@@ -15,6 +14,7 @@ import Viewpatient from "../Patientdetails/Viewpatient";
 function Appointments() {
   let [view, setview] = useState(false);
   let [queueinfo, setqueueinfo] = useState([]);
+  let [id, setid] = useState('')
 
   useEffect(() => {
     try {
@@ -80,16 +80,15 @@ function Appointments() {
 
               {/* Buttons div */}
               <div className="flex space-x-2">
-                <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={() => setview(true)}>
+                <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={() => {setview(true); setid(queue.id)} }>
                   View Details
                 </button>
               </div>
             </div>
-          </div>  
-
-          {view ? <Viewpatient setview={setview} id={queue.id} /> : <></>}
+          </div>
         </div>
       ))}
+      {view ? <Viewpatient setview={setview} id={id} /> : <></>}
     </div>
   );
 }

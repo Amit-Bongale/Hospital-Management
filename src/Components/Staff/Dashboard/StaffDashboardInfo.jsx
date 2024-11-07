@@ -77,8 +77,8 @@ function StaffDashboardInfo() {
           </table>
         </div>
     
-      {newpatient ?  <NewPatientForm setisopen={setnewpatient}/> : <></>}
-      {oldpatient ?  <OldPatientForm setisopen={setoldpatient}/> : <></>}
+        {newpatient ?  <NewPatientForm setisopen={setnewpatient}/> : <></>}
+        {oldpatient ?  <OldPatientForm setisopen={setoldpatient}/> : <></>}
        
     </div>
   )

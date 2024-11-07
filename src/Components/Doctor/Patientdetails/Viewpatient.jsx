@@ -33,7 +33,7 @@ function Viewpatient({ setview, id }) {
   }, [setview, id]);
 
   return (
-    <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
+    <div className="w-[100vw] h-full fixed  top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-5 border-b-2 "> View Patient</h2>
         <div class=" mb-4 mt-5">
