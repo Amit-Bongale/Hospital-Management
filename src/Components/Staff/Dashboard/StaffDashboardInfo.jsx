@@ -55,7 +55,7 @@ function StaffDashboardInfo() {
                 <th scope="col" class="px-6 py-3"> GENDER </th>
                 <th scope="col" class="px-6 py-3"> DISEASE </th>
                 <th scope="col" class="px-6 py-3"> MOBILENO </th>
-                {/* <th scope="col" class="px-6 py-3"> TYPE </th> */}
+                <th scope="col" class="px-6 py-3"> TYPE </th>
                 <th scope="col" class="px-6 py-3"> STATUS </th>
               </tr>
             </thead>
@@ -68,7 +68,7 @@ function StaffDashboardInfo() {
                   <td  class="px-6 py-3"> {queue.gender} </td>
                   <td  class="px-6 py-3"> {queue.disease} </td>
                   <td  class="px-6 py-3"> {queue.mobileno} </td>
-                  {/* <td  class="px-6 py-3"> {queue.type} </td> */}
+                  <td  class="px-6 py-3"> {queue.type} </td>
                   <td class="px-6 py-3"> {queue.status} </td>
                 </tr>
               </tbody>
