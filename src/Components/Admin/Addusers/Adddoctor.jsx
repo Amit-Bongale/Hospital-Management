@@ -1,6 +1,8 @@
 import React  from "react";
 import { useState } from "react";
 
+import Loader from "../Loader/Loader";
+
 function Adddoctor({ setisopen }) {
 
   let [id, setid ] = useState('')
@@ -14,12 +16,14 @@ function Adddoctor({ setisopen }) {
   let [dob , setdob] = useState('')
   let [image , setimage ] = useState(null)
 
+  let [loader , setloader] = useState(false)
+
 
   async function Send(e){
 
     e.preventDefault();
 
-    console.log("called send")
+    setloader(true)
 
     const uploadPreset = process.env.REACT_APP_cloudinary_api_upload_preset;
     const cloudName = process.env.REACT_APP_cloudinary_cloud_name;
@@ -99,14 +103,15 @@ function Adddoctor({ setisopen }) {
       console.log("error :", error);
     }
 
+    setloader(false)
   }
 
-
-
   return (
-    <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
+    <div className="w-[100vw] h-full absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
+      {loader ? <Loader/> :<></>}
         <h2 className="text-2xl font-bold py-2 mb-5 ">Add Doctor</h2>
+        
         <form onSubmit={Send} >
           <div className="grid gap-6 mb-5  md:grid-cols-2">
 

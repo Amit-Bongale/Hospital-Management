@@ -24,12 +24,12 @@ function Patientstable() {
   },[edit , deleteitem , patientid ])
 
   return (
-    <div className="w-full mt-6">
+    <div className="w-full mt-4">
 
       { deleteitem ? <DeletePatient setisopen={setdelete} patientid={patientid}/> : <></>}
       { edit ? <EditPatient setisopen={setedit} patientid={patientid}/> : <></>}
 
-      <h1 className="font-bold text-xl p-4">Patient Details</h1>
+      <h1 className="font-bold text-2xl p-4">Patient Details</h1>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">

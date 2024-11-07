@@ -35,7 +35,7 @@ function ContactRequestDetails() {
               </div>
               <div className="flex items-center space-x-2 text-gray-500 mb-2">
                 <Calendar className="h-5 w-5" />
-                <span>{request.date}</span>
+                <span>{(request.date).slice(0,10)}</span>
               </div>
               <p>{request.message}</p>
             </div>
