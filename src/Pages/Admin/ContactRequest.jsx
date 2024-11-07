@@ -6,9 +6,9 @@ import ContactRequestDetails from '../../Components/Admin/Contact/ContactRequest
 
 function ContactRequest() {
   return (
-    <div className='flex'>
+    <div className='flex gap-4'>
         <Adminnav />
-        <div class="ml-16">
+        <div className='ml-40'>
             <ContactRequestDetails/>
         </div>
     </div>
