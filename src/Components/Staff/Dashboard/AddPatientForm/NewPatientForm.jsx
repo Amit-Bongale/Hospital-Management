@@ -18,6 +18,7 @@ function NewPatientForm({ setisopen }) {
   let [disease , setdisease] = useState()
   let [doctor , setdoctor] = useState()
   let [slot , setslot] = useState()
+  let [type , settype] = useState()
 
 
   
@@ -39,6 +40,7 @@ function NewPatientForm({ setisopen }) {
       //"disease" : disease,
       //"doctorid" : doctor,
       // "slot" : slot,
+      // "type" : type,
     }
 
     try {
@@ -67,6 +69,7 @@ function NewPatientForm({ setisopen }) {
       "gender": gender,
       "mobileno" : phone,
       "disease" : disease,
+      "type" : type,
       "status" : "queue"
     }
 
@@ -384,6 +387,34 @@ function NewPatientForm({ setisopen }) {
                 </option>
                 <option value="4pm-5pm" key="">
                   4pm-5pm
+                </option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="type"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Appointment Type
+              </label>
+              <select
+                type="text"
+                id="type"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+                
+                onChange={(e) => settype(e.target.value)}
+              >
+                <option value="" key=""></option>
+                <option value="Consultation" key="">
+                Consultation
+                </option>
+                <option value="Follow up" key="">
+                Follow up
+                </option>
+                <option value="Emergency" key="">
+                Emergency
                 </option>
               </select>
             </div>
