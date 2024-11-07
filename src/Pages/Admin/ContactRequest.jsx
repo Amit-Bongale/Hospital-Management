@@ -8,7 +8,7 @@ function ContactRequest() {
   return (
     <div className='flex'>
         <Adminnav />
-        <div>
+        <div class="ml-16">
             <ContactRequestDetails/>
         </div>
     </div>
