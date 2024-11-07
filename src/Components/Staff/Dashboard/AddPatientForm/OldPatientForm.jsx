@@ -22,23 +22,6 @@ function OldPatientForm({ setisopen }) {
 
   
   function Send(){
-
-    let data = {
-      "id": id,
-      "name": name,
-      "gender": gender,
-      "email": email,
-      "phone" : phone,
-      "dob" : dob,
-      "age" :age,
-      "address" : address,
-      "emergencycontact" : emergencycontact,
-      "bloodgroup" : bloodgroup,
-      "adharno": aadharno,
-      "medicalhistory" : history,
-      "type" : type,
-    }
-
     
     let queue = {
       "id": id,
@@ -49,8 +32,6 @@ function OldPatientForm({ setisopen }) {
       "type" : type,
       "status" : "queue"
     }
-
-
 
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/createqueue`, {
@@ -84,8 +65,16 @@ function OldPatientForm({ setisopen }) {
           console.log(data.message);
           alert(data.message);
         }
-        const patients = Array.isArray(data) ? data : [data];
-        setpatientinfo(patients)
+        const patient = Array.isArray(data) ? data : [data];
+
+        setpatientinfo(patient)
+        
+        setname(data.name)
+        setgender(data.gender)
+        setdisease(data.disease)
+        settype(data.type)
+        setphone(data.phone)
+
         console.log(data);
       })
       .catch((error) => console.log("Fetching Error:" , error));
@@ -99,6 +88,11 @@ function OldPatientForm({ setisopen }) {
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-5 "> Add Old Patient</h2>
+
+        <div>
+          details : {name} {gender} {phone} {disease} {type}
+        </div>
+     
 
           <div class="flex">
             <div class="grid mb-4">
@@ -303,6 +297,7 @@ function OldPatientForm({ setisopen }) {
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder=""
               required
+              onChange={(e) => setdisease(e.target.value)}
             />
           </div>
 

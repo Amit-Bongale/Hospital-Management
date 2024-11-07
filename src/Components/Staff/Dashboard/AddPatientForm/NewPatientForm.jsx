@@ -69,8 +69,8 @@ function NewPatientForm({ setisopen }) {
       "id": id,
       "name": name,
       "gender": gender,
-      "mobileno" : phone,
       "disease" : disease,
+      "mobileno" : phone,
       "type" : type,
       "status" : "queue"
     }
