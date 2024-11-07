@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adminlogout } from "../../../Redux/Admin/Admin";
 
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, LayoutDashboard , Headset , Users } from 'lucide-react';
 
 import { useSelector } from 'react-redux'
 import {openusers , hideusers} from '../../../Redux/Admin/Admin'
@@ -24,20 +24,22 @@ function Adminnav() {
   }
 
   return (
-    <nav className="bg-gray-50 w-2/12 z-50 mr-4">
-      <div className="fixed w-2/12 bg-gray-50 h-[100vh] border-r-2">
+    <nav className="bg-gray-50 w-[265px] z-50 mr-4">
+      <div className="fixed w-[265px] bg-gray-50 h-[100vh] border-r-2">
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <Link
             to="/admin/dashboard"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
+            className="flex items-center gap-2 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
           >
-            <button> Dashboard </button>
+            <LayoutDashboard className="w-5 h-5"/>
+            <button>  Dashboard </button>
           </Link>
         </span>
 
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <Link 
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" onClick={() => handletoggle()} >
+            className="flex items-center gap-2.5 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" onClick={() => handletoggle()} >
+              <Users className="w-5 h-5"/>
             <button> Manage Users </button>
             <ChevronDown 
                 className={`w-5 h-5 transition-transform duration-200 ${showuser ? 'transform rotate-180' : ''}`}
@@ -50,7 +52,8 @@ function Adminnav() {
           <span className="grid items-start px-2 text-xl font-medium lg:px-4">
             <Link
               to="/admin/managedoctors"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" >
+              className="flex items-center gap-1 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" >
+                
               <button> Doctors </button>
             </Link>
           </span>
@@ -86,8 +89,9 @@ function Adminnav() {
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <Link
             to="/admin/contactrequest"
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
+            className="flex items-center gap-1 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
           >
+            <Headset className="w-5 h-5"/>
             <button> Contact Request </button>
           </Link>
         </span> 
