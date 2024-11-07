@@ -19,11 +19,14 @@ export const PatientSlice = createSlice({
       state.patientId = null; 
       state.patientName = null;
     },
+    test: (state) => {
+      state.patientId = null; 
+    }
   },
 
 })
 
 // Action creators are generated for each case reducer function
-export const { patientlogin , patientlogout } = PatientSlice.actions;
+export const { patientlogin , patientlogout, test } = PatientSlice.actions;
 
 export default PatientSlice.reducer

@@ -12,7 +12,7 @@ function Patientroute() {
   const dispatch = useDispatch()
 
 
-  const IsLoggedin = useSelector((state) => state.patient.loggedin)
+  const IsLoggedin = useSelector((state) => state.patient.patientId)
 
   if(!IsLoggedin){
     dispatch(patientlogout())
