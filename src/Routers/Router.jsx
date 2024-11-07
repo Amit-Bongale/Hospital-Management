@@ -16,6 +16,7 @@ import Mangedoctors from '../Pages/Admin/Manageusers/Mangedoctors'
 import ManageStaff from '../Pages/Admin/Manageusers/ManageStaff'
 import ManagePatients from '../Pages/Admin/Manageusers/ManagePatients'
 import SalaryDetails from '../Pages/Admin/SalaryDetails'
+import ContactRequest from '../Pages/Admin/ContactRequest'
 
 
 
@@ -55,15 +56,12 @@ function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginForm/>}/>
       <Route path="/register" element={<Register/>}/>
-
-      <Route path="contactusform" element={<ContactUsForm/>}/>
-
+      <Route path="/contactusform" element={<ContactUsForm/>}/>
 
 
       {/* Patient must login to use these routes */}
    
       <Route path="/user" element={<Patientroute/>}>
-
         <Route path="appointmentbooking" element={<AppointmentBooking/>}/>
 
         <Route path="details" element={<Account/>}/>
@@ -99,6 +97,7 @@ function Router() {
         <Route path='bill' element={<StaffBill/>}/>
         <Route path='status' element={<StaffDoctorStatus/>} />
 
+
       </Route>
 
 
@@ -107,11 +106,12 @@ function Router() {
       <Route path='/adminlogin' element={<Adminlogin/> }/>
       
       <Route path="/admin" element={<Adminroute />}>
-        <Route path='dashboard' element={ <AdminDashboard/> } />
+        <Route path ='dashboard' element={ <AdminDashboard/> } />
         <Route path ='managedoctors' element ={<Mangedoctors/> } />
         <Route path ='managestaff' element ={<ManageStaff/> } />
         <Route path ='managepatient' element ={<ManagePatients/> } />
         <Route path ='salarydetails' element ={<SalaryDetails/> } />
+        <Route path ='contactrequest' element={<ContactRequest/>} />
         
       </Route>
 

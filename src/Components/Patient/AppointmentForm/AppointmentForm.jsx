@@ -178,7 +178,7 @@ function AppointmentForm() {
             >
               <option value="">Choose Doctor</option>
               {doctorinfo.map((doctor) => (
-                <option key={doctor.id} value={doctor.id}>{doctor.name} ({doctor.specialization})</option>
+                <option key={doctor.id} value={doctor.id}> {doctor.name} ({doctor.specialization})</option>
               ))}
             </select>
   

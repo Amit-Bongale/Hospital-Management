@@ -85,7 +85,7 @@ function Appointments() {
                 </button>
               </div>
             </div>
-          </div>
+          </div>  
 
           {view ? <Viewpatient setview={setview} id={queue.id} /> : <></>}
         </div>

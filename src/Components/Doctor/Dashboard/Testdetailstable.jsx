@@ -1,6 +1,27 @@
 import React from "react";
+import { useEffect , useState } from "react";
 
 function Testdetails() {
+  // let [queueinfo,setqueueinfo] = useState()
+  // let [view, setview] = useState(false);
+
+  // useEffect(() => {
+  //   try {
+  //     fetch(`${process.env.REACT_APP_API_URL}/test/testdetails`, {
+  //       method: "POST",
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         setqueueinfo(data);
+  //         console.log(data);
+  //       })
+  //       .catch((error) => console.log("Fetching Error:", error));
+  //   } catch (error) {
+  //     console.log("error :", error);
+  //   }
+  // }, [view]);
+
+
     return(
         <div class="ml-4 ">
         <h1 className="font-bold text-xl p-4 text-center mt-10">Test Details</h1>
@@ -20,6 +41,7 @@ function Testdetails() {
           </thead>
 
             <tbody>
+              {/* {queueinfo.map((item, index) => ( */}
               <tr class="bg-white border-b font-medium text-sm text-gray-700  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                 {/* <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"> */}
@@ -31,7 +53,9 @@ function Testdetails() {
                 <td class="px-6 py-4"> Low wbc count </td>
                 
               </tr>
+              {/* //))} */}
             </tbody>
+            
         </table>
       </div>
 

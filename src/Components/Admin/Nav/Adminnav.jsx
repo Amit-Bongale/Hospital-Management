@@ -6,16 +6,26 @@ import { adminlogout } from "../../../Redux/Admin/Admin";
 
 import { ChevronDown } from 'lucide-react';
 
+import { useSelector } from 'react-redux'
+import {openusers , hideusers} from '../../../Redux/Admin/Admin'
+
 function Adminnav() {
 
   const dispatch = useDispatch();
 
-  const [showusers , setusers] = useState(true)
+  const showuser = useSelector((state) => state.admin.showuser)
+
+  function handletoggle(){
+    if(showuser){
+      dispatch(hideusers())
+    } else {
+      dispatch(openusers())
+    }
+  }
 
   return (
     <nav className="bg-gray-50 w-2/12 z-50 mr-4">
       <div className="fixed w-2/12 bg-gray-50 h-[100vh] border-r-2">
-
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <Link
             to="/admin/dashboard"
@@ -27,15 +37,15 @@ function Adminnav() {
 
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <Link 
-            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" onClick={() => setusers(!showusers)} >
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" onClick={() => handletoggle()} >
             <button> Manage Users </button>
             <ChevronDown 
-                className={`w-5 h-5 transition-transform duration-200 ${showusers ? 'transform rotate-180' : ''}`}
+                className={`w-5 h-5 transition-transform duration-200 ${showuser ? 'transform rotate-180' : ''}`}
               />
           </Link>
         </span>
 
-        { showusers ?
+        { showuser ?
         <div className="bg-gray-100">
           <span className="grid items-start px-2 text-xl font-medium lg:px-4">
             <Link
@@ -72,6 +82,16 @@ function Adminnav() {
             <button> Salary </button>
           </Link>
         </span> */}
+
+        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+          <Link
+            to="/admin/contactrequest"
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
+          >
+            <button> Contact Request </button>
+          </Link>
+        </span> 
+
 
         <button
           onClick={() => dispatch(adminlogout())}
