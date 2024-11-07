@@ -89,11 +89,6 @@ function OldPatientForm({ setisopen }) {
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-5 "> Add Old Patient</h2>
 
-        <div>
-          details : {name} {gender} {phone} {disease} {type}
-        </div>
-     
-
           <div class="flex">
             <div class="grid mb-4">
               <label
