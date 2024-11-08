@@ -14,11 +14,12 @@ function EditDoctor({ setisopen, doctorid }) {
 
   useEffect(() => {
 
+    
     if (!doctorid) return;
 
     try {
       fetch(`${process.env.REACT_APP_API_URL}/doctor/finddoctor/${doctorid}`, {
-        method: "GET",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
       })
         .then((res) => res.json())

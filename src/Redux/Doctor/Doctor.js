@@ -1,17 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export const DoctorSlice = createSlice({
-  name: 'Doctor',
+  name: 'doctor',
   initialState: {
     loggedin: false,
+    doctorid : null,
   },
 
   reducers: {
-    doctorlogin: (state) => {
-      state.loggedin = true
+    doctorlogin: (state, action) => {
+      state.loggedin = true;
+      state.doctorid = action.payload.doctorid;
     },
     doctorlogout: (state) => {
       state.loggedin = false
+      state.doctorid = null
     },
   },
 

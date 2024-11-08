@@ -10,6 +10,7 @@ function Doctordashboard() {
     <div class="flex">
       <Doctornav/>
       <div>
+      {docid}
         <Appointments/>
       </div>
 
