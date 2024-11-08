@@ -4,6 +4,8 @@ import { useState } from 'react'
 import NewPatientForm from './AddPatientForm/NewPatientForm'
 import OldPatientForm from './AddPatientForm/OldPatientForm'
 
+import { Plus, UserSearch } from 'lucide-react';
+
 function StaffDashboardInfo() {
   let [newpatient,setnewpatient] = useState(false)
   let [oldpatient,setoldpatient] = useState(false)
@@ -35,18 +37,24 @@ function StaffDashboardInfo() {
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <button
           onClick={() => setnewpatient(true)}
-          className="bg-black text-white py-3 px-6 rounded-3xl my-4"> New Patient  </button>
+          className="bg-black text-white py-3 px-6 rounded-3xl my-4 flex gap-2 items-center">
+            <Plus className="w-5 h-5" />
+            New Patient
+          </button>
         </span>
 
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <button 
           onClick={() => setoldpatient(true)}
-          className="bg-black text-white py-3 px-6 rounded-3xl my-4"> Old Patient  </button>
+          className="bg-black text-white py-3 px-6 rounded-3xl my-4 flex gap-2 items-center">
+            <UserSearch className="w-5 h-5" />
+            Old Patient
+          </button>
         </span>
       </div>
 
      
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg justify-center">
+        <div class="relative shadow-md sm:rounded-lg justify-center ml-5 mt-2 ">
           <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
             <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
               <tr>
@@ -54,7 +62,7 @@ function StaffDashboardInfo() {
                 <th scope="col" class="px-6 py-3"> PATIENT NAME </th>
                 <th scope="col" class="px-6 py-3"> GENDER </th>
                 <th scope="col" class="px-6 py-3"> DISEASE </th>
-                <th scope="col" class="px-6 py-3"> MOBILENO </th>
+                <th scope="col" class="px-6 py-3"> MOBILE NO </th>
                 <th scope="col" class="px-6 py-3"> TYPE </th>
                 <th scope="col" class="px-6 py-3"> STATUS </th>
               </tr>
