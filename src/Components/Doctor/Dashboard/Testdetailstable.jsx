@@ -2,24 +2,25 @@ import React from "react";
 import { useEffect , useState } from "react";
 
 function Testdetails() {
-  // let [queueinfo,setqueueinfo] = useState()
-  // let [view, setview] = useState(false);
+  let [testinfo , settestinfo] = useState([])
 
-  // useEffect(() => {
-  //   try {
-  //     fetch(`${process.env.REACT_APP_API_URL}/test/testdetails`, {
-  //       method: "POST",
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setqueueinfo(data);
-  //         console.log(data);
-  //       })
-  //       .catch((error) => console.log("Fetching Error:", error));
-  //   } catch (error) {
-  //     console.log("error :", error);
-  //   }
-  // }, [view]);
+  useEffect(()=>{
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/test/testdetails`, {
+        method: "POST",
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        settestinfo(data);
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+
+  },[])
 
 
     return(
@@ -32,28 +33,28 @@ function Testdetails() {
           <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
             <tr>
               <th scope="col" class="px-6 py-3"> Patient Id </th>
+              <th scope="col" class="px-6 py-3"> Patient Name </th>
               <th scope="col" class="px-6 py-3"> Staff Id </th>
               <th scope="col" class="px-6 py-3"> Doctor Id </th>
               <th scope="col" class="px-6 py-3"> Test Name </th>
+              <th scope="col" class="px-6 py-3"> Status </th>
               <th scope="col" class="px-6 py-3"> Result </th>
               
             </tr>
           </thead>
 
             <tbody>
-              {/* {queueinfo.map((item, index) => ( */}
+            {testinfo.map((test)=>(
               <tr class="bg-white border-b font-medium text-sm text-gray-700  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                {/* <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"> */}
-                 {/* </td> */}
-                <td class="px-6 py-4"> 1234 </td>
-                <td class="px-6 py-4"> 5678 </td>
-                <td class="px-6 py-4"> 1245 </td>
-                <td class="px-6 py-4"> Blood Test </td>
-                <td class="px-6 py-4"> Low wbc count </td>
+                <td class="px-6 py-4"> {test.patientid} </td>
+                <td class="px-6 py-4"> {test.patientname} </td>
+                <td class="px-6 py-4"> {test.staffid} </td>
+                <td class="px-6 py-4"> {test.doctorid} </td>
+                <td class="px-6 py-4"> {test.testname} </td>
+                <td class="px-6 py-4"> {test.result} </td>
                 
               </tr>
-              {/* //))} */}
+            ))}
             </tbody>
             
         </table>
