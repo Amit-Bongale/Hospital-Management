@@ -6,6 +6,7 @@ import PatientTestForm from './TestPatientForm/PatientTestForm'
 function PatientTestInfo() {
   let [testpatient , settestpatient] = useState(false)
   let [testinfo , settestinfo] = useState([])
+  let [patientid , setpatientid] = useState()
 
   useEffect(()=>{
 
@@ -48,7 +49,7 @@ function PatientTestInfo() {
               <td  class="px-6 py-3"> {test.staffid} </td> 
               <td  class="px-6 py-3"> {test.testname} </td> 
               <td  class="px-6 py-3"> 
-                <button class="px-6 py-3"  onClick={() => settestpatient(true)} className="text-blue-600 hover:cursor-pointer"> Edit </button>
+                <button class="px-6 py-3"  onClick={() =>{ settestpatient(true); setpatientid(test.patientid)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
               <td class="px-6 py-3">  
                 <button class="px-6 py-3"  className="text-red-600 hover:cursor-pointer"> Delete </button>
@@ -58,7 +59,7 @@ function PatientTestInfo() {
           ))}
         </table>
       </div>
-        {testpatient ?  <PatientTestForm setisopen={settestpatient}/> : <></>}
+        {testpatient ?  <PatientTestForm setisopen={settestpatient} patientid={patientid}/> : <></>}
        
     </div>
   )

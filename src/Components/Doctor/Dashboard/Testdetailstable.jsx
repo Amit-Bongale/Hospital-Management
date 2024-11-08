@@ -51,6 +51,7 @@ function Testdetails() {
                 <td class="px-6 py-4"> {test.staffid} </td>
                 <td class="px-6 py-4"> {test.doctorid} </td>
                 <td class="px-6 py-4"> {test.testname} </td>
+                <td class="px-6 py-4"> {test.status} </td>
                 <td class="px-6 py-4"> {test.result} </td>
                 
               </tr>
