@@ -150,21 +150,6 @@ function AppointmentDetails() {
                   <option value="cancelled">Cancelled</option>
                 </select>
               </div>
-
-              {/* Date Range Filter */}
-              {/* <div>
-              <select
-                className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-                value={selectedDateRange}
-                onChange={(e) => setSelectedDateRange(e.target.value)}
-              >
-                <option value="all">All Time</option>
-                <option value="today">Today</option>
-                <option value="week">This Week</option>
-                <option value="month">This Month</option>
-                <option value="custom">Custom Range</option>
-              </select>
-            </div> */}
             </div>
           </div>
 

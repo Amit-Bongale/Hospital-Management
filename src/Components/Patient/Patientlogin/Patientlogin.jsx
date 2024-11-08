@@ -7,7 +7,7 @@ import { patientlogin } from "../../../Redux/Patient/Patient";
 
 function Patientlogin() {
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   let [id, setid] = useState("");
   let [password, setpassword] = useState("");
@@ -17,32 +17,32 @@ function Patientlogin() {
     e.preventDefault();
 
     let data = {
-        'id': id,
-        'password': password
+      'id': id,
+      'password': password
     }
 
     try {
-        fetch(`${process.env.REACT_APP_API_URL}/patient/login`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message) {
-            console.log(data.message);
-            alert(data.message);
-          }
-          if (data.success) {
-            // console.log('User Info:', data.user);
-            dispatch(patientlogin({ id: data.user.id , name: data.user.name }))
-            window.location.href = '/user/details'
-          } 
-          console.log(data);
-        })
-        .catch((error) => console.log("Fetching Error:" , error));
-      } catch (error) {
-        console.log("error :", error);
+      fetch(`${process.env.REACT_APP_API_URL}/patient/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        if (data.success) {
+          // console.log('User Info:', data.user);
+          dispatch(patientlogin({ id: data.user.id , name: data.user.name }))
+          window.location.href = '/'
+        }
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
     }
   }
 
@@ -94,12 +94,12 @@ function Patientlogin() {
                 />
               </div>
 
-                <button
-                  type="submit"
-                  class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-3 text-center mt-6 "
-                >
-                  Log in
-                </button>
+              <button
+                type="submit"
+                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-3 text-center mt-6 "
+              >
+                Log in
+              </button>
 
               <Link to={"/register"} className="hover:underline">
                 <div className="text-center mt-6">
