@@ -36,7 +36,7 @@ function Patientlogin() {
           if (data.success) {
             // console.log('User Info:', data.user);
             dispatch(patientlogin({ id: data.user.id , name: data.user.name }))
-            window.location.href = '/'
+            window.location.href = '/user/details'
           } 
           console.log(data);
         })

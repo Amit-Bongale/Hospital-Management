@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import EditDoctor from "../EditUsers/EditDoctor";
 import DeleteDocotor from "../DeleteUser/DeleteDocotor";
 
+
 function Doctorstable() {
 
   let [edit , setedit ] = useState(false)
