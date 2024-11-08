@@ -6,10 +6,11 @@ import Admit from "./Admit";
 
 import { FilePlus2 , Plus, ChevronRight } from 'lucide-react';
 
-function Viewpatient({ setview, id }) {
+function Viewpatient({ setview, id, name}) {
   let [test, settest] = useState(false);
   let [admit, setadmit] = useState(false);
   let [patientinfo, setpatientinfo] = useState([]);
+  let [patientname , setpatientname] = useState([])
 
   useEffect(() => {
     try {
@@ -24,6 +25,8 @@ function Viewpatient({ setview, id }) {
           }
           const patients = Array.isArray(data) ? data : [data];
           setpatientinfo(patients);
+
+          setpatientname(data.name) 
           console.log(data);
         })
         .catch((error) => console.log("Fetching Error:", error));
@@ -127,7 +130,7 @@ function Viewpatient({ setview, id }) {
                 Add test
               </button>
             </div>
-            {test ? <Addtest settest={settest} /> : <></>}
+            {test ? <Addtest settest={settest} id={id} name={patientname} /> : <></>}
 
             <div>
               <button
