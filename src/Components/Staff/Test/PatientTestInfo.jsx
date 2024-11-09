@@ -3,7 +3,7 @@ import { useState , useEffect } from 'react'
 
 import PatientTestForm from './TestPatientForm/PatientTestForm'
 
-function PatientTestInfo() {
+function PatientTestInfo({setisopen , _id}) {
   let [testpatient , settestpatient] = useState(false)
   let [testinfo , settestinfo] = useState([])
   let [patientid , setpatientid] = useState()
@@ -25,6 +25,24 @@ function PatientTestInfo() {
     }
 
   },[])
+
+
+  function deletetest(){
+    console.log(patientid)
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/test/deletetest`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 'id' : _id }),
+      })
+      .then((res) => res.json())
+      .then((data) => alert(data.message))
+      .catch((err) => console.error("Error fetching api:", err));
+    
+    } catch (error) {
+      console.log("Error:", error)
+    }
+  }
 
   return (
     <div>
@@ -52,7 +70,7 @@ function PatientTestInfo() {
                 <button class="px-6 py-3"  onClick={() =>{ settestpatient(true); setpatientid(test.patientid)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
               <td class="px-6 py-3">  
-                <button class="px-6 py-3"  className="text-red-600 hover:cursor-pointer"> Delete </button>
+                  <button class="px-6 py-3" onClick={() => {deletetest(); setisopen(false);}} className="text-red-600 hover:cursor-pointer"> Delete </button>
               </td>
             </tr>
           </tbody>
