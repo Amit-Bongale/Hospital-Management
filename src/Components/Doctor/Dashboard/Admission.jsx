@@ -26,7 +26,7 @@ function Admission() {
 
 
   return (
-<div class="ml-4 ">
+<div class="ml-2 ">
         <h1 className="font-bold text-xl p-4 text-center mt-10">Admission Details</h1>
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
