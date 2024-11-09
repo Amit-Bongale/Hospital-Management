@@ -5,9 +5,10 @@ import PatientAdmitForm from './AdmitPatientForm/PatientAdmitForm'
 
 // import { Link } from "react-router-dom";
 
-function AdmitPatientInfo() {
+function AdmitPatientInfo({ setisopen}) {
 
   let [admitinfo , setadmitinfo] = useState([])
+  let [patientid , setpatientid] = useState()
 
   useEffect(()=>{
 
@@ -61,7 +62,7 @@ function AdmitPatientInfo() {
               <td class="px-6 py-3"> {admission.admissiondateandtime} </td>
               <td class="px-6 py-3"> {admission.dischargedateandtime} </td>
               <td  class="px-6 py-3"> 
-                <button  class="px-6 py-3"  onClick={() => setadmitpatient(true)} className="text-blue-600 hover:cursor-pointer"> Edit </button>
+                <button  class="px-6 py-3"  onClick={() => {setadmitpatient(true); setpatientid(admission.patientid)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
               <td class="px-6 py-3">  
                 <button scope="col" class="px-6 py-3"  className="text-red-600 hover:cursor-pointer"> Delete </button>
