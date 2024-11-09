@@ -1,24 +1,92 @@
 import React from "react";
+import {useState,useEffect} from "react";
 
-function Admit({setadmit}){
+function Admit({setadmit, id , name}){
+  let [staffid, setstaffid] = useState()
+  let [doctorid , setdoctorid ] = useState()
+  let [reason , setreason ] = useState()
+
+  let [staffinfo , setstaffinfo] = useState([])
+  
+  function Send(e){
+
+    e.preventDefault()
+    let data = {
+      "patientid": id,
+      "patientname" : name,
+      "doctorid": doctorid,
+      "staffid": staffid,
+      "reason": reason
+    }
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/admission/createadmission`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+  }
+
+  useEffect(()=>{
+    
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/staff/allstaff`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+          })
+        .then((res) => res.json())
+        .then((data) => {
+          setstaffinfo(data);
+
+          console.log('staff dataa:', data);
+        })
+        .catch((err) => console.log("Error Fetching Data :", err));
+    } catch (error) {
+      console.log("Error :", error);
+    }
+  
+  },[]
+  )
+
     return(
         <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
         <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
         <h2 className="text-2xl font-bold py-2 mb-5 ">Admission</h2>
-        <form >
+        <form onSubmit={Send}>
           <div className="grid gap-6 mb-5  md:grid-cols-2">
 
-            <div>
+            <div class='flex '>
               <label
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Patient Id
+                className="block mb-2 mr-4 text-base font-medium text-gray-900 dark:text-white">
+                Patient Id :
               </label>
-              <input
-                type="number"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Patient Id"
-                required
-              />
+              <div>
+                <h5>{id}</h5>
+              </div>
+            </div>
+
+            
+            <div class='flex'>
+              <label
+                className="block mb-2 mr-4 text-base font-medium text-gray-900 dark:text-white">
+                Patient Name :
+              </label>
+              <div>
+                <h5>{name}</h5>
+              </div>
+              
             </div>
 
             <div>
@@ -26,13 +94,20 @@ function Admit({setadmit}){
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Staff Id
               </label>
-              <input
-                type="number"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Staff Id"
-                required
-              />
+              <select
+              id="Staff"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+              onChange={(e) => {setstaffid(e.target.value)}}
+            >
+              <option value="">Choose Staffid</option>
+              {staffinfo.map((staff) => (
+                <option key={staff.id} value={staff.id}>  {staff.name} </option>
+              ))}
+
+            </select>
             </div>
+
             <div>
               <label
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -43,91 +118,23 @@ function Admit({setadmit}){
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Enter Doctor Id"
                 required
+                onChange={(e) => {setdoctorid(e.target.value)}}
               />
             </div>
-            <div>
+          </div>
+
+          <div>
               <label
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Admit Date
-              </label>
-              <input
-                type="date"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              />
-            </div>
-            <div>
-              <label
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Time
-              </label>
-              <input
-                type="time"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Time"
-                required
-              />
-            </div>
-            <div>
-              <label
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Ward Number
-              </label>
-              <input
-                type="number"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Ward No"    
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Ward Type
+                Reason
               </label>
               <input
                 type="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Ward Type"
+                className="bg-gray-50 mb-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
+                onChange={(e) => {setreason(e.target.value)}}
               />
             </div>
-
-            <div>
-              <label
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Bed Number
-              </label>
-              <input
-                type="number"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Bed No"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Discharge Date
-              </label>
-              <input
-                type="date"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Enter Discharge Date"
-                required
-              />
-            </div>
-
-
-            
-          </div>
           
           <button
             type="submit"

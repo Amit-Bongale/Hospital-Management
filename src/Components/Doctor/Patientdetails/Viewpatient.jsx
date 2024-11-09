@@ -142,7 +142,7 @@ function Viewpatient({ setview, id, name}) {
                 Admit
               </button>
             </div>
-            {admit ? <Admit setadmit={setadmit} /> : <></>}
+            {admit ? <Admit setadmit={setadmit} id={id} name={patientname} /> : <></>}
 
             <button
               type="submit"
