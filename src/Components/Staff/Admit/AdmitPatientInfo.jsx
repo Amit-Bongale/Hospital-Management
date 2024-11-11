@@ -31,6 +31,23 @@ function AdmitPatientInfo({ setisopen}) {
 
   let [admitpatient,setadmitpatient] = useState(false)
 
+  function deleteadmission(){
+    console.log(patientid)
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/admission/deleteadmission`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 'id' : patientid }),
+      })
+      .then((res) => res.json())
+      .then((data) => alert(data.message))
+      .catch((err) => console.error("Error fetching api:", err));
+    
+    } catch (error) {
+      console.log("Error:", error)
+    }
+  }
+
   return (
     <div>
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -65,14 +82,14 @@ function AdmitPatientInfo({ setisopen}) {
                 <button  class="px-6 py-3"  onClick={() => {setadmitpatient(true); setpatientid(admission.patientid)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
               <td class="px-6 py-3">  
-                <button scope="col" class="px-6 py-3"  className="text-red-600 hover:cursor-pointer"> Delete </button>
+                <button class="px-6 py-3"  onClick={() => {deleteadmission(); setisopen(false);}} className="text-red-600 hover:cursor-pointer"> Delete </button>
               </td>
             </tr>
           </tbody>
         ))}
         </table>
       </div>
-        {admitpatient ?  <PatientAdmitForm setisopen={setadmitpatient}/> : <></>}
+        {admitpatient ?  <PatientAdmitForm setisopen={setadmitpatient} patientid={patientid} /> : <></>}
        
     </div>
   )
