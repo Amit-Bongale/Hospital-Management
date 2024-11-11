@@ -5,7 +5,7 @@ import PatientAdmitForm from './AdmitPatientForm/PatientAdmitForm'
 
 // import { Link } from "react-router-dom";
 
-function AdmitPatientInfo({ setisopen}) {
+function AdmitPatientInfo() {
 
   let [admitinfo , setadmitinfo] = useState([])
   let [patientid , setpatientid] = useState()
@@ -82,7 +82,7 @@ function AdmitPatientInfo({ setisopen}) {
                 <button  class="px-6 py-3"  onClick={() => {setadmitpatient(true); setpatientid(admission.patientid)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
               <td class="px-6 py-3">  
-                <button class="px-6 py-3"  onClick={() => {deleteadmission(); setisopen(false);}} className="text-red-600 hover:cursor-pointer"> Delete </button>
+                <button class="px-6 py-3"  onClick={() => deleteadmission()} className="text-red-600 hover:cursor-pointer"> Delete </button>
               </td>
             </tr>
           </tbody>
