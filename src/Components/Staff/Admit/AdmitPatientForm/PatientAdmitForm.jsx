@@ -12,6 +12,7 @@ function PatientAdmitForm({ setisopen , patientid }) {
   let [dischargedateandtime , setdischargedateandtime] = useState()
   
   function Send(e){
+    
     e.preventDefault()
 
     let admission = {

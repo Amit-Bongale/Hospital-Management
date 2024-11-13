@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function NewPatientForm({ setisopen }) {
 
@@ -21,6 +21,20 @@ function NewPatientForm({ setisopen }) {
   let [slot , setslot] = useState()
   let [type , settype] = useState()
 
+  let [doctorinfo, setdoctorinfo] = useState([])
+
+  
+  // fetch doctor details 
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
+      .then((res) => res.json())
+      .then((data) => setdoctorinfo(data))
+      .catch((err) => console.log("Error Fetching Data :" , err))
+    } catch (error) {
+      console.log("Error :" , error)
+    }
+  },[])
 
   
   function Send(){
@@ -39,8 +53,6 @@ function NewPatientForm({ setisopen }) {
       "aadharno": aadharno,
       "medicalhistory" : history,
       "password" : password,
-      //"disease" : disease,
-      //"doctorid" : doctor,
       // "slot" : slot,
       // "type" : type,
     }
@@ -72,10 +84,9 @@ function NewPatientForm({ setisopen }) {
       "disease" : disease,
       "mobileno" : phone,
       "type" : type,
-      "status" : "queue"
+      "status" : "queue",
+      "doctorid" : doctor,
     }
-
-
 
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/createqueue`, {
@@ -372,13 +383,10 @@ function NewPatientForm({ setisopen }) {
                 
                 onChange={(e) => setdoctor(e.target.value)}
               >
-                <option value="" key=""></option>
-                <option value="ortho" key="">
-                  ortho
-                </option>
-                <option value="neuro" key="">
-                  neuro
-                </option>
+                <option value="">Choose Doctor</option>
+                {doctorinfo.map((doctor) => (
+                  <option key={doctor.id} value={doctor.id}> {doctor.name} ({doctor.specialization})</option>
+                ))}
               </select>
             </div>
 
