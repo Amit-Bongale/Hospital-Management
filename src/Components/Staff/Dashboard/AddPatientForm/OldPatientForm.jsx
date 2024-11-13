@@ -1,6 +1,8 @@
 import React from "react";
 import { useState , useEffect} from "react";
 
+import { Search } from 'lucide-react';
+
 function OldPatientForm({ setisopen }) {
 
   let [id, setid] = useState()
@@ -117,7 +119,7 @@ function OldPatientForm({ setisopen }) {
             <button
             onClick={() => Search()} 
             type="search"
-            class="text-sm ml-8 hover:bg-blue-100"
+            class="text-sm ml-6"
             >
               Search
             </button>
