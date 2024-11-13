@@ -3,7 +3,7 @@ import { useState , useEffect } from 'react'
 
 import PatientTestForm from './TestPatientForm/PatientTestForm'
 
-function PatientTestInfo({ _id}) {
+function PatientTestInfo({setisopen , _id}) {
   let [testpatient , settestpatient] = useState(false)
   let [testinfo , settestinfo] = useState([])
   let [patientid , setpatientid] = useState()
