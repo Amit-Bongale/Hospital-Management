@@ -1,24 +1,31 @@
 import React from "react";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 
 function OldPatientForm({ setisopen }) {
 
   let [id, setid] = useState()
-  let [aadharno , setaadharno] = useState()
   let [name , setname ] = useState()
   let [gender , setgender] = useState()
-  let [age , setage] = useState()
-  let [email , setemail] = useState()
   let [phone , setphone] = useState()
-  let [dob , setdob ] = useState()
-  let [address , setaddress] = useState()
-  let [bloodgroup , setbloodgroup] = useState()
-  let [emergencycontact , setemergencycontact] = useState()
-  let [history , sethistory] = useState()
   let [disease , setdisease] = useState()
   let [type , settype] = useState()
+  let [doctorid , setdoctorid] = useState()
 
+  let [doctorinfo, setdoctorinfo] = useState([])
   let [patientinfo , setpatientinfo] = useState([])
+
+
+  // fetch doctor details 
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
+      .then((res) => res.json())
+      .then((data) => setdoctorinfo(data))
+      .catch((err) => console.log("Error Fetching Data :" , err))
+    } catch (error) {
+      console.log("Error :" , error)
+    }
+  },[])
 
   
   function Send(){
@@ -30,7 +37,8 @@ function OldPatientForm({ setisopen }) {
       "mobileno" : phone,
       "disease" : disease,
       "type" : type,
-      "status" : "queue"
+      "status" : "queue",
+      "doctorid" : doctorid
     }
 
     try {
@@ -103,7 +111,7 @@ function OldPatientForm({ setisopen }) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[700px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Enter Aadhar Number"
                 required
-                onChange={(e) => {setaadharno(e.target.value); setid(e.target.value)}}
+                onChange={(e) => {setid(e.target.value)}}
               />
             </div>
             <button
@@ -231,24 +239,22 @@ function OldPatientForm({ setisopen }) {
           ))}
             <div>
               <label
-                for="select"
+                for="doctor"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Select Doctor
               </label>
               <select
                 type="text"
-                id="select"
+                id="doctor"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder=""
+                placeholder="select doctor"
+                onChange={(e) => setdoctorid(e.target.value)}
               >
-              <option value="" key=""></option>
-                <option value="ortho" key="">
-                  ortho
-                </option>
-                <option value="neuro" key="">
-                  neuro
-                </option>
+              <option value="">Choose Doctor</option>
+              {doctorinfo.map((doctor) => (
+                <option key={doctor.id} value={doctor.id}> {doctor.name} ({doctor.specialization})</option>
+              ))}
               </select>
             </div>
 

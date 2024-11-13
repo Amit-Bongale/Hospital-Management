@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-//import { Link } from 'react-router-dom'+
+
+import { useSelector } from "react-redux";
 
 import {
   User, 
@@ -12,13 +13,16 @@ import {
 import Viewpatient from "../Patientdetails/Viewpatient";
 
 function Appointments() {
+   
+  let docid = useSelector((state) => state.doctor.doctorid)
+
   let [view, setview] = useState(false);
   let [queueinfo, setqueueinfo] = useState([]);
   let [id, setid] = useState('')
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient`, {
+      fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient/${docid}`, {
         method: "POST",
       })
         .then((res) => res.json())
@@ -36,6 +40,7 @@ function Appointments() {
     <div className=" w-[80vw] mt-6 ml-2">
       {queueinfo.map((queue) => (
         <div>
+         
           <div className="w-full m-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border-2 border-gray-200">
             <div className="p-4 flex items-center justify-between space-x-4">
               {/* Patient Info Section */}
