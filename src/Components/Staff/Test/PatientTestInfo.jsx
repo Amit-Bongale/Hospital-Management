@@ -3,7 +3,7 @@ import { useState , useEffect } from 'react'
 
 import PatientTestForm from './TestPatientForm/PatientTestForm'
 
-function PatientTestInfo({setisopen , _id}) {
+function PatientTestInfo({ _id}) {
   let [testpatient , settestpatient] = useState(false)
   let [testinfo , settestinfo] = useState([])
   let [patientid , setpatientid] = useState()
@@ -70,7 +70,7 @@ function PatientTestInfo({setisopen , _id}) {
                 <button class="px-6 py-3"  onClick={() =>{ settestpatient(true); setpatientid(test.patientid)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
               <td class="px-6 py-3">  
-                  <button class="px-6 py-3" onClick={() => {deletetest(); setisopen(false);}} className="text-red-600 hover:cursor-pointer"> Delete </button>
+                  <button class="px-6 py-3" onClick={() => {deletetest();}} className="text-red-600 hover:cursor-pointer"> Delete </button>
               </td>
             </tr>
           </tbody>
