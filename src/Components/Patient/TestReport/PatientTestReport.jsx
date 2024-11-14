@@ -34,24 +34,27 @@ function PatientTestReport() {
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
               <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
                 <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
+                {/* <div className="overflow-x-auto max-h-[200px]">
+                <table className="w-full">
+                <thead> */}
                   <tr>
-                    <th scope="col" class="px-6 py-3"> DOCTOR ID </th>
-                    <th scope="col" class="px-6 py-3"> STAFF ID </th>
-                    <th scope="col" class="px-6 py-3"> TEST NAME </th>
-                    <th scope="col" class="px-6 py-3"> RESULT </th>
-                    <th scope="col" class="px-6 py-3"> STATUS</th>
+                    {/* <tr className="text-left border-b"> */}
+                    <th className="pb-2"> DOCTOR ID </th>
+                    <th className="pb-2"> STAFF ID </th>
+                    <th className="pb-2"> TEST NAME </th>
+                    <th className="pb-2"> RESULT </th>
+                    <th className="pb-2"> STATUS</th>
                   </tr>
                 </thead>
       
                 {testinfo.map((test)=>(
                 <tbody class="text-center">
-                  <tr>
+                  <tr className="border-b last:border-0">
                     <td  class="px-6 py-3"> {test.doctorid} </td>
-                    <td  class="px-6 py-3"> {test.staffid} </td> 
-                    <td  class="px-6 py-3"> {test.testname} </td> 
-                    <td  class="px-6 py-3"> {test.result} </td>
+                    <td  class="px-6 py-3 font-medium"> {test.staffid} </td> 
+                    <td  class="px-6 py-3 text-gray-600"> {test.testname} </td> 
+                    <td  class="px-6 py-3 text-gray-600"> {test.result} </td>
                     <td  class="px-6 py-3"> {test.status} </td>
-                  
                   </tr>
                 </tbody>
                 ))}
