@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Addtest from "./Addtest";
 import Admit from "./Admit";
 
+import {useSelector} from 'react-redux';
+
 import { FilePlus2 , Plus, ChevronRight } from 'lucide-react';
 
 function Viewpatient({ setview, id, name}) {
@@ -11,6 +13,45 @@ function Viewpatient({ setview, id, name}) {
   let [admit, setadmit] = useState(false);
   let [patientinfo, setpatientinfo] = useState([]);
   let [patientname , setpatientname] = useState([])
+
+
+  let [disease, setdisease] = useState()
+  let [prescription , setprescription ] = useState()
+
+  const doctorid = useSelector((state)=> state.doctor.doctorid)
+  
+  
+  function Send(){
+
+    let data = {
+      "patientid" : id,
+      "doctorid" : doctorid,
+      "disease" : disease,
+      "prescription": prescription
+      
+    }
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/medicalhistory/createmedicalhistory`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+  }
+
+
 
   useEffect(() => {
     try {
@@ -34,6 +75,8 @@ function Viewpatient({ setview, id, name}) {
       console.log("error :", error);
     }
   }, [setview, id]);
+
+  
 
   return (
     <div className="w-[100vw] h-full fixed  top-0 left-0 flex justify-center items-center  ">
@@ -99,6 +142,25 @@ function Viewpatient({ setview, id, name}) {
         <div class="flex mt-10">
           <div>
             <label
+              for="adding disease"
+              class="block mb-2 text-lg font-bold text-gray-900 dark:text-white"
+            >
+              Disease
+            </label>
+            <input
+              type="text"
+              id="disease"
+              class="bg-gray-50 border border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Add disease"
+              onChange={(e) => {setdisease(e.target.value)}}
+
+            />
+          </div>
+        </div>
+
+        <div class="flex mt-5">
+          <div>
+            <label
               for="adding prescription"
               class="block mb-2 text-lg font-bold text-gray-900 dark:text-white"
             >
@@ -109,6 +171,8 @@ function Viewpatient({ setview, id, name}) {
               id="prescription"
               class="bg-gray-50 border border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Add prescription"
+              onChange={(e) => {setprescription(e.target.value)}}
+
             />
           </div>
         </div>
@@ -145,6 +209,7 @@ function Viewpatient({ setview, id, name}) {
             {admit ? <Admit setadmit={setadmit} id={id} name={patientname} /> : <></>}
 
             <button
+              onClick={() => Send()}
               type="submit"
               class="text-white bg-blue-700 hover:bg-blue-800 mr-14 flex focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-3  pl-6 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
