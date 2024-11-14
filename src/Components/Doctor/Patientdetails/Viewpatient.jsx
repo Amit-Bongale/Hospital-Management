@@ -13,6 +13,9 @@ function Viewpatient({ setview, id, name}) {
   let [admit, setadmit] = useState(false);
   let [patientinfo, setpatientinfo] = useState([]);
   let [patientname , setpatientname] = useState([])
+  let [testresult, settestresult] = useState([])
+  let [testname, settestname] = useState([])
+
 
 
   let [disease, setdisease] = useState()
@@ -76,7 +79,31 @@ function Viewpatient({ setview, id, name}) {
     }
   }, [setview, id]);
 
-  
+
+
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/test/patienttestdetail/${id}`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            console.log(data.message);
+            alert(data.message);
+          }
+          settestresult(data.result) 
+          settestname(data.testname) 
+          
+          console.log(data);
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+  }, [id]);
+
+
 
   return (
     <div className="w-[100vw] h-full fixed  top-0 left-0 flex justify-center items-center  ">
@@ -132,7 +159,7 @@ function Viewpatient({ setview, id, name}) {
                 </tr>
                 <tr className="">
                   <td className="py-1 px-4 text-gray-600 font-medium">Medical History :</td>
-                  <td className="py-1 px-4 text-gray-900">{patient.medicalhistory}</td>
+                  <td className="py-1 px-4 text-gray-900">{patient.test}</td>
                 </tr>
               </tbody>
             ))}
@@ -178,8 +205,13 @@ function Viewpatient({ setview, id, name}) {
         </div>
 
         <div class="flex mt-5">
-          <div>Test Result : </div>
-          <div class="ml-3">Positive</div>
+          <div class="font-semibold text-lg">Test Name : </div>
+          <div class="ml-3 text-lg">{testname}</div>
+        </div>
+
+        <div class="flex mt-5">
+          <div class="font-semibold text-lg">Test Result : </div>
+          <div class="ml-3 text-lg">{testresult}</div>
         </div>
 
         <div className="mt-6 flex justify-between items-center">
