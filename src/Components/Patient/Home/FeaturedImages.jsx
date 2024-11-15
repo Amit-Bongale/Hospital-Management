@@ -9,7 +9,7 @@ function FeaturedImages() {
             Best Medical Service That all can Trust.
           </h2>
           <p className="text-lg text-gray-600 mb-10">
-          hospitals frequently serve as hubs for medical research and education. They collaborate with academic institutions to train future healthcare professionals, including doctors, nurses, and medical technicians, through residency programs, internships, and continuous medical education programs
+          At Our Hospital, we don’t just provide healthcare; we build trust. Our hospital is more than a place of treatment—it’s a center for healing, education, and community care. Every patient we serve becomes a part of our extended family, and we are committed to ensuring their journey toward wellness is supported every step of the way
           </p>
         </div>
 

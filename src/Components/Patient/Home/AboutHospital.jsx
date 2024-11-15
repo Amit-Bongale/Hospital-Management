@@ -15,10 +15,10 @@ function AboutHospital() {
              Most Advanced and Coordinated Care
             </h2>
             <p class="mb-4">
-            A hospital is an institution specifically designed, staffed, and equipped to offer comprehensive care for individuals suffering from illness, injury, or other health conditions. This includes both the diagnosis and treatment of diseases through a combination of medical, surgical, and therapeutic interventions. 
+             At or Hospital, we pride ourselves on delivering advanced and seamless healthcare services designed to meet the diverse needs of our patients. With cutting-edge technology and a patient-first approach, we ensure that every individual receives the highest quality of care. 
             </p>
             <p>
-            Hospitals serve as a key component of healthcare systems, providing inpatient care where patients can be housed during their treatment and recovery.
+             Whether it's routine check-ups or complex surgeries, our team of experts is here to guide you every step of the way. We provide a safe, comfortable, and healing environment where patients can focus on recovery with confidence.
             </p>
           </div>
           <div class="grid grid-cols-2 gap-4 mt-8">
