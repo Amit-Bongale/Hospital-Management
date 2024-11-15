@@ -4,57 +4,64 @@ import { useState, useEffect } from "react";
 import Addtest from "./Addtest";
 import Admit from "./Admit";
 
-import {useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 
-import { FilePlus2 , Plus, ChevronRight } from 'lucide-react';
+import {
+  FilePlus2,
+  Plus,
+  ChevronRight,
+  Calendar,
+  Stethoscope,
+  ClipboardList,
+  Activity,
+} from "lucide-react";
 
-function Viewpatient({ setview, id, name}) {
+function Viewpatient({ setview, id, appointmenttype }) {
   let [test, settest] = useState(false);
   let [admit, setadmit] = useState(false);
   let [patientinfo, setpatientinfo] = useState([]);
-  let [patientname , setpatientname] = useState([])
-  let [testresult, settestresult] = useState([])
-  let [testname, settestname] = useState([])
+  let [medicalHistory, setMedicalHistory] = useState([]);
+  let [testresult, settestresult] = useState();
+  let [testname, settestname] = useState();
+  let [patientname, setpatientname] = useState();
+  let [disease, setdisease] = useState();
+  let [prescription, setprescription] = useState();
 
+  const doctorid = useSelector((state) => state.doctor.doctorid);
+  const doctorname = useSelector((state) => state.doctor.doctorname);
 
-
-  let [disease, setdisease] = useState()
-  let [prescription , setprescription ] = useState()
-
-  const doctorid = useSelector((state)=> state.doctor.doctorid)
-  
-  
-  function Send(){
-
+  function Send() {
     let data = {
-      "patientid" : id,
-      "doctorid" : doctorid,
-      "disease" : disease,
-      "prescription": prescription
-      
-    }
+      patientid: id,
+      doctorid: doctorid,
+      doctorname: doctorname,
+      disease: disease,
+      prescription: prescription,
+      appointmenttype: appointmenttype,
+    };
 
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/medicalhistory/createmedicalhistory`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) {
-          console.log(data.message);
-          alert(data.message);
+      fetch(
+        `${process.env.REACT_APP_API_URL}/medicalhistory/createmedicalhistory`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
         }
-        console.log(data);
-      })
-      .catch((error) => console.log("Fetching Error:" , error));
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            console.log(data.message);
+            alert(data.message);
+          }
+          console.log(data);
+        })
+        .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }
   }
-
-
 
   useEffect(() => {
     try {
@@ -69,8 +76,7 @@ function Viewpatient({ setview, id, name}) {
           }
           const patients = Array.isArray(data) ? data : [data];
           setpatientinfo(patients);
-
-          setpatientname(data.name) 
+          setpatientname(data.name);
           console.log(data);
         })
         .catch((error) => console.log("Fetching Error:", error));
@@ -79,7 +85,21 @@ function Viewpatient({ setview, id, name}) {
     }
   }, [setview, id]);
 
-
+  useEffect(() => {
+    fetch(
+      `${process.env.REACT_APP_API_URL}/medicalhistory/patientmedicalhistory/latest/${id}`,
+      {
+        method: "POST",
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        const historyData = Array.isArray(data) ? data : [data];
+        setMedicalHistory(historyData);
+        console.log(historyData);
+      })
+      .catch((error) => console.log("Fetching Error:", error));
+  }, [id]);
 
   useEffect(() => {
     try {
@@ -92,9 +112,9 @@ function Viewpatient({ setview, id, name}) {
             console.log(data.message);
             alert(data.message);
           }
-          settestresult(data.result) 
-          settestname(data.testname) 
-          
+          settestresult(data.result);
+          settestname(data.testname);
+
           console.log(data);
         })
         .catch((error) => console.log("Fetching Error:", error));
@@ -103,68 +123,144 @@ function Viewpatient({ setview, id, name}) {
     }
   }, [id]);
 
-
-
   return (
-    <div className="w-[100vw] h-full fixed  top-0 left-0 flex justify-center items-center  ">
-      <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
-        <h2 className="text-2xl font-bold py-2 mb-5 border-b-2 "> View Patient</h2>
-        <div class=" mb-4 mt-5">
-          <table className="w-full text-left">
-            { patientinfo.map((patient) => (
+    <div className="w-[100vw] h-full fixed  top-0 left-28 flex justify-center items-center  ">
+      <div className=" bg-white w-[75%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
+        <h2 className="text-2xl font-bold py-2 mb-5 border-b-2 ">
+          {" "}
+          View Patient
+        </h2>
+        {patientinfo.map((patient) => (
+          <div class=" mb-4 mt-5">
+            <table className="w-full text-left">
               <tbody>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Patient ID : </td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Patient ID :{" "}
+                  </td>
                   <td className="py-1 px-4 text-gray-900">{patient.id}</td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Name : </td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Name :{" "}
+                  </td>
                   <td className="py-1 px-4 text-gray-900">{patient.name}</td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Gender :</td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Gender :
+                  </td>
                   <td className="py-1 px-4 text-gray-900">{patient.gender}</td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Email :</td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Email :
+                  </td>
                   <td className="py-1 px-4 text-gray-900">{patient.email}</td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Phone :</td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Phone :
+                  </td>
                   <td className="py-1 px-4 text-gray-900">{patient.phone}</td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Date of Birth :</td>
-                  <td className="py-1 px-4 text-gray-900">{(patient.dob).split('T')[0]}</td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Date of Birth :
+                  </td>
+                  <td className="py-1 px-4 text-gray-900">
+                    {patient.dob.split("T")[0]}
+                  </td>
                 </tr>
                 <tr className="">
                   <td className="py-1 px-4 text-gray-600 font-medium">Age :</td>
                   <td className="py-1 px-4 text-gray-900">{patient.age}</td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Address :</td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Address :
+                  </td>
                   <td className="py-1 px-4 text-gray-900">{patient.address}</td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Emergency Contact :</td>
-                  <td className="py-1 px-4 text-gray-900">{patient.emergencycontact}</td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Emergency Contact :
+                  </td>
+                  <td className="py-1 px-4 text-gray-900">
+                    {patient.emergencycontact}
+                  </td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Blood Group :</td>
-                  <td className="py-1 px-4 text-gray-900">{patient.bloodgroup}</td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Blood Group :
+                  </td>
+                  <td className="py-1 px-4 text-gray-900">
+                    {patient.bloodgroup}
+                  </td>
                 </tr>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Aaadhar Number :</td>
-                  <td className="py-1 px-4 text-gray-900">{patient.aadharno}</td>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Aaadhar Number :
+                  </td>
+                  <td className="py-1 px-4 text-gray-900">
+                    {patient.aadharno}
+                  </td>
                 </tr>
-                <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">Medical History :</td>
-                  <td className="py-1 px-4 text-gray-900">{patient.test}</td>
+                <tr>
+                  <td className="py-1 px-4 text-gray-600 font-medium">
+                    Medical History :
+                  </td>
                 </tr>
               </tbody>
-            ))}
-          </table>
-        </div>
+            </table>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse border border-gray-300">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="py-2 px-4 border border-gray-300 text-left">
+                      Date
+                    </th>
+                    <th className="py-2 px-4 border border-gray-300 text-left">
+                      Disease
+                    </th>
+                    <th className="py-2 px-4 border border-gray-300 text-left">
+                      Prescription
+                    </th>
+                    <th className="py-2 px-4 border border-gray-300 text-left">
+                      Doctor
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {medicalHistory.map((history, index) => (
+                    <tr
+                      key={index}
+                      className="odd:bg-gray-100 even:bg-white hover:bg-gray-200"
+                    >
+                      <td className="py-2 px-4 border border-gray-300 flex items-center gap-2">
+                        <Calendar className="h-4 w-4" />
+                        {history.date.slice(0, 10)}
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300 flex items-center gap-2">
+                        <Activity className="h-4 w-4" />
+                        {history.disease}
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300 flex items-center gap-2">
+                        <ClipboardList className="h-4 w-4" />
+                        {history.prescription}
+                      </td>
+                      <td className="py-2 px-4 border border-gray-300 flex items-center gap-2">
+                        <Stethoscope className="h-4 w-4" />
+                        {history.doctorname}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
 
         <div class="flex mt-10">
           <div>
@@ -179,8 +275,9 @@ function Viewpatient({ setview, id, name}) {
               id="disease"
               class="bg-gray-50 border border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Add disease"
-              onChange={(e) => {setdisease(e.target.value)}}
-
+              onChange={(e) => {
+                setdisease(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -188,18 +285,20 @@ function Viewpatient({ setview, id, name}) {
         <div class="flex mt-5">
           <div>
             <label
-              for="adding prescription"
+              for="prescription"
               class="block mb-2 text-lg font-bold text-gray-900 dark:text-white"
             >
               Prescription
             </label>
-            <input
-              type="text"
+            <textarea
               id="prescription"
-              class="bg-gray-50 border border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              rows={6}
+              type="text"
+              class="bg-gray-50 border  border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Add prescription"
-              onChange={(e) => {setprescription(e.target.value)}}
-
+              onChange={(e) => {
+                setprescription(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -226,7 +325,11 @@ function Viewpatient({ setview, id, name}) {
                 Add test
               </button>
             </div>
-            {test ? <Addtest settest={settest} id={id} name={patientname} /> : <></>}
+            {test ? (
+              <Addtest settest={settest} id={id} name={patientname} />
+            ) : (
+              <></>
+            )}
 
             <div>
               <button
@@ -238,7 +341,11 @@ function Viewpatient({ setview, id, name}) {
                 Admit
               </button>
             </div>
-            {admit ? <Admit setadmit={setadmit} id={id} name={patientname} /> : <></>}
+            {admit ? (
+              <Admit setadmit={setadmit} id={id} name={patientname} />
+            ) : (
+              <></>
+            )}
 
             <button
               onClick={() => Send()}
@@ -248,9 +355,7 @@ function Viewpatient({ setview, id, name}) {
               Submit
               <ChevronRight className="w-5 h-5 ml-2" />
             </button>
-
           </div>
-          
 
           <button
             onClick={() => setview(false)}
@@ -263,9 +368,8 @@ function Viewpatient({ setview, id, name}) {
 
       <div
         className="w-[100vw] h-[100vh] bg-slate-400 opacity-90  top-0 left-0 flex justify-center items-center z-10 fixed"
-        onClick={() => setview(false)}>
-      </div>
-    
+        onClick={() => setview(false)}
+      ></div>
     </div>
   );
 }

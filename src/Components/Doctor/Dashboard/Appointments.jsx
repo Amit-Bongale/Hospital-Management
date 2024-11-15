@@ -18,7 +18,9 @@ function Appointments() {
 
   let [view, setview] = useState(false);
   let [queueinfo, setqueueinfo] = useState([]);
+
   let [id, setid] = useState('')
+  let [appontmenttype , setappointmettype] = useState('')
 
   useEffect(() => {
     try {
@@ -34,7 +36,7 @@ function Appointments() {
     } catch (error) {
       console.log("error :", error);
     }
-  }, [view]);
+  }, [view, docid]);
 
   return (
     <div className=" w-[80vw] mt-6 ml-2">
@@ -58,7 +60,7 @@ function Appointments() {
                     <span className="px-2 py-1 text-sm rounded-full bg-gray-100 text-gray-600 border border-gray-200">
                       <div className="flex items-center text-gray-500 text-sm">
                         <NotepadText className="w-4 h-4 mr-1" />
-                        <span>Regular Checkup</span>
+                        <span>{queue.type}</span>
                       </div> 
                     </span>
                   </div>
@@ -85,7 +87,7 @@ function Appointments() {
 
               {/* Buttons div */}
               <div className="flex space-x-2">
-                <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={() => {setview(true); setid(queue.id)} }>
+                <button className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2" onClick={() => {setview(true); setid(queue.id); setappointmettype(queue.type)} }>
                   View Details
                 </button>
               </div>
@@ -93,7 +95,7 @@ function Appointments() {
           </div>
         </div>
       ))}
-      {view ? <Viewpatient setview={setview} id={id} /> : <></>}
+      {view ? <Viewpatient setview={setview} id={id} appointmenttype={appontmenttype}/> : <></>}
     </div>
   );
 }

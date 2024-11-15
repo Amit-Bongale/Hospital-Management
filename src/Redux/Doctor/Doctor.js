@@ -4,17 +4,20 @@ export const DoctorSlice = createSlice({
   name: 'doctor',
   initialState: {
     loggedin: false,
-    doctorid : null,
+    doctorid : '',
+    doctorname: '',
   },
 
   reducers: {
     doctorlogin: (state, action) => {
       state.loggedin = true;
       state.doctorid = action.payload.doctorid;
+      state.doctorname = action.payload.doctorname;
     },
     doctorlogout: (state) => {
       state.loggedin = false
-      state.doctorid = null
+      state.doctorid = ''
+      state.doctorname = ''
     },
   },
 
