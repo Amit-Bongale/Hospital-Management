@@ -25,3 +25,18 @@ input{
 *::-webkit-scrollbar-thumb:hover {
     background-color: rgb(9, 78, 190); /* Thumb color on hover */
 }
+
+/* Print layout Config */
+
+@media print {
+    /* Hide header and footer when printing */
+    .header-url, 
+    .footer-details {
+        display: none !important;
+    }
+    
+    /* Hide any browser-generated headers and footers */
+    @page {
+        margin: 0;
+    }
+}

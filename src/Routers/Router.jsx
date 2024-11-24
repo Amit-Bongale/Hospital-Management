@@ -33,6 +33,7 @@ import StaffAdmit from '../Pages/Staff/StaffAdmit'
 import StaffTest from '../Pages/Staff/StaffTest'
 import StaffBill from '../Pages/Staff/StaffBill'
 import StaffDoctorStatus from '../Pages/Staff/StaffDoctorStatus'
+import PrintBill from '../Pages/Staff/PrintBill'
 
 
 import AppointmentBooking from '../Pages/Patient/AppointmentBooking'
@@ -96,7 +97,7 @@ function Router() {
         <Route path='test' element={<StaffTest/>}/>
         <Route path='bill' element={<StaffBill/>}/>
         <Route path='status' element={<StaffDoctorStatus/>} />
-
+        <Route path='printbill/:patientid' element={<PrintBill/>}/>
 
       </Route>
 

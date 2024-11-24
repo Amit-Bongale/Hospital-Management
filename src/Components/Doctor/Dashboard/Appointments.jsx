@@ -38,6 +38,14 @@ function Appointments() {
     }
   }, [view, docid]);
 
+  if (queueinfo.length === 0){
+    return(
+      <div className="flex items-center justify-center text-center w-[80vw] h-[100vh]">
+        <h1>No Patients in Queue</h1>
+      </div>
+    )
+  }
+
   return (
     <div className=" w-[80vw] mt-6 ml-2">
       {queueinfo.map((queue) => (
@@ -58,7 +66,7 @@ function Appointments() {
                     </h3>
 
                     <span className="px-2 py-1 text-sm rounded-full bg-gray-100 text-gray-600 border border-gray-200">
-                      <div className="flex items-center text-gray-500 text-sm">
+                      <div className="flex items-center text-gray-500 text-sm ">
                         <NotepadText className="w-4 h-4 mr-1" />
                         <span>{queue.type}</span>
                       </div> 
@@ -96,6 +104,7 @@ function Appointments() {
         </div>
       ))}
       {view ? <Viewpatient setview={setview} id={id} appointmenttype={appontmenttype}/> : <></>}
+      
     </div>
   );
 }
