@@ -7,11 +7,13 @@ function PrintLayout({ billData , prescriptionData }) {
 
   const {patientid} = useParams()
 
-  let [bill , setbill] = useState([])
+  let [bill , setbill] = useState({})
+  let [patientinfo , setpatientinfo] = useState({})
 
+  // fetch Bill  
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/bill/patientdetails`, {
+      fetch(`${process.env.REACT_APP_API_URL}/bill/findbill/${patientid}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({patientid})
@@ -27,28 +29,21 @@ function PrintLayout({ billData , prescriptionData }) {
     }
   },[])
 
+  // fetch patient details
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${patientid}` , { method: "POST" })
+      .then((res) => res.json())
+      .then((data) => setpatientinfo(data))
+      .catch((err) => console.log("Error Fetching Data :" , err))
+    } catch (error) {
+      console.log("Error :" , error)
+    }
+  },[patientid])
+
   const sampleBillData = {
-    hospitalInfo: {
-      name: "City General Hospital",
-      address: "123 Healthcare Avenue, Medical District",
-      phone: "(555) 123-4567",
-      email: "billing@cityhospital.com",
-      license: "HSP-12345",
-    },
-    billInfo: {
-      billNo: "BILL-2024-001",
-      date: "2024-11-24",
-      admissionDate: "2024-11-20",
-      dischargeDate: "2024-11-24",
-    },
-    patientInfo: {
-      id: "P123456",
-      name: "John Doe",
-      age: 45,
-      gender: "Male",
-      address: "789 Patient Street",
-      contact: "(555) 987-6543",
-    },
+   
+  
     charges: [
       {
         id: 1,
@@ -70,14 +65,7 @@ function PrintLayout({ billData , prescriptionData }) {
         quantity: 3,
         rate: 800,
         amount: 2400,
-      },
-      {
-        id: 4,
-        description: "Medicines",
-        quantity: 1,
-        rate: 1200,
-        amount: 1200,
-      },
+      }
     ],
   };
 
@@ -124,6 +112,8 @@ function PrintLayout({ billData , prescriptionData }) {
     window.print();
   };
 
+  const totalamount = bill.fees.consultationfee +  bill.fees.testfee + bill.fees.admissionfee
+
   const calculateTotal = () => {
     return data.charges.reduce((total, item) => total + item.amount, 0);
   };
@@ -155,7 +145,7 @@ function PrintLayout({ billData , prescriptionData }) {
             </h1>
             
             <div className="text-sm text-gray-600">
-              <p>{data.hospitalInfo.address}</p>
+              <p>123 Healthcare Avenue, Medical District</p>
               <p>
                 Phone: +91 6364541787 | Email:{" "}
                 hospitalmangement204@gmail.com
@@ -169,21 +159,21 @@ function PrintLayout({ billData , prescriptionData }) {
             <div className="space-y-2">
               <h2 className="font-semibold text-gray-800">Bill Details</h2>
               <div className="text-sm space-y-1 text-gray-600">
-                <p>Bill No: {data.billInfo.billNo}</p>
-                <p>Date: {data.billInfo.date}</p>
-                <p>Admission: {data.billInfo.admissionDate}</p>
-                <p>Discharge: {data.billInfo.dischargeDate}</p>
+                <p>Bill No: {bill.billno}</p>
+                <p>Date: {new Date(bill.date).toLocaleDateString("en-IN")}</p>
+                <p>Admission: -- </p>
+                <p>Discharge: -- </p>
               </div>
             </div>
             <div className="space-y-2">
               <h2 className="font-semibold text-gray-800">Patient Details</h2>
               <div className="text-sm space-y-1 text-gray-600">
-                <p>Patient ID: {patientid}</p>
-                <p>Name: {data.patientInfo.name}</p>
+                <p>Patient ID: {patientid} </p>
+                <p>Name: {patientinfo.name}</p>
                 <p>
-                  Age/Gender: {data.patientInfo.age}/{data.patientInfo.gender}
+                  Age/Gender: {patientinfo.age} / {patientinfo.gender}
                 </p>
-                <p>Contact: {data.patientInfo.contact}</p>
+                <p>Contact: {patientinfo.phone}</p>
               </div>
             </div>
           </div>
@@ -200,26 +190,52 @@ function PrintLayout({ billData , prescriptionData }) {
                 </tr>
               </thead>
               <tbody>
-                {data.charges.map((item) => (
-                  <tr key={item.id}>
-                    <td className="border px-4 py-2">{item.description}</td>
+               
+                  <tr>
+                    <td className="border px-4 py-2">Consultation Fee</td>
                     <td className="border px-4 py-2 text-right">
-                      {item.days || item.quantity}
+                      {}
                     </td>
                     <td className="border px-4 py-2 text-right">
-                      ₹{(item.ratePerDay || item.rate).toFixed(2)}
+                      ₹{}
                     </td>
                     <td className="border px-4 py-2 text-right">
-                      ₹{item.amount.toFixed(2)}
+                      ₹{bill.fees.consultationfee}
                     </td>
                   </tr>
-                ))}
+
+                  <tr>
+                    <td className="border px-4 py-2">test Fee</td>
+                    <td className="border px-4 py-2 text-right">
+                      {}
+                    </td>
+                    <td className="border px-4 py-2 text-right">
+                      ₹{}
+                    </td>
+                    <td className="border px-4 py-2 text-right">
+                      ₹{bill.fees.testfee}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td className="border px-4 py-2">Admission Fee</td>
+                    <td className="border px-4 py-2 text-right">
+                      {}
+                    </td>
+                    <td className="border px-4 py-2 text-right">
+                      ₹{}
+                    </td>
+                    <td className="border px-4 py-2 text-right">
+                      ₹{bill.fees.admissionfee}
+                    </td>
+                  </tr>
+
                 <tr className="font-bold bg-gray-50">
                   <td colSpan="3" className="border px-4 py-2 text-right">
                     Total Amount:
                   </td>
                   <td className="border px-4 py-2 text-right">
-                    ₹{calculateTotal().toFixed(2)}
+                    ₹{totalamount}
                   </td>
                 </tr>
               </tbody>
@@ -262,7 +278,7 @@ function PrintLayout({ billData , prescriptionData }) {
             </h1>
             
             <div className="text-sm text-gray-600">
-              <p>{data.hospitalInfo.address}</p>
+              <p>123 Healthcare Avenue, Medical District</p>
               <p>
                 Phone: +91 6364541787 | Email:{" "}
                 hospitalmangement204@gmail.com
@@ -276,9 +292,9 @@ function PrintLayout({ billData , prescriptionData }) {
             <div className="space-y-2">
               <h2 className="font-semibold text-gray-800">Patient Information</h2>
               <div className="text-sm space-y-1 text-gray-600">
-                <p>Name: {data.patientInfo.name}</p>
-                <p>Age/Gender: {data.patientInfo.age}/{data.patientInfo.gender}</p>
-                <p>Patient ID: {data.patientInfo.id}</p>
+                <p>Name: {patientinfo.name}</p>
+                <p>Age/Gender: {patientinfo.age}/{patientinfo.gender}</p>
+                <p>Patient ID: {patientinfo.id}</p>
               </div>
             </div>
             <div className="space-y-2">

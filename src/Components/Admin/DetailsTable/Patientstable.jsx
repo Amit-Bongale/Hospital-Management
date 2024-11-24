@@ -12,6 +12,8 @@ function Patientstable() {
   let [patientinfo , setpatientinfo] = useState([])
   let [patientid , setpatientid] = useState('')
 
+  
+
   useEffect(() => {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/patient/allpatients` , { method: "POST" })
