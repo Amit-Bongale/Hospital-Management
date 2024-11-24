@@ -10,7 +10,7 @@ function Nav() {
 
   // const dispatch = useDispatch()
 
-  const IsLoggedin = useSelector((state) => state.patient.loggedin)
+  const IsLoggedin = useSelector((state) => state.patient.patientId)
 
 
   return (

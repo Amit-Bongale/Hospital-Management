@@ -1,7 +1,7 @@
 import React from 'react'
 
 import AccountNav from '../../../Components/Patient/Nav/AccountNav'
-import PatientTestReport from '../../../Components/Patient/TestReport/PatientTestReport'
+import PatientTestReport from '../../../Components/Patient/Account/PatientTestReport'
 
 function TestReports() {
   return (

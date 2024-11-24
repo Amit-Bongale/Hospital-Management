@@ -1,6 +1,6 @@
 import React from 'react'
 import AccountNav from '../../../Components/Patient/Nav/AccountNav'
-import PatientMedicalHistory from '../../../Components/Patient/MedicalHistory/PatientMedicalHistory'
+import PatientMedicalHistory from '../../../Components/Patient/Account/PatientMedicalHistory'
 
 
 function MedicalHistory() {
