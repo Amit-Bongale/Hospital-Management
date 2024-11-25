@@ -17,6 +17,7 @@ let [testid, settestid] = useState()
       "status": status,
       "result": result,
       "fee": fee,
+      "patientid": patientid,
     }
 
     try {

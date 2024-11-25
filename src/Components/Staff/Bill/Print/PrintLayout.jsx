@@ -118,6 +118,11 @@ function PrintLayout({ billData , prescriptionData }) {
     return data.charges.reduce((total, item) => total + item.amount, 0);
   };
 
+  if (!bill) {
+    return <div>Bill data not available</div>;
+  }
+
+
   return (
     <div className="relative">
       {/* Print Button - Hidden when printing */}
