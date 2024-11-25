@@ -8,6 +8,7 @@ function PatientTestForm({ setisopen , patientid}) {
 
   let [status , setstatus] = useState()
   let [result , setresult] = useState([])
+  let [fee , setfee] = useState()
 let [testid, settestid] = useState()
   
   function Send(e){
@@ -15,6 +16,7 @@ let [testid, settestid] = useState()
     let test = {
       "status": status,
       "result": result,
+      "fee": fee,
     }
 
     try {
@@ -161,6 +163,22 @@ let [testid, settestid] = useState()
                       <option value="Result Pending" key="">Result Pending</option>
                       <option value="Test Result" key="">Test Result</option>
                     </select>
+                </div>
+
+                <div>
+                  <label
+                    for="amount"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                  Test Fee
+                  </label>
+                  <input
+                    type="text"
+                    id="amount"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder=""
+                    onChange={(e) => {setfee(e.target.value)}}
+                  />
                 </div>
 
               </div>
