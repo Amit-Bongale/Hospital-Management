@@ -93,7 +93,7 @@ function Admit({setadmit, id , name}){
               
             </div>
 
-            <div class="flex">
+            {/* <div class="flex">
               <label
                 className="block mb-1 mr-4 text-lg font-medium text-gray-900 dark:text-white">
                 Doctor Id :
@@ -101,9 +101,7 @@ function Admit({setadmit, id , name}){
               <div class="text-lg font-medium">
                 <h5>{doctorid}</h5>
               </div>
-            </div>
-
-            <br></br>
+            </div> */}
 
             <div>
               <label
