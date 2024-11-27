@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState , useEffect } from 'react'
 
+import { Search } from 'lucide-react';
+
 import PatientTestForm from './TestPatientForm/PatientTestForm'
 
 function PatientTestInfo({setisopen , _id}) {
@@ -41,6 +43,28 @@ function PatientTestInfo({setisopen , _id}) {
     
     } catch (error) {
       console.log("Error:", error)
+    }
+  }
+
+  function Search(){
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/test/findtest/${_id}`, {
+        method: "POST",
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        const test = Array.isArray(data) ? data : [data];
+
+        settestinfo(test)
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:" , error));
+    } catch (error) {
+      console.log("error :", error);
     }
   }
 
