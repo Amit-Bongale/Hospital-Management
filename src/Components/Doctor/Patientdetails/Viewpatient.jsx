@@ -16,7 +16,7 @@ import {
   Activity,
 } from "lucide-react";
 
-function Viewpatient({ setview, id, appointmenttype }) {
+function Viewpatient({ setview, id, appointmenttype  }) {
 
   let [test, settest] = useState(false);
   let [admit, setadmit] = useState(false);
@@ -64,6 +64,24 @@ function Viewpatient({ setview, id, appointmenttype }) {
       console.log("error :", error);
     }
   }
+
+
+function deletequeue(){
+  console.log(id)
+  try {
+    fetch(`${process.env.REACT_APP_API_URL}/queue/deletepatient`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 'id' : id }),
+    })
+    .then((res) => res.json())
+    .then((data) => alert(data.message))
+    .catch((err) => console.error("Error fetching api:", err));
+  
+  } catch (error) {
+    console.log("Error:", error)
+  }
+}
 
   useEffect(() => {
     try {
@@ -251,8 +269,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
                 </tbody>
               </table>
             </div>
-
-            ) : <></>}
+            ) : null}
             
           </div>
         ))}
@@ -357,11 +374,22 @@ function Viewpatient({ setview, id, appointmenttype }) {
               Submit
               <ChevronRight className="w-5 h-5 ml-2" />
             </button>
+
+            <button
+              type="delete"
+              class="text-white bg-blue-700 hover:bg-blue-800 flex focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-3  pl-6 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={() => {deletequeue(); setview(false)}}
+            >
+              Complete
+            </button>
+
           </div>
+
+          
 
           <button
             onClick={() => setview(false)}
-            class="ml-4 text-white bg-black hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class=" text-white bg-black hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Close
           </button>
