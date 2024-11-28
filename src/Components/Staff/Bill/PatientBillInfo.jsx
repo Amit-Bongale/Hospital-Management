@@ -40,7 +40,7 @@ function PatientBillInfo() {
   useEffect(()=>{
 
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient`, {
+      fetch(`${process.env.REACT_APP_API_URL}/bill/bills`, {
         method: "POST",
       })
       .then((res) => res.json())
@@ -52,11 +52,7 @@ function PatientBillInfo() {
     } catch (error) {
       console.log("error :", error);
     }
-
   },[])
-
-
-
 
 
   return (
@@ -134,7 +130,7 @@ function PatientBillInfo() {
                     className="hover:bg-gray-50 transition-colors"
                   >
                     <td className="px-6 py-4 text-sm text-gray-900">
-                      {patient.id}
+                      {patient.patientid}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900">
                       {patient.name}
@@ -163,7 +159,7 @@ function PatientBillInfo() {
                       ₹{patient.billAmount}
                     </td>
                     <td className="px-6 py-4 text-sm text-center">
-                      <Link to={`/staff/printbill/${patient.id}`}>
+                      <Link to={`/staff/printbill/${patient.patientid}`}>
                         <button
                           className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                         >

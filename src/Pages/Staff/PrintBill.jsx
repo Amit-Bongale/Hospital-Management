@@ -1,10 +1,10 @@
 import React from 'react'
-import PrintLayout from '../../Components/Staff/Bill/Print/PrintLayout'
+import Layout from '../../Components/Staff/Bill/Print/Layout'
 
 function PrintBill() {
   return (
     <div>
-      <PrintLayout/>
+      <Layout/>
     </div>
   )
 }
