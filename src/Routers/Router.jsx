@@ -97,7 +97,7 @@ function Router() {
         <Route path='test' element={<StaffTest/>}/>
         <Route path='bill' element={<StaffBill/>}/>
         <Route path='status' element={<StaffDoctorStatus/>} />
-        <Route path='printbill/:patientid' element={<PrintBill/>}/>
+        <Route path='printbill/:billno/:patientid' element={<PrintBill/>}/>
 
       </Route>
 

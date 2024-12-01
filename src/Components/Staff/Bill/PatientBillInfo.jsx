@@ -12,30 +12,9 @@ function PatientBillInfo() {
 
   const [searchTerm, setSearchTerm] = useState("");
 
-
-  const samplePatients = [
-    {
-      id: "P123",
-      name: "John Doe",
-      admissionDate: "2024-11-20",
-      department: "Cardiology",
-      doctor: "Dr. Smith",
-      status: "Pending Payment",
-      billAmount: 10600,
-    },
-    {
-      id: "P124",
-      name: "Jane Smith",
-      admissionDate: "2024-11-21",
-      department: "Orthopedics",
-      doctor: "Dr. Johnson",
-      status: "In Queue",
-      billAmount: 8500,
-    },
-    // Add more sample data here
-  ];
-
-  
+  function calculatetotal(a,b,c){
+    return a+b+c
+  }
 
   useEffect(()=>{
 
@@ -97,6 +76,9 @@ function PatientBillInfo() {
             <table className="w-full border-collapse bg-white rounded-lg overflow-hidden">
               <thead className="bg-gray-50">
                 <tr>
+                <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
+                    Bill NO
+                  </th>
                   <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
                     Patient ID
                   </th>
@@ -104,13 +86,7 @@ function PatientBillInfo() {
                     Name
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
-                    Admission Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
-                    Department
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
-                    Doctor
+                    Date
                   </th>
                   <th className="px-6 py-3 text-left text-sm font-medium text-gray-700">
                     Status
@@ -129,20 +105,17 @@ function PatientBillInfo() {
                     key={patient.id}
                     className="hover:bg-gray-50 transition-colors"
                   >
+                    < td className="px-6 py-4 text-sm text-gray-900 text-center">
+                      {patient.billno}
+                    </td>
                     <td className="px-6 py-4 text-sm text-gray-900">
                       {patient.patientid}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900">
-                      {patient.name}
+                      {patient.patientname}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900">
-                      {patient.admissionDate}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
-                      {patient.department}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
-                      {patient.doctorid}
+                      { new Date (patient.date).toLocaleDateString('EN-IN')}
                     </td>
                     <td className="px-6 py-4 text-sm">
                       <span
@@ -156,10 +129,10 @@ function PatientBillInfo() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-900 text-right">
-                      ₹{patient.billAmount}
+                      ₹{calculatetotal(patient.fees.consultationfee ,patient.fees.admissionfee , patient.fees.testfee)}
                     </td>
                     <td className="px-6 py-4 text-sm text-center">
-                      <Link to={`/staff/printbill/${patient.patientid}`}>
+                      <Link to={`/staff/printbill/${patient.billno}/${patient.patientid}`}>
                         <button
                           className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
                         >

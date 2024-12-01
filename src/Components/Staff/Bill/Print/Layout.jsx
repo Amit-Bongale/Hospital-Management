@@ -4,17 +4,17 @@ import logo from "../../../../Assets/Logo/logo.png";
 import { useParams } from "react-router-dom";
 
 function Layout() {
-  const { patientid } = useParams();
+  const { billno , patientid} = useParams();
   const [bill, setbillinfo] = useState([]);
   const [patientinfo, setpatientinfo] = useState([]);
   const [prescription, setpriscription] = useState([]);
   const [test, settest] = useState([]);
-
+  
   const [total, settotal] = useState();
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/bill/findbill/${patientid}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/bill/findbill/${billno}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       })
@@ -25,8 +25,8 @@ function Layout() {
           setbillinfo(billdata);
           settotal(
             data.fees.consultationfee +
-              data.fees.testfee +
-              data.fees.admissionfee
+            data.fees.testfee +
+            data.fees.admissionfee
           );
         })
         .catch((error) => console.error("Error fetching bill:", error));
@@ -79,10 +79,33 @@ function Layout() {
     } catch (error) {
       console.log("Error :", error);
     }
-  }, [patientid]);
+  }, [billno, patientid]);
 
   const handlePrint = () => {
     window.print();
+
+    try {
+      fetch(
+        `${process.env.REACT_APP_API_URL}/bill/paid`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({billno}),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            console.log(data.message);
+            alert(data.message);
+          }
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+
+
   };
 
   return (
@@ -301,6 +324,7 @@ function Layout() {
                   </tr>
                 ))}
               </tbody>
+
             </table>
           </div>
 
@@ -342,11 +366,6 @@ function Layout() {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Page number */}
-          <div className="absolute bottom-4 right-4 text-sm text-gray-500">
-            Page 2 of 2
           </div>
         </div>
       </div>
