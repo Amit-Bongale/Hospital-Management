@@ -25,7 +25,7 @@ function PatientMedicalHistory() {
 
   return (
     <div className="w-[80vw] mx-auto p-4">
-      <div className="flex">
+      <div className="flex justify-between">
       <div className="bg-white rounded-lg p-6 mb-2">
         <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
           <ClipboardList className="h-6 w-6 text-blue-600" />
@@ -33,7 +33,7 @@ function PatientMedicalHistory() {
         </h1>
       </div>
       
-      <div className="relative flex-1 " >
+      <div className="" >
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500 " />
           <input
             type="text"
