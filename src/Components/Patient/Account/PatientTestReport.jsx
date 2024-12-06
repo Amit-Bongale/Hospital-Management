@@ -54,24 +54,24 @@ function PatientTestReport() {
         </div>
         
         {/* Category Dropdown */}
-        <Dropdown
+        {/* <Dropdown
           label="Category"
           value={selectedCategory}
           options={categories}
           onChange={setSelectedCategory}
           isOpen={openDropdowns.category}
           setIsOpen={(value) => setOpenDropdowns(prev => ({ ...prev, category: value }))}
-        />
+        /> */}
 
         {/* Status Dropdown */}
-        <Dropdown
+        {/* <Dropdown
           label="Status"
           value={selectedStatus}
           options={statuses}
           onChange={setSelectedStatus}
           isOpen={openDropdowns.status}
           setIsOpen={(value) => setOpenDropdowns(prev => ({ ...prev, status: value }))}
-        />
+        /> */}
       </div>
 
       {/* Test Details */}
