@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Calendar,  Stethoscope, ClipboardList } from 'lucide-react';
+import { Calendar,Search,  Stethoscope, ClipboardList } from 'lucide-react';
 
 function PatientMedicalHistory() {
 
   const [medicalHistory, setMedicalHistory] = useState([]);
 
   const patientId = useSelector((state) => state.patient.patientId);
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/medicalhistory/patientmedicalhistory/${patientId}`, {
@@ -23,12 +25,26 @@ function PatientMedicalHistory() {
 
   return (
     <div className="w-[80vw] mx-auto p-4">
+      <div className="flex">
       <div className="bg-white rounded-lg p-6 mb-2">
         <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
           <ClipboardList className="h-6 w-6 text-blue-600" />
           Medical History
         </h1>
       </div>
+      
+      <div className="relative flex-1 " >
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500 " />
+          <input
+            type="text"
+            placeholder="Search tests..."
+            className="w-100 pl-10 pr-4 py-2 border rounded-md"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+      </div>
+      </div>
+      
 
       {/* Medical Records */}
       <div className="space-y-4">
