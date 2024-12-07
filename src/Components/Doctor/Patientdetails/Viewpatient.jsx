@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 
 import Addtest from "./Addtest";
 import Admit from "./Admit";
@@ -16,8 +17,7 @@ import {
   Activity,
 } from "lucide-react";
 
-function Viewpatient({ setview, id, appointmenttype  }) {
-
+function Viewpatient({ setview, id, appointmenttype }) {
   let [test, settest] = useState(false);
   let [admit, setadmit] = useState(false);
   let [patientinfo, setpatientinfo] = useState([]);
@@ -31,8 +31,14 @@ function Viewpatient({ setview, id, appointmenttype  }) {
   const doctorid = useSelector((state) => state.doctor.doctorid);
   const doctorname = useSelector((state) => state.doctor.doctorname);
 
-  function Send() {
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
 
+  function Send() {
     let data = {
       patientid: id,
       doctorid: doctorid,
@@ -65,41 +71,39 @@ function Viewpatient({ setview, id, appointmenttype  }) {
     }
   }
 
-
-function deletequeue(){
-  console.log(id)
-  try {
-    fetch(`${process.env.REACT_APP_API_URL}/queue/deletepatient`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 'id' : id }),
-    })
-    .then((res) => res.json())
-    .then((data) => alert(data.message))
-    .catch((err) => console.error("Error fetching api:", err));
-  
-  } catch (error) {
-    console.log("Error:", error)
+  function deletequeue() {
+    console.log(id);
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/queue/deletepatient`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id }),
+      })
+        .then((res) => res.json())
+        .then((data) => alert(data.message))
+        .catch((err) => console.error("Error fetching api:", err));
+    } catch (error) {
+      console.log("Error:", error);
+    }
   }
-}
 
   useEffect(() => {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${id}`, {
         method: "POST",
       })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) {
-          console.log(data.message);
-          alert(data.message);
-        }
-        const patients = Array.isArray(data) ? data : [data];
-        setpatientinfo(patients);
-        setpatientname(data.name);
-        console.log(data);
-      })
-      .catch((error) => console.log("Fetching Error:", error));
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            console.log(data.message);
+            alert(data.message);
+          }
+          const patients = Array.isArray(data) ? data : [data];
+          setpatientinfo(patients);
+          setpatientname(data.name);
+          console.log(data);
+        })
+        .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }
@@ -108,9 +112,7 @@ function deletequeue(){
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_URL}/medicalhistory/patientmedicalhistory/latest/${id}`,
-      {
-        method: "POST",
-      }
+      { method: "POST" }
     )
       .then((res) => res.json())
       .then((data) => {
@@ -128,7 +130,6 @@ function deletequeue(){
       })
         .then((res) => res.json())
         .then((data) => {
-
           settestresult(data.result);
           settestname(data.testname);
 
@@ -144,7 +145,6 @@ function deletequeue(){
     <div className="w-[100vw] h-full fixed  top-0 left-28 flex justify-center items-center  ">
       <div className=" bg-white w-[75%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-5 border-b-2 ">
-          {" "}
           View Patient
         </h2>
         {patientinfo.map((patient) => (
@@ -159,7 +159,7 @@ function deletequeue(){
                 </tr>
                 <tr className="">
                   <td className="py-1 px-4 text-gray-600 font-medium">
-                    Name :{" "}
+                    Name :
                   </td>
                   <td className="py-1 px-4 text-gray-900">{patient.name}</td>
                 </tr>
@@ -231,46 +231,45 @@ function deletequeue(){
               </tbody>
             </table>
 
-            {medicalHistory.length > 0  ? (
+            {medicalHistory.length > 0 ? (
               <div className="overflow-x-auto">
-              <table className="w-full border-collapse border border-gray-300">
-                <tbody>
-                  {medicalHistory.map((history, index) => (
-                    <tr
-                      key={index}
-                      className="odd:bg-gray-100 w-full even:bg-white hover:bg-gray-200"
-                    >
-                      <td className="py-2 px-4 border border-gray-300">
-                        <span className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          {history.date}
-                        </span>
-                      </td>
-                      <td className="py-2 px-4 border border-gray-300">
-                        <span className="flex items-center gap-2">
-                          <Activity className="h-4 w-4" />
-                          {history.disease}
-                        </span>
-                      </td>
-                      <td className="py-2 px-4 border border-gray-300">
-                        <span className="flex items-center gap-2">
-                          <ClipboardList className="h-4 w-4" />
-                          {history.prescription}
-                        </span>
-                      </td>
-                      <td className="py-2 px-4 border border-gray-300">
-                        <span className="flex items-center gap-2">
-                          <Stethoscope className="h-4 w-4" />
-                          {history.doctorname}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                <table className="w-full border-collapse border border-gray-300">
+                  <tbody>
+                    {medicalHistory.map((history, index) => (
+                      <tr
+                        key={index}
+                        className="odd:bg-gray-100 w-full even:bg-white hover:bg-gray-200"
+                      >
+                        <td className="py-2 px-4 border border-gray-300">
+                          <span className="flex items-center gap-2">
+                            <Calendar className="h-4 w-4" />
+                            {history.date}
+                          </span>
+                        </td>
+                        <td className="py-2 px-4 border border-gray-300">
+                          <span className="flex items-center gap-2">
+                            <Activity className="h-4 w-4" />
+                            {history.disease}
+                          </span>
+                        </td>
+                        <td className="py-2 px-4 border border-gray-300">
+                          <span className="flex items-center gap-2">
+                            <ClipboardList className="h-4 w-4" />
+                            {history.prescription}
+                          </span>
+                        </td>
+                        <td className="py-2 px-4 border border-gray-300">
+                          <span className="flex items-center gap-2">
+                            <Stethoscope className="h-4 w-4" />
+                            {history.doctorname}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             ) : null}
-            
           </div>
         ))}
 
@@ -287,7 +286,9 @@ function deletequeue(){
               id="disease"
               class="bg-gray-50 border border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Add disease"
-              onChange={(e) => {setdisease(e.target.value); }}
+              onChange={(e) => {
+                setdisease(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -309,14 +310,24 @@ function deletequeue(){
               onChange={(e) => {
                 setprescription(e.target.value);
               }}
+              value={transcript}
             />
+          </div>
+
+          <div>
+            <p>Microphone: {listening ? "on" : "off"}</p>
+            <button onClick={() => SpeechRecognition.startListening()}>
+              Start
+            </button>
+            <button onClick={SpeechRecognition.stopListening}>Stop</button>
+            <button onClick={resetTranscript}>Reset</button>
+            <p> {transcript}</p>
           </div>
         </div>
 
-        {
-          testname && (
-            <div>
-                <div class="flex mt-5">
+        {testname && (
+          <div>
+            <div class="flex mt-5">
               <div class="font-semibold text-lg">Test Name : </div>
               <div class="ml-3 text-lg">{testname}</div>
             </div>
@@ -325,12 +336,8 @@ function deletequeue(){
               <div class="font-semibold text-lg">Test Result : </div>
               <div class="ml-3 text-lg">{testresult}</div>
             </div>
-
-            </div>
-          )
-        }
-
-        
+          </div>
+        )}
 
         <div className="mt-6 flex justify-between items-center">
           <div className="flex">
@@ -378,14 +385,14 @@ function deletequeue(){
             <button
               type="delete"
               class="text-white bg-blue-700 hover:bg-blue-800 flex focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-3  pl-6 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              onClick={() => {deletequeue(); setview(false)}}
+              onClick={() => {
+                deletequeue();
+                setview(false);
+              }}
             >
               Complete
             </button>
-
           </div>
-
-          
 
           <button
             onClick={() => setview(false)}
