@@ -11,8 +11,7 @@ function Nav() {
   // const dispatch = useDispatch()
 
   const IsLoggedin = useSelector((state) => state.patient.patientId)
-
-
+  
   return (
     <nav>
       <div className="flex items-center justify-around bg-blue-500 text-white font-semibold">
