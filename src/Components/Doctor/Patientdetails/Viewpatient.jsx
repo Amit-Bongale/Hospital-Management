@@ -15,6 +15,8 @@ import {
   Stethoscope,
   ClipboardList,
   Activity,
+  Mic, RotateCcw ,
+  MicOff , Ban
 } from "lucide-react";
 
 function Viewpatient({ setview, id, appointmenttype }) {
@@ -314,15 +316,16 @@ function Viewpatient({ setview, id, appointmenttype }) {
             />
           </div>
 
-          <div>
-            <p>Microphone: {listening ? "on" : "off"}</p>
-            <button onClick={() => SpeechRecognition.startListening()}>
-              Start
-            </button>
-            <button onClick={SpeechRecognition.stopListening}>Stop</button>
-            <button onClick={resetTranscript}>Reset</button>
+          <div className="flex flex-col gap-4 mt-10 p-4">
+            {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
+            { listening ?
+            <button onClick={() => SpeechRecognition.stopListening()}> <MicOff className="h-6 w-6" /> </button> : <button onClick={() => SpeechRecognition.startListening()}>
+            <Mic className="h-6 w-6" />
+            </button> }
+            <button onClick={resetTranscript}> <RotateCcw className="h-6 w-6" /> </button>
             <p> {transcript}</p>
           </div>
+
         </div>
 
         {testname && (
