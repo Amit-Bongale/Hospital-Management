@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { adminlogout } from "../../../Redux/Admin/Admin";
 
-import { ChevronDown, LayoutDashboard , Headset , Users } from 'lucide-react';
+import { ChevronDown, LayoutDashboard , Headset , Users ,  BedSingle } from 'lucide-react';
 
 import { useSelector } from 'react-redux'
 import {openusers , hideusers} from '../../../Redux/Admin/Admin'
@@ -85,6 +85,16 @@ function Adminnav() {
             <button> Salary </button>
           </Link>
         </span> */}
+
+        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
+          <Link
+            to="/admin/wards"
+            className="flex items-center gap-1 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black"
+          >
+            <BedSingle className="w-5 h-5"/>
+            <button> Manage Ward </button>
+          </Link>
+        </span> 
 
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <Link

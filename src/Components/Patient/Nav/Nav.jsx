@@ -19,7 +19,7 @@ function Nav() {
         <div>
           <Link to="/">
             <div>
-              <h1>Hospital Management System</h1>
+              <h1>City General Hospital</h1>
               {/* <img className="logo" src={logo} alt="" /> */}
             </div>
           </Link>
