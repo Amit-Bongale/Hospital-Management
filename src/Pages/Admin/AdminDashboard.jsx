@@ -23,7 +23,7 @@ function AdminDashboard() {
           <ActiveRooms/>
         </div>
         <TotalIncome/>
-        <Performance/>  
+        {/* <Performance/>  */}
       </div>
 
     </div>

@@ -26,8 +26,8 @@ function Patientstable() {
   },[edit , deleteitem , patientid ])
 
   return (
-    <div className="w-full mt-4">
-
+    <div className="w-full mt-1">
+      
       { deleteitem ? <DeletePatient setisopen={setdelete} patientid={patientid}/> : <></>}
       { edit ? <EditPatient setisopen={setedit} patientid={patientid}/> : <></>}
 
