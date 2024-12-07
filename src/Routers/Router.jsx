@@ -10,6 +10,7 @@ import Adminroute from './AuthRoutes/Adminroute'
 import Staffroute from './AuthRoutes/Staffroute'
 import Patientroute from './AuthRoutes/Patientroute'
 
+
 import Adminlogin from '../Pages/Admin/Adminlogin'
 import AdminDashboard from '../Pages/Admin/AdminDashboard'
 import Mangedoctors from '../Pages/Admin/Manageusers/Mangedoctors'
@@ -17,7 +18,7 @@ import ManageStaff from '../Pages/Admin/Manageusers/ManageStaff'
 import ManagePatients from '../Pages/Admin/Manageusers/ManagePatients'
 import SalaryDetails from '../Pages/Admin/SalaryDetails'
 import ContactRequest from '../Pages/Admin/ContactRequest'
-
+import ManageWards from '../Pages/Admin/ManageWards'
 
 
 import Doctorlogin from '../Pages/Doctor/Doctorlogin'
@@ -113,7 +114,8 @@ function Router() {
         <Route path ='managepatient' element ={<ManagePatients/> } />
         <Route path ='salarydetails' element ={<SalaryDetails/> } />
         <Route path ='contactrequest' element={<ContactRequest/>} />
-        
+        <Route path ='wards' element={<ManageWards/>} />
+
       </Route>
 
     </Routes>

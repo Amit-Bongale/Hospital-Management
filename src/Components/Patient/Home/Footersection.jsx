@@ -53,8 +53,8 @@ function Footersection() {
         <div class="flex flex-wrap h-[450px] px-10 justify-between bg-blue-500 text-white mt-10">
 
             <div className="mt-12">
+                <h1 class="text-5xl font-semibold text-wrap">City General</h1>
                 <h1 class="text-5xl font-semibold text-wrap">Hospital</h1>
-                <h1 class="text-5xl font-semibold text-wrap">Management</h1>
 
                 <div className="text-xl flex flex-col gap-2 mt-6">
                     <div class="">
