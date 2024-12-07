@@ -36,7 +36,7 @@ function PatientBillInfo() {
 
   return (
     <div>
-      <div className="flex">
+      {/* <div className="flex">
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <button
             onClick={() => setbillpatient(true)}
@@ -46,7 +46,7 @@ function PatientBillInfo() {
             Bill{" "}
           </button>
         </span>
-      </div>
+      </div> */}
 
       {billpatient ? <PatientBillForm setisopen={setbillpatient} /> : <></>}
 
@@ -56,10 +56,10 @@ function PatientBillInfo() {
         <div className="p-6 max-w-full bg-white">
           {/* Header and Search */}
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-gray-800">
+            <h2 className="text-2xl font-bold text-gray-800 ml-4">
               Pending Patients
             </h2>
-            <div className="relative">
+            <div className="relative ml-[650px]">
               <input
                 type="text"
                 placeholder="Search patients..."
@@ -72,7 +72,7 @@ function PatientBillInfo() {
           </div>
 
           {/* Table */}
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto  ml-12 mt-10">
             <table className="w-full border-collapse bg-white rounded-lg overflow-hidden">
               <thead className="bg-gray-50">
                 <tr>

@@ -4,13 +4,15 @@ import { useState } from 'react'
 import NewPatientForm from './AddPatientForm/NewPatientForm'
 import OldPatientForm from './AddPatientForm/OldPatientForm'
 
-import { Plus, UserSearch } from 'lucide-react';
+import { Plus, UserSearch, Search } from 'lucide-react';
 
 function StaffDashboardInfo() {
   let [newpatient,setnewpatient] = useState(false)
   let [oldpatient,setoldpatient] = useState(false)
 
   let [queueinfo , setqueueinfo] = useState([]) 
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(()=>{
 
@@ -33,7 +35,7 @@ function StaffDashboardInfo() {
     
   return (
     <div>
-      <div className="flex">
+      <div className="flex justify-center">
         <span className="grid items-start px-2 text-xl font-medium lg:px-4">
           <button
           onClick={() => setnewpatient(true)}
@@ -53,8 +55,20 @@ function StaffDashboardInfo() {
         </span>
       </div>
 
-     
-        <div class="relative shadow-md sm:rounded-lg justify-center ml-5 mt-2 ">
+        <div class="flex">
+          <h1 class="ml-20 mt-7 text-2xl font-bold text-gray-800">Patient's Queue</h1>
+          <div className="relative ml-[650px] mt-5">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 pr-4 py-2 border rounded-lg w-64 focus:outline-none focus:border-blue-500"
+              />
+              <Search className="w-5 h-5 absolute left-3 top-2.5 text-gray-400" />
+            </div>
+        </div>
+        <div class="relative shadow-md sm:rounded-lg justify-center ml-20 mt-2 ">
           <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
             <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
               <tr>

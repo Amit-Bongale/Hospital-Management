@@ -3,12 +3,15 @@ import { useState , useEffect } from 'react'
 
 import PatientAdmitForm from './AdmitPatientForm/PatientAdmitForm'
 
-// import { Link } from "react-router-dom";
+import { Search } from 'lucide-react';
+
 
 function AdmitPatientInfo() {
 
   let [admitinfo , setadmitinfo] = useState([])
   let [patientid , setpatientid] = useState()
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(()=>{
 
@@ -50,7 +53,20 @@ function AdmitPatientInfo() {
 
   return (
     <div>
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div class="flex">
+        <h1 class="ml-24 mt-7 text-2xl font-bold text-gray-800">Admission details</h1>
+        <div className="relative ml-[650px] mr-16 mt-5">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 pr-4 py-2 border rounded-lg w-64 focus:outline-none focus:border-blue-500"
+              />
+              <Search className="w-5 h-5 absolute left-3 top-2.5 text-gray-400" />
+            </div>
+      </div>
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg ml-8 mt-10">
         <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
           <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
             <tr>
