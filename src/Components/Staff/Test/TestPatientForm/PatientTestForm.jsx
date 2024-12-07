@@ -67,70 +67,72 @@ let [testid, settestid] = useState()
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-5 "> Test Form</h2>
         <form onSubmit={Send}>
-          <div class="grid gap-6 mb-4 md:grid-cols-2">
+          <div>
           {testinfo.map((test)=>(
             <div>
-              <div>
-                  <label
-                    for="first_name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    <div class="flex">
-                      Patient Id : <h6 class="ml-2"> {test.patientid} {test._id} </h6>
-                    </div>
-                  </label>
-                </div>
-
+              <div class="grid gap-6 mb-4 md:grid-cols-2">
                 <div>
-                  <label
-                    for="first_name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    <div class="flex">
-                      Patient Name : <h6 class="ml-2"> {test.patientname} </h6>
-                    </div>
-                  </label>
-                </div>
+                    <label
+                      for="first_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      <div class="flex">
+                        Patient Id : <h6 class="ml-2"> {test.patientid} {test._id} </h6>
+                      </div>
+                    </label>
+                  </div>
 
-                <div>
-                  <label
-                    for="first_name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    <div class="flex">
-                      Doctor Id : <h6 class="ml-2">{test.doctorid}</h6>
-                    </div>
-                  </label>
-                </div>
+                  <div>
+                    <label
+                      for="first_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      <div class="flex">
+                        Patient Name : <h6 class="ml-2"> {test.patientname} </h6>
+                      </div>
+                    </label>
+                  </div>
 
-                <div>
-                  <label
-                    for="first_name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    <div class="flex">
-                      Staff Id : <h6 class="ml-2"> {test.staffid} </h6>
-                    </div>
-                  </label>
-                </div>
+                  <div>
+                    <label
+                      for="first_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      <div class="flex">
+                        Doctor Id : <h6 class="ml-2">{test.doctorid}</h6>
+                      </div>
+                    </label>
+                  </div>
 
-                <div>
-                  <label
-                    for="first_name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    <div class="flex">
-                      Test Name : <h6 class="ml-2">{test.testname}</h6>
-                    </div>
-                  </label>
-                </div>
+                  <div>
+                    <label
+                      for="first_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      <div class="flex">
+                        Staff Id : <h6 class="ml-2"> {test.staffid} </h6>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div>
+                    <label
+                      for="first_name"
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      <div class="flex">
+                        Test Name : <h6 class="ml-2">{test.testname}</h6>
+                      </div>
+                    </label>
+                  </div>
+                  </div>
               </div>
               ))}
 
                 <div>
                   <label
                     for="result"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
                   >
                   Test Result
                   </label>
@@ -146,7 +148,7 @@ let [testid, settestid] = useState()
                 <div>
                     <label
                       for="status"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
                     >
                     Status
                     </label>
@@ -169,7 +171,7 @@ let [testid, settestid] = useState()
                 <div>
                   <label
                     for="amount"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
                   >
                   Test Fee
                   </label>
@@ -186,7 +188,7 @@ let [testid, settestid] = useState()
               
               <button
                 type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Submit
               </button>

@@ -77,8 +77,8 @@ function AdmitPatientInfo() {
               <th scope="col" class="px-6 py-3"> WARD NO </th>
               <th scope="col" class="px-6 py-3"> WARD TYPE </th>
               <th scope="col" class="px-6 py-3"> BED NO </th>
-              <th scope="col" class="px-6 py-3"> ADMISSION DATE & TIME </th>
-              <th scope="col" class="px-6 py-3"> DISCHARGE DATE & TIME </th>
+              <th scope="col" class="px-6 py-3"> ADMISSION DATE </th>
+              <th scope="col" class="px-6 py-3"> DISCHARGE DATE </th>
             </tr>
           </thead>
  
@@ -92,8 +92,8 @@ function AdmitPatientInfo() {
               <td class="px-6 py-3"> {admission.wardno} </td>
               <td class="px-6 py-3"> {admission.wardtype} </td>
               <td class="px-6 py-3"> {admission.bedno} </td>
-              <td class="px-6 py-3"> {admission.admissiondateandtime} </td>
-              <td class="px-6 py-3"> {admission.dischargedateandtime} </td>
+              <td class="px-6 py-3"> { new Date (admission.admissiondateandtime).toLocaleDateString('en-IN')} </td>
+              <td class="px-6 py-3"> { new Date (admission.dischargedateandtime).toLocaleDateString('en-IN')} </td>
               <td  class="px-6 py-3"> 
                 <button  class="px-6 py-3"  onClick={() => {setadmitpatient(true); setpatientid(admission.patientid)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
