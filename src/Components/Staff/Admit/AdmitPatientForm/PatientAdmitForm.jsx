@@ -69,59 +69,61 @@ function PatientAdmitForm({ setisopen , patientid }) {
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-5 "> ADMISSION FORM</h2>
         <form onSubmit={Send}>
-          <div class="grid gap-6 mb-4 md:grid-cols-2">   
+          <div>   
           {admitinfo.map((admission)=>( 
             <div>   
-              <div>
-                <label
-                  for="first_name"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  <div class="flex">
-                    Patient Id : <h6 class="ml-2">{admission.patientid}</h6>
-                  </div>
-                </label>
-              </div>
+              <div class="grid gap-6 md:grid-cols-2">
+                <div>
+                  <label
+                    for="first_name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    <div class="flex">
+                      Patient Id : <h6 class="ml-2">{admission.patientid}</h6>
+                    </div>
+                  </label>
+                </div>
 
-              <div>
-                <label
-                  for="first_name"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  <div class="flex">
-                    Patient Name : <h6 class="ml-2">{admission.patientname}</h6>
-                  </div>
-                </label>
-              </div>
+                <div>
+                  <label
+                    for="first_name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    <div class="flex">
+                      Patient Name : <h6 class="ml-2">{admission.patientname}</h6>
+                    </div>
+                  </label>
+                </div>
 
-              <div>
-                <label
-                  for="first_name"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  <div class="flex">
-                    Staff Id : <h6 class="ml-2">{admission.staffid}</h6>
-                  </div>
-                </label>
-              </div>
+                <div>
+                  <label
+                    for="first_name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    <div class="flex">
+                      Staff Id : <h6 class="ml-2">{admission.staffid}</h6>
+                    </div>
+                  </label>
+                </div>
 
-              <div>
-                <label
-                  for="first_name"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  <div class="flex">
-                    Doctor Id : <h6 class="ml-2">{admission.doctorid}</h6>
-                  </div>
-                </label>
-              </div>
+                <div>
+                  <label
+                    for="first_name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    <div class="flex">
+                      Doctor Id : <h6 class="ml-2">{admission.doctorid}</h6>
+                    </div>
+                  </label>
+                </div>
+                </div>
             </div>
             ))} 
 
             <div>
               <label
                 for="specification"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Ward Number
               </label>
@@ -138,7 +140,7 @@ function PatientAdmitForm({ setisopen , patientid }) {
             <div>
               <label
                 for="type"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Ward Type
               </label>
@@ -169,7 +171,7 @@ function PatientAdmitForm({ setisopen , patientid }) {
             <div>
               <label
                 for="specification"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Bed Number
               </label>
@@ -186,7 +188,7 @@ function PatientAdmitForm({ setisopen , patientid }) {
             <div>
               <label
                 for="entry"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Admission Date & Time
               </label>
@@ -203,7 +205,7 @@ function PatientAdmitForm({ setisopen , patientid }) {
             <div>
               <label
                 for="entry"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Discharge Date & Time
               </label>
