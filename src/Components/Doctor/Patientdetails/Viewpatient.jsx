@@ -325,7 +325,6 @@ function Viewpatient({ setview, id, appointmenttype }) {
             <button onClick={resetTranscript}> <RotateCcw className="h-6 w-6" /> </button>
             <p> {transcript}</p>
           </div>
-
         </div>
 
         {testname && (

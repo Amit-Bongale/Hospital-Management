@@ -99,7 +99,7 @@ function PatientTestInfo({setisopen , _id}) {
               <td  class="px-6 py-3"> {test.staffid} </td> 
               <td  class="px-6 py-3"> {test.testname} </td> 
               <td  class="px-6 py-3"> 
-                <button class="px-6 py-3"  onClick={() =>{ settestpatient(true); setpatientid(test.patientid)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
+                <button class="px-6 py-3"  onClick={() =>{ settestpatient(true); setpatientid(test._id)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
               <td class="px-6 py-3">  
                   <button class="px-6 py-3" onClick={() => {deletetest();}} className="text-red-600 hover:cursor-pointer"> Delete </button>

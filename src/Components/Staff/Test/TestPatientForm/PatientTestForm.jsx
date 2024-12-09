@@ -9,7 +9,7 @@ function PatientTestForm({ setisopen , patientid}) {
   let [status , setstatus] = useState()
   let [result , setresult] = useState([])
   let [fee , setfee] = useState()
-let [testid, settestid] = useState()
+  let [testid, settestid] = useState()
   
   function Send(e){
     e.preventDefault()
@@ -45,18 +45,18 @@ let [testid, settestid] = useState()
       fetch(`${process.env.REACT_APP_API_URL}/test/patienttestdetail/${patientid}`, {
         method: "POST",
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message) {
-            console.log(data.message);
-            alert(data.message);
-          }
-          const tests = Array.isArray(data) ? data : [data];
-          settestinfo(tests);
-          settestid(data._id)
-          console.log(data);
-        })
-        .catch((error) => console.log("Fetching Error:", error));
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        const tests = Array.isArray(data) ? data : [data];
+        settestinfo(tests);
+        settestid(data._id)
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }
@@ -65,19 +65,20 @@ let [testid, settestid] = useState()
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
-        <h2 className="text-2xl font-bold py-2 mb-5 "> Test Form</h2>
+        <h2 className="text-2xl font-bold py-2 mb-3 "> Test Form</h2>
+        {testid}
         <form onSubmit={Send}>
           <div>
           {testinfo.map((test)=>(
             <div>
-              <div class="grid gap-6 mb-4 md:grid-cols-2">
+              <div class="grid gap-4 mb-8 md:grid-cols-2">
                 <div>
                     <label
                       for="first_name"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      class="block text-sm font-medium text-gray-900 dark:text-white"
                     >
                       <div class="flex">
-                        Patient Id : <h6 class="ml-2"> {test.patientid} {test._id} </h6>
+                        Patient Id : <h6 class="ml-2"> {test.patientid}</h6>
                       </div>
                     </label>
                   </div>
@@ -85,7 +86,7 @@ let [testid, settestid] = useState()
                   <div>
                     <label
                       for="first_name"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      class="block  text-sm font-medium text-gray-900 dark:text-white"
                     >
                       <div class="flex">
                         Patient Name : <h6 class="ml-2"> {test.patientname} </h6>
@@ -96,7 +97,7 @@ let [testid, settestid] = useState()
                   <div>
                     <label
                       for="first_name"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      class="block  text-sm font-medium text-gray-900 dark:text-white"
                     >
                       <div class="flex">
                         Doctor Id : <h6 class="ml-2">{test.doctorid}</h6>
@@ -107,7 +108,7 @@ let [testid, settestid] = useState()
                   <div>
                     <label
                       for="first_name"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      class="block text-sm font-medium text-gray-900 dark:text-white"
                     >
                       <div class="flex">
                         Staff Id : <h6 class="ml-2"> {test.staffid} </h6>
@@ -118,7 +119,7 @@ let [testid, settestid] = useState()
                   <div>
                     <label
                       for="first_name"
-                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      class="block text-sm font-medium text-gray-900 dark:text-white"
                     >
                       <div class="flex">
                         Test Name : <h6 class="ml-2">{test.testname}</h6>
@@ -134,7 +135,7 @@ let [testid, settestid] = useState()
                     for="result"
                     class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                  Test Result
+                    Test Result
                   </label>
                   <input
                     type="text"
