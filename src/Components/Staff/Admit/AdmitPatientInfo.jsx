@@ -94,6 +94,9 @@ function AdmitPatientInfo() {
               <th scope="col" class="px-6 py-3"> BED NO </th>
               <th scope="col" class="px-6 py-3"> ADMISSION DATE </th>
               <th scope="col" class="px-6 py-3"> DISCHARGE DATE </th>
+              <th scope="col" class="px-6 py-3">  </th>
+              <th scope="col" class="px-6 py-3">  </th>
+
             </tr>
           </thead>
  

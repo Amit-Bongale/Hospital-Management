@@ -87,6 +87,8 @@ function PatientTestInfo({setisopen , _id}) {
               <th scope="col" class="px-6 py-3"> DOCTOR ID </th>
               <th scope="col" class="px-6 py-3"> STAFF ID </th>
               <th scope="col" class="px-6 py-3"> TEST NAME </th>
+              <th scope="col" class="px-6 py-3"> </th>
+              <th scope="col" class="px-6 py-3"> </th>
             </tr>
           </thead>
 
@@ -110,7 +112,6 @@ function PatientTestInfo({setisopen , _id}) {
         </table>
       </div>
         {testpatient ?  <PatientTestForm setisopen={settestpatient} patientid={patientid}/> : <></>}
-       
     </div>
   )
 }
