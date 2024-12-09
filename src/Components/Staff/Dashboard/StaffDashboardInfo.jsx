@@ -7,10 +7,10 @@ import OldPatientForm from './AddPatientForm/OldPatientForm'
 import { Plus, UserSearch, Search } from 'lucide-react';
 
 function StaffDashboardInfo() {
-  let [newpatient,setnewpatient] = useState(false)
-  let [oldpatient,setoldpatient] = useState(false)
+  const [newpatient,setnewpatient] = useState(false)
+  const [oldpatient,setoldpatient] = useState(false)
 
-  let [queueinfo , setqueueinfo] = useState([]) 
+  const [queueinfo , setqueueinfo] = useState([]) 
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -32,6 +32,12 @@ function StaffDashboardInfo() {
 
   },[newpatient,oldpatient])
 
+    // Filter queue based on searchTerm
+    const filteredQueue = queueinfo.filter(
+      (queue) =>
+        queue.id.toString().includes(searchTerm) ||
+        queue.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
     
   return (
     <div>
@@ -82,7 +88,7 @@ function StaffDashboardInfo() {
               </tr>
             </thead>
             
-            {queueinfo.map((queue)=>(
+            {filteredQueue.map((queue) => (
               <tbody class="text-center">
                 <tr>
                   <td  class="px-6 py-3"> {queue.id} </td>

@@ -6,10 +6,9 @@ import { Search } from 'lucide-react';
 import PatientTestForm from './TestPatientForm/PatientTestForm'
 
 function PatientTestInfo({setisopen , _id}) {
-  let [testpatient , settestpatient] = useState(false)
-  let [testinfo , settestinfo] = useState([])
-  let [patientid , setpatientid] = useState()
-
+  const [testpatient , settestpatient] = useState(false)
+  const [testinfo , settestinfo] = useState([])
+  const [patientid , setpatientid] = useState()
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(()=>{
@@ -48,27 +47,21 @@ function PatientTestInfo({setisopen , _id}) {
     }
   }
 
-  // function Search(){
-  //   try {
-  //     fetch(`${process.env.REACT_APP_API_URL}/test/findtest/${_id}`, {
-  //       method: "POST",
-  //     })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.message) {
-  //         console.log(data.message);
-  //         alert(data.message);
-  //       }
-  //       const test = Array.isArray(data) ? data : [data];
 
-  //       settestinfo(test)
-  //       console.log(data);
-  //     })
-  //     .catch((error) => console.log("Fetching Error:" , error));
-  //   } catch (error) {
-  //     console.log("error :", error);
-  //   }
-  // }
+  // Filter the test info based on searchTerm
+  const filteredTestInfo = testinfo.filter((test) => {
+    const term = searchTerm.trim(); // Remove leading/trailing spaces
+    const isNumeric = !isNaN(term); // Check if the search term is numeric
+
+    // Check conditions
+    return isNumeric
+      ? test.patientid.toString() === term // Exact match for numeric patientid
+      : test.patientname.toLowerCase().includes(term.toLowerCase()); // Partial match for patientname
+  });
+
+  // Decide what to display: all data or filtered data
+  const displayedTestInfo = searchTerm ? filteredTestInfo : testinfo;
+
 
   return (
     <div>
@@ -97,8 +90,8 @@ function PatientTestInfo({setisopen , _id}) {
             </tr>
           </thead>
 
-          {testinfo.map((test)=>(
-          <tbody class="text-center">
+          {displayedTestInfo.map((test)=>(
+          <tbody class="text-center" key={test.patientid}>
             <tr>
               <td  class="px-6 py-3"> {test.patientid} </td>
               <td  class="px-6 py-3"> {test.patientname} </td>

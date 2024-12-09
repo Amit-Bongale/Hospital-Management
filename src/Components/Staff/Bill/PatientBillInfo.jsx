@@ -34,6 +34,13 @@ function PatientBillInfo() {
   },[])
 
 
+    // Filter patients by patientid or patientname
+    const filteredQueue = queueinfo.filter(
+      (patient) =>
+        patient.patientid.toString().includes(searchTerm) ||
+        patient.patientname.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
   return (
     <div>
       {/* <div className="flex">
@@ -100,7 +107,7 @@ function PatientBillInfo() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {queueinfo.map((patient) => (
+                {filteredQueue.map((patient) => (
                   <tr
                     key={patient.id}
                     className="hover:bg-gray-50 transition-colors"

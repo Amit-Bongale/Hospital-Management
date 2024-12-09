@@ -8,8 +8,8 @@ import { Search } from 'lucide-react';
 
 function AdmitPatientInfo() {
 
-  let [admitinfo , setadmitinfo] = useState([])
-  let [patientid , setpatientid] = useState()
+  const [admitinfo , setadmitinfo] = useState([])
+  const [patientid , setpatientid] = useState()
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -51,6 +51,21 @@ function AdmitPatientInfo() {
     }
   }
 
+
+    // Filter the admit info based on searchTerm
+    const filteredAdmitInfo = admitinfo.filter((admit) => {
+      const term = searchTerm.trim(); // Remove leading/trailing spaces
+      const isNumeric = !isNaN(term); // Check if the search term is numeric
+  
+      // Check conditions
+      return isNumeric
+        ? admit.patientid.toString() === term // Exact match for numeric patientid
+        : admit.patientname.toLowerCase().includes(term.toLowerCase()); // Partial match for patientname
+    });
+  
+    // Decide what to display: all data or filtered data
+    const displayedAdmitInfo = searchTerm ? filteredAdmitInfo : admitinfo;
+
   return (
     <div>
       <div class="flex">
@@ -82,7 +97,7 @@ function AdmitPatientInfo() {
             </tr>
           </thead>
  
-          {admitinfo.map((admission)=>(
+          {displayedAdmitInfo.map((admission)=>(
           <tbody>
             <tr class="text-center">
               <td class="px-6 py-3"> {admission.patientid} </td>
