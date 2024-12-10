@@ -29,6 +29,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
   let [patientname, setpatientname] = useState();
   let [disease, setdisease] = useState();
   let [prescription, setprescription] = useState();
+  let medicines
 
   const doctorid = useSelector((state) => state.doctor.doctorid);
   const doctorname = useSelector((state) => state.doctor.doctorname);
@@ -40,7 +41,12 @@ function Viewpatient({ setview, id, appointmenttype }) {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
+  useEffect(() => {
+    medicines = medicines + transcript
+  },[transcript])
+
   function Send() {
+
     let data = {
       patientid: id,
       doctorid: doctorid,
@@ -111,6 +117,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
     }
   }, [setview, id]);
 
+
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_URL}/medicalhistory/patientmedicalhistory/latest/${id}`,
@@ -142,6 +149,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
       console.log("error :", error);
     }
   }, [id]);
+
 
   return (
     <div className="w-[100vw] h-full fixed  top-0 left-28 flex justify-center items-center  ">
@@ -312,7 +320,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
               onChange={(e) => {
                 setprescription(e.target.value);
               }}
-              value={transcript}
+              value={medicines}
             />
           </div>
 
@@ -323,7 +331,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
             <Mic className="h-6 w-6" />
             </button> }
             <button onClick={resetTranscript}> <RotateCcw className="h-6 w-6" /> </button>
-            <p> {transcript}</p>
+            {/* <p> {transcript}</p> */}
           </div>
         </div>
 

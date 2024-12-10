@@ -31,7 +31,7 @@ function WardDetails() {
           <></>
         )} */}
 
-        <h1 className="font-bold text-xl p-4">Doctors Details</h1>
+        <h1 className="font-bold text-xl p-4">Ward Details</h1>
 
         <div class="relative overflow-x-auto  sm:rounded-lg">
           <table class=" table-auto shadow-md text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 text-center">
