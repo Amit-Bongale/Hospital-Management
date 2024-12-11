@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Printer } from "lucide-react";
 import logo from "../../../../Assets/Logo/logo.png";
 import { useParams } from "react-router-dom";
+import { Dot } from "lucide-react";
 
 function Layout() {
   const { billno , patientid} = useParams();
@@ -317,12 +318,16 @@ function Layout() {
               </thead>
               <tbody>
                 {prescription.map((medicine) => (
-                  <tr key={medicine.id}>
-                    <td className="border px-4 py-2 text-wrap">
-                      {medicine.prescription}
-                    </td>
+                  <tr>
+                    {medicine.prescription.split('\n').map((line, index) => (
+                      <div key={index} className="flex">
+                        <Dot/> {line}
+                        <br />
+                      </div>
+                    ))}
                   </tr>
                 ))}
+                
               </tbody>
 
             </table>
@@ -344,7 +349,7 @@ function Layout() {
           {/* Special Instructions */}
           <div className="space-y-2">
             <h2 className="font-semibold text-gray-800">
-              Special Instructions
+              {/* Special Instructions */}
             </h2>
             <p className="text-sm text-gray-600">
               {/* {prescription.specialInstructions} */}

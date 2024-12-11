@@ -41,8 +41,8 @@ function Admission() {
               <th scope="col" class="px-6 py-3"> Ward No </th>
               <th scope="col" class="px-6 py-3"> Ward Type </th>
               <th scope="col" class="px-6 py-3"> Bed No </th>
-              <th scope="col" class="px-6 py-3"> Admission Date & Time </th>
-              <th scope="col" class="px-6 py-3"> Discharge Date & Time </th>
+              <th scope="col" class="px-6 py-3"> Admission Date</th>
+              <th scope="col" class="px-6 py-3"> Discharge Date</th>
 
               
             </tr>
@@ -58,9 +58,8 @@ function Admission() {
                 <td class="px-6 py-4"> {admission.wardno} </td>
                 <td class="px-6 py-4"> {admission.wardtype}</td>
                 <td class="px-6 py-4"> {admission.dedno} </td>
-                <td class="px-6 py-4"> {admission.admissiondateandtime} </td>
-                <td class="px-6 py-4"> {admission.dischargedateandtime} </td>
-
+                <td class="px-6 py-4"> { admission.admissiondateandtime ? new Date (admission.admissiondateandtime).toLocaleDateString("EN-IN") : "--"} </td>
+                <td class="px-6 py-4"> {admission.dischargedateandtime ?  new Date(admission.dischargedateandtime).toLocaleDateString("EN-IN") : "--"} </td>
               </tr>
             ))}
             </tbody>

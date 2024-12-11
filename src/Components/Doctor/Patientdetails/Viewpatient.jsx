@@ -29,7 +29,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
   let [testname, settestname] = useState();
   let [patientname, setpatientname] = useState();
   let [disease, setdisease] = useState();
-  let [prescription, setprescription] = useState();
+  let [prescription, setprescription] = useState("");
   let [medicines , setmedicine] = useState();
 
   const doctorid = useSelector((state) => state.doctor.doctorid);
@@ -39,11 +39,11 @@ function Viewpatient({ setview, id, appointmenttype }) {
     transcript,
     listening,
     resetTranscript,
-    browserSupportsSpeechRecognition,
+    // browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
   function handlePrescription(){
-    setprescription((prev) => (prev.trim() ? prev + "\n" + medicines : medicines))
+    setprescription((prev) => (prev.trim() ? (prev + "\n" + medicines) : medicines))
     setmedicine('')
   }
 
@@ -198,7 +198,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
                     Date of Birth :
                   </td>
                   <td className="py-1 px-4 text-gray-900">
-                    {patient.dob.split("T")[0]}
+                    {new Date (patient.dob).toLocaleDateString("EN-IN")}
                   </td>
                 </tr>
                 <tr className="">
@@ -255,7 +255,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
                         <td className="py-2 px-4 border border-gray-300">
                           <span className="flex items-center gap-2">
                             <Calendar className="h-4 w-4" />
-                            {history.date}
+                            {new Date (history.date).toLocaleDateString('EN-IN')}
                           </span>
                         </td>
                         <td className="py-2 px-4 border border-gray-300">
