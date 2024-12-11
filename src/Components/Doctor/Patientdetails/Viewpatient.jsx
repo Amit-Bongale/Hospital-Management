@@ -16,7 +16,8 @@ import {
   ClipboardList,
   Activity,
   Mic, RotateCcw ,
-  MicOff , Ban
+  MicOff, 
+  Dot
 } from "lucide-react";
 
 function Viewpatient({ setview, id, appointmenttype }) {
@@ -29,7 +30,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
   let [patientname, setpatientname] = useState();
   let [disease, setdisease] = useState();
   let [prescription, setprescription] = useState();
-  let medicines
+  let [medicines , setmedicine] = useState();
 
   const doctorid = useSelector((state) => state.doctor.doctorid);
   const doctorname = useSelector((state) => state.doctor.doctorname);
@@ -41,9 +42,10 @@ function Viewpatient({ setview, id, appointmenttype }) {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  useEffect(() => {
-    medicines = medicines + transcript
-  },[transcript])
+  function handlePrescription(){
+    setprescription((prev) => (prev.trim() ? prev + "\n" + medicines : medicines))
+    setmedicine('')
+  }
 
   function Send() {
 
@@ -309,22 +311,23 @@ function Viewpatient({ setview, id, appointmenttype }) {
               for="prescription"
               class="block mb-2 text-lg font-bold text-gray-900 dark:text-white"
             >
-              Prescription
+              Add Medicine
             </label>
             <textarea
               id="prescription"
-              rows={6}
+              rows={2}
               type="text"
               class="bg-gray-50 border  border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Add prescription"
               onChange={(e) => {
-                setprescription(e.target.value);
+                setmedicine(e.target.value);
               }}
-              value={medicines}
+              value={transcript || medicines}
             />
+            <button className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => handlePrescription()}> ADD </button>
           </div>
 
-          <div className="flex flex-col gap-4 mt-10 p-4">
+          <div className="flex flex-col gap-4 mt-4 p-4">
             {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
             { listening ?
             <button onClick={() => SpeechRecognition.stopListening()}> <MicOff className="h-6 w-6" /> </button> : <button onClick={() => SpeechRecognition.startListening()}>
@@ -334,6 +337,20 @@ function Viewpatient({ setview, id, appointmenttype }) {
             {/* <p> {transcript}</p> */}
           </div>
         </div>
+
+        {
+          prescription && <div className="mt-5">
+
+          <h4 className="text-lg font-bold mb-0">Prescription</h4>
+          {prescription.split('\n').map((line, index) => (
+              <div key={index} className="flex">
+                 <Dot/> {line}
+                <br />
+              </div>
+          ))}
+          <button className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => setprescription("")}> Clear </button>
+        </div>
+        }
 
         {testname && (
           <div>
