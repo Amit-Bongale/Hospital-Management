@@ -1,12 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+import EditWard from "./EditWard";
+import DeleteWard from "./DeleteWard";
+
 function WardDetails() {
   let [edit, setedit] = useState(false);
   let [deleteitem, setdelete] = useState(false);
 
   let [warddetails, setwarddetails] = useState([]);
-  let [wardnumber, setwardnumber] = useState("");
+  let [wardid , setwardid] = useState()
 
   useEffect(() => {
     try {
@@ -24,12 +27,12 @@ function WardDetails() {
   return (
     <div>
       <div className="w-full  absolute p-4 m-[-20px]">
-        {/* {edit ? <EditDoctor setisopen={setedit} doctorid={doctorid} /> : <></>}
+        {edit ? <EditWard setisopen={setedit} wardid={wardid} /> : <></>}
         {deleteitem ? (
-          <DeleteDocotor setisopen={setdelete} doctorid={doctorid} />
+          <DeleteWard setisopen={setdelete} wardid={wardid} />
         ) : (
           <></>
-        )} */}
+        )}
 
         <h1 className="font-bold text-xl p-4">Ward Details</h1>
 
@@ -82,7 +85,7 @@ function WardDetails() {
                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       onClick={() => {
                         setedit(true);
-                        setwardnumber(ward.wardnumber);
+                        setwardid(ward._id);
                       }}
                     >
                       Edit
@@ -94,7 +97,7 @@ function WardDetails() {
                       class="font-medium text-red-600 dark:text-blue-500 hover:underline"
                       onClick={() => {
                         setdelete(true);
-                        setwardnumber(ward.wardnumber);
+                        setwardid(ward._id);
                       }}
                     >
                       {" "}
