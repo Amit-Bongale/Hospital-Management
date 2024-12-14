@@ -3,7 +3,7 @@ import React from 'react'
 function DeleteWard({setisopen , wardid}) {
 
     function deleteward(){
-        console.log(wardid )
+        console.log(wardid)
         try {
           fetch(`${process.env.REACT_APP_API_URL}/ward/deleteward`, {
             method: 'POST',

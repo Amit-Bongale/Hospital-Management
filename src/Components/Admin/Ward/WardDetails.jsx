@@ -26,13 +26,14 @@ function WardDetails() {
 
   return (
     <div>
-      <div className="w-full  absolute p-4 m-[-20px]">
-        {edit ? <EditWard setisopen={setedit} wardid={wardid} /> : <></>}
+      {edit ? <EditWard setisopen={setedit} wardid={wardid} /> : <></>}
         {deleteitem ? (
           <DeleteWard setisopen={setdelete} wardid={wardid} />
         ) : (
           <></>
         )}
+      <div className="w-full  absolute p-4 m-[-20px]">
+        
 
         <h1 className="font-bold text-xl p-4">Ward Details</h1>
 

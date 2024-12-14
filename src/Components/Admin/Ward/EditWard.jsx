@@ -53,8 +53,8 @@ function EditWard({setisopen , wardid}) {
 
   return (
     <div>
-      <div className="w-[100vw] h-full  flex justify-center items-center  ">
-        <div className=" bg-white absolute top-10 left-52 w-[50%] h-[130%] py-6 px-8 z-20 border-2 shadow-xl rounded-3xl">
+      <div className="w-[100vw] h-full absolute top-0 left-10  flex justify-center items-center  ">
+        <div className=" bg-white  w-[50%] h-[65%] py-6 px-8 z-20 border-2 shadow-xl rounded-3xl">
           {loader ? <Loader /> : <></>}
           <h2 className="text-2xl font-bold py-2 mb-5 ">Edit Ward Details</h2>
 
