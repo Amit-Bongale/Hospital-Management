@@ -16,14 +16,15 @@ import {
 import CancelApppointment from "./CancelApppointment";
 
 function AppointmentDetails() {
+  
   const patientid = useSelector((state) => state.patient.patientId);
 
   const [appointmetsinfo, setappointmentsinfo] = useState([]);
   const [noAppointmentdata, setappointmentdata] = useState(true);
 
-  const [selectedStatus, setSelectedStatus] = useState("all");
+  // const [selectedStatus, setSelectedStatus] = useState("all");
+  // const [selectedDateRange, setSelectedDateRange] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDateRange, setSelectedDateRange] = useState("all");
   const [expandedId, setExpandedId] = useState(null);
 
   let [cancelappointment, setcancel] = useState(false);
@@ -34,22 +35,20 @@ function AppointmentDetails() {
     try {
       fetch(
         `${process.env.REACT_APP_API_URL}/appointment/details/${patientid}`,
-        {
-          method: "POST",
-        }
+        { method: "POST", }
       )
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message) {
-            console.log(data.message);
-          }
-          if (data.success) {
-            setappointmentdata(false);
-          }
-          setappointmentsinfo(data.appointments);
-          console.log(data);
-        })
-        .catch((error) => console.log("Fetching Error:", error));
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+        }
+        if (data.success) {
+          setappointmentdata(false);
+        }
+        setappointmentsinfo(data.appointments);
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }

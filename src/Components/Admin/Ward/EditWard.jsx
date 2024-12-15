@@ -1,55 +1,58 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import Loader from '../Loader/Loader';
-import { Update } from '@mui/icons-material';
-
 
 function EditWard({setisopen , wardid}) {
 
-    let [wardnumber, setwardnumber] = useState();
-    let [wardtype, setwardtype] = useState();
-    let [bednumber, setbednumber] = useState();
-    let [loader, setloader] = useState(false);
+  let [wardnumber, setwardnumber] = useState();
+  let [wardtype, setwardtype] = useState();
+  let [bednumber, setbednumber] = useState();
+  let [loader, setloader] = useState(false);
 
 
-    useEffect(() => {
-        try {
-          fetch(`${process.env.REACT_APP_API_URL}/ward/findward/${wardid}`, {
-            method: "POST",
-          })
-            .then((res) => res.json())
-            .then((data) => {
-                setwardnumber(data.wardnumber);
-                setwardtype(data.type);
-                setbednumber(data.bednumber);
-            })
-            .catch((err) => console.log("Error Fetching Data :", err));
-        } catch (error) {
-          console.log("Error :", error);
-        }
-    },[]);
-
-  
-    function update() {
-        let data = {
-            'wardnumber': wardnumber,
-            'type': wardtype,
-            'bednumber': bednumber,
-        };
-
-        try {
-            fetch(`${process.env.REACT_APP_API_URL}/ward/updateward/${wardid}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            })
-            .then((res) => res.json())
-            .then((data) => alert(data.message))
-            .catch((error) => console.log("Fetching Error:", error));
-            } catch (error) {
-            console.log("error :", error);
-        }
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/ward/findward/${wardid}`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+            setwardnumber(data.wardnumber);
+            setwardtype(data.type);
+            setbednumber(data.bednumber);
+        })
+        .catch((err) => console.log("Error Fetching Data :", err));
+    } catch (error) {
+      console.log("Error :", error);
     }
+  },[wardid]);
+
+
+  function update() {
+
+    setloader(true);
+
+    let data = {
+      'wardnumber': wardnumber,
+      'type': wardtype,
+      'bednumber': bednumber,
+    };
+
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/ward/updateward/${wardid}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => alert(data.message))
+      .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+
+    setloader(false);
+  }
 
   return (
     <div>
