@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Calendar, Search, Stethoscope, ClipboardList } from "lucide-react";
+import { Calendar, Search, Stethoscope, ClipboardList, Dot } from "lucide-react";
 
 function PatientMedicalHistory() {
   const [medicalHistory, setMedicalHistory] = useState([]);
@@ -40,8 +40,8 @@ function PatientMedicalHistory() {
     <div className="w-[80vw] mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <div className="bg-white rounded-lg p-6">
-          <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-            <ClipboardList className="h-6 w-6 text-blue-600" />
+          <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
+            <ClipboardList className="h-7 w-7 text-blue-600" />
             Medical History
           </h1>
         </div>
@@ -67,7 +67,7 @@ function PatientMedicalHistory() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 text-gray-600">
                     <Calendar className="h-4 w-4" />
-                    <span>{record?.date?.slice(0, 10)}</span>
+                    <span>{ new Date (record?.date).toLocaleDateString("En-IN")}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <Stethoscope className="h-4 w-4" />
@@ -91,12 +91,17 @@ function PatientMedicalHistory() {
                 {/* Right Column */}
                 <div className="space-y-3">
                   <div>
-                    <label className="text-sm font-medium text-gray-500">Disease/Condition</label>
+                    <label className="text-sm font-medium text-wrap text-gray-500">Disease/Condition</label>
                     <p className="text-gray-800">{record?.disease}</p>
                   </div>
                   <div>
                     <label className="text-sm font-medium text-gray-500">Prescription</label>
-                    <p className="text-gray-800 whitespace-pre-line">{record?.prescription}</p>
+                    {record?.prescription?.split('\n').map((line, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <Dot className="h-5 w-5 text-gray-600" />
+                      <p className="text-gray-800">{line}</p>
+                    </div>
+                  ))}
                   </div>
                 </div>
               </div>

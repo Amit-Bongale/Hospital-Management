@@ -28,6 +28,7 @@ function AppointmentDetails() {
 
   let [cancelappointment, setcancel] = useState(false);
 
+
   // fetch all appointmetns of a patient
   useEffect(() => {
     try {
@@ -98,6 +99,17 @@ function AppointmentDetails() {
     )
   }
 
+    const filterAppointments = (tests) => {
+    return tests.filter((test) => {
+      const search = searchQuery.toLowerCase();
+      return (
+        test?.scheduleddate?.toLowerCase().includes(search) ||
+        test?.doctorname?.toLowerCase().includes(search) ||
+        test?.disease?.toLowerCase().includes(search)
+      );
+    });
+  };
+
   return (
     <div>
 
@@ -138,7 +150,7 @@ function AppointmentDetails() {
               </div>
 
               {/* Status Filter */}
-              <div>
+              {/* <div>
                 <select
                   className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
                   value={selectedStatus}
@@ -149,13 +161,13 @@ function AppointmentDetails() {
                   <option value="completed">Completed</option>
                   <option value="cancelled">Cancelled</option>
                 </select>
-              </div>
+              </div> */}
             </div>
           </div>
 
           {/* Appointments List */}
           <div className="divide-y divide-gray-200">
-            {appointmetsinfo.map((appointment) => (
+            {filterAppointments(appointmetsinfo).map((appointment) => (
               <div
                 key={appointment.id}
                 className="p-6 hover:bg-gray-50 hover:cursor-pointer"
