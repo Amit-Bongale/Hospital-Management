@@ -151,7 +151,7 @@ function StaffDashboardInfo() {
                     <td  class="px-6 py-3"> {appointment.patientid} </td>
                     <td  class="px-6 py-3"> {appointment.doctorid} </td>
                     <td  class="px-6 py-3"> {appointment.doctorspecialization} </td>
-                    <td  class="px-6 py-3"> {appointment.scheduleddate} </td>
+                    <td  class="px-6 py-3"> { new Date (appointment.scheduleddate).toLocaleDateString('en-IN')} </td>
                     <td  class="px-6 py-3"> {appointment.scheduledtime} </td>
                     <td  class="px-6 py-3"> {appointment.disease} </td>
                     <td  class="px-6 py-3"> {appointment.status} </td>
