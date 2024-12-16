@@ -102,8 +102,7 @@ function Doctorlogin() {
                 >
                 Log in
                 </button>
-           
-
+          
                 <Link to={"/chooserole"}>
                   <button
                     type="submit"

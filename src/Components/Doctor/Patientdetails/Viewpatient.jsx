@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 import Addtest from "./Addtest";
 import Admit from "./Admit";
@@ -15,9 +17,10 @@ import {
   Stethoscope,
   ClipboardList,
   Activity,
-  Mic, RotateCcw ,
-  MicOff, 
-  Dot
+  Mic,
+  RotateCcw,
+  MicOff,
+  Dot,
 } from "lucide-react";
 
 function Viewpatient({ setview, id, appointmenttype }) {
@@ -30,7 +33,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
   let [patientname, setpatientname] = useState();
   let [disease, setdisease] = useState();
   let [prescription, setprescription] = useState("");
-  let [medicines , setmedicine] = useState();
+  let [medicines, setmedicine] = useState();
 
   const doctorid = useSelector((state) => state.doctor.doctorid);
   const doctorname = useSelector((state) => state.doctor.doctorname);
@@ -42,13 +45,14 @@ function Viewpatient({ setview, id, appointmenttype }) {
     // browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  function handlePrescription(){
-    setprescription((prev) => (prev.trim() ? (prev + "\n" + medicines) : medicines))
-    setmedicine('')
+  function handlePrescription() {
+    setprescription((prev) =>
+      prev.trim() ? prev + "\n" + medicines : medicines
+    );
+    setmedicine("");
   }
 
   function Send() {
-
     let data = {
       patientid: id,
       doctorid: doctorid,
@@ -119,7 +123,6 @@ function Viewpatient({ setview, id, appointmenttype }) {
     }
   }, [setview, id]);
 
-
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_URL}/medicalhistory/patientmedicalhistory/latest/${id}`,
@@ -151,7 +154,6 @@ function Viewpatient({ setview, id, appointmenttype }) {
       console.log("error :", error);
     }
   }, [id]);
-
 
   return (
     <div className="w-[100vw] h-full fixed  top-0 left-28 flex justify-center items-center  ">
@@ -198,7 +200,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
                     Date of Birth :
                   </td>
                   <td className="py-1 px-4 text-gray-900">
-                    {new Date (patient.dob).toLocaleDateString("EN-IN")}
+                    {new Date(patient.dob).toLocaleDateString("EN-IN")}
                   </td>
                 </tr>
                 <tr className="">
@@ -243,45 +245,62 @@ function Viewpatient({ setview, id, appointmenttype }) {
               </tbody>
             </table>
 
-            {medicalHistory.length > 0 ? (
+            {medicalHistory.length === 0 ? (
+              <span> No data</span>
+            ) : (
               <div className="overflow-x-auto">
-                <table className="w-full border-collapse border border-gray-300">
+                <table className="border-collapse border border-gray-300">
                   <tbody>
-                    {medicalHistory.map((history, index) => (
-                      <tr
-                        key={index}
-                        className="odd:bg-gray-100 w-full even:bg-white hover:bg-gray-200"
-                      >
-                        <td className="py-2 px-4 border border-gray-300">
-                          <span className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4" />
-                            {new Date (history.date).toLocaleDateString('EN-IN')}
-                          </span>
-                        </td>
-                        <td className="py-2 px-4 border border-gray-300">
-                          <span className="flex items-center gap-2">
-                            <Activity className="h-4 w-4" />
-                            {history.disease}
-                          </span>
-                        </td>
-                        <td className="py-2 px-4 border border-gray-300">
-                          <span className="flex items-center gap-2">
-                            <ClipboardList className="h-4 w-4" />
-                            {history.prescription}
-                          </span>
-                        </td>
-                        <td className="py-2 px-4 border border-gray-300">
-                          <span className="flex items-center gap-2">
-                            <Stethoscope className="h-4 w-4" />
-                            {history.doctorname}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
+                    <div>
+                      {medicalHistory.map((history, index) => (
+                        <tr
+                          key={index}
+                          className="odd:bg-gray-100 w-full even:bg-white hover:bg-gray-200"
+                        >
+                          <td className="py-2 px-4 border border-gray-300">
+                            <span className="flex items-center gap-2">
+                              <Calendar className="h-4 w-4" />
+                              {new Date(history.date).toLocaleDateString("EN-IN")}
+                            </span>
+                          </td>
+                          <td className="py-2 px-4 border border-gray-300">
+                            <span className="flex items-center gap-2">
+                              <Activity className="h-4 w-4" />
+                              {history.disease}
+                            </span>
+                          </td>
+                          <td className="py-2 px-4 border border-gray-300">
+                            {history.prescription ? (
+                              <div>
+                                <span className="flex items-center gap-2 text-wrap">
+                                  <ClipboardList className="h-4 w-4" />
+                                  {history.prescription
+                                    .split("\n")
+                                    .map((line, index) => (
+                                      <div key={index} className="flex">
+                                        <Dot /> {line}
+                                        <br />
+                                      </div>
+                                    ))}
+                                </span>
+                              </div>
+                            ) : (
+                              <div> </div>
+                            )}
+                          </td>
+                          <td className="py-2 px-4 border border-gray-300">
+                            <span className="flex items-center gap-2">
+                              <Stethoscope className="h-4 w-4" />
+                              {history.doctorname}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </div>
                   </tbody>
                 </table>
               </div>
-            ) : null}
+            )}
           </div>
         ))}
 
@@ -324,33 +343,53 @@ function Viewpatient({ setview, id, appointmenttype }) {
               }}
               value={transcript || medicines}
             />
-            <button className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => handlePrescription()}> ADD </button>
+            <button
+              className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={() => handlePrescription()}
+            >
+              {" "}
+              ADD{" "}
+            </button>
           </div>
 
           <div className="flex flex-col gap-4 mt-4 p-4">
             {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
-            { listening ?
-            <button onClick={() => SpeechRecognition.stopListening()}> <MicOff className="h-6 w-6" /> </button> : <button onClick={() => SpeechRecognition.startListening()}>
-            <Mic className="h-6 w-6" />
-            </button> }
-            <button onClick={resetTranscript}> <RotateCcw className="h-6 w-6" /> </button>
+            {listening ? (
+              <button onClick={() => SpeechRecognition.stopListening()}>
+                {" "}
+                <MicOff className="h-6 w-6" />{" "}
+              </button>
+            ) : (
+              <button onClick={() => SpeechRecognition.startListening()}>
+                <Mic className="h-6 w-6" />
+              </button>
+            )}
+            <button onClick={resetTranscript}>
+              {" "}
+              <RotateCcw className="h-6 w-6" />{" "}
+            </button>
             {/* <p> {transcript}</p> */}
           </div>
         </div>
 
-        {
-          prescription && <div className="mt-5">
-
-          <h4 className="text-lg font-bold mb-0">Prescription</h4>
-          {prescription.split('\n').map((line, index) => (
+        {prescription && (
+          <div className="mt-5">
+            <h4 className="text-lg font-bold mb-0">Prescription</h4>
+            {prescription.split("\n").map((line, index) => (
               <div key={index} className="flex">
-                 <Dot/> {line}
+                <Dot /> {line}
                 <br />
               </div>
-          ))}
-          <button className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => setprescription("")}> Clear </button>
-        </div>
-        }
+            ))}
+            <button
+              className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={() => setprescription("")}
+            >
+              {" "}
+              Clear{" "}
+            </button>
+          </div>
+        )}
 
         {testname && (
           <div>

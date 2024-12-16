@@ -39,11 +39,10 @@ function Testdetails() {
               <th scope="col" class="px-6 py-3"> Test Name </th>
               <th scope="col" class="px-6 py-3"> Status </th>
               <th scope="col" class="px-6 py-3"> Result </th>
-              
             </tr>
           </thead>
-
-            <tbody>
+          
+          <tbody>
             {testinfo.map((test)=>(
               <tr class="bg-white border-b font-medium text-sm text-gray-700  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="px-6 py-4"> {test.patientid} </td>
@@ -51,24 +50,15 @@ function Testdetails() {
                 <td class="px-6 py-4"> {test.staffid} </td>
                 <td class="px-6 py-4"> {test.doctorid} </td>
                 <td class="px-6 py-4"> {test.testname} </td>
-                <td class="px-6 py-4"> {test.status} </td>
-                <td class="px-6 py-4"> {test.result} </td>
-                
+                <td class="px-6 py-4"> {test.status ? test.status : "Assigned"} </td>
+                <td class="px-6 py-4"> {test.result ? test.result : "Awaiting"} </td>
               </tr>
             ))}
-            </tbody>
-            
+          </tbody>
         </table>
       </div>
-
-      
-      
-
     </div>
-
-
-    )
-    
+  )
 }
 
 export default Testdetails

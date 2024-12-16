@@ -5,7 +5,7 @@ import { Search } from 'lucide-react';
 
 import PatientTestForm from './TestPatientForm/PatientTestForm'
 
-function PatientTestInfo({setisopen , _id}) {
+function PatientTestInfo({ _id}) {
   const [testpatient , settestpatient] = useState(false)
   const [testinfo , settestinfo] = useState([])
   const [patientid , setpatientid] = useState()
@@ -27,7 +27,7 @@ function PatientTestInfo({setisopen , _id}) {
       console.log("error :", error);
     }
 
-  },[])
+  },[testpatient , patientid])
 
 
   function deletetest(){

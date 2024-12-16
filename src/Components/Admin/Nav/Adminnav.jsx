@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adminlogout } from "../../../Redux/Admin/Admin";
 
-import { ChevronDown, LayoutDashboard , Headset , Users ,  BedSingle } from 'lucide-react';
+import { ChevronDown, LayoutDashboard , Headset , Users ,  BedSingle, LogOut } from 'lucide-react';
 
 import { useSelector } from 'react-redux'
 import {openusers , hideusers} from '../../../Redux/Admin/Admin'
@@ -109,8 +109,9 @@ function Adminnav() {
 
         <button
           onClick={() => dispatch(adminlogout())}
-          className="bg-black text-white py-3 px-6 rounded-3xl m-4"
+          className="bg-black text-white py-3 px-6 rounded-3xl m-4 flex gap-2"
         >
+          <LogOut className="w-5 h-5"/>
           logout
         </button>
       </div>

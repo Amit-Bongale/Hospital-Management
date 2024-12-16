@@ -105,8 +105,6 @@ function Layout() {
     } catch (error) {
       console.log("error :", error);
     }
-
-
   };
 
   return (

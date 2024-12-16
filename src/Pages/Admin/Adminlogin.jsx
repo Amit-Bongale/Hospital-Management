@@ -35,7 +35,7 @@ function Adminlogin() {
                                 Login in</button>
                             </Link>
 
-                            <Link to={'/'}>
+                            <Link to={'/chooserole'}>
                                 <button  type="submit" 
                                 class="w-full text-black hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-3 text-center mt-6 ">
                                 Back to Home</button>

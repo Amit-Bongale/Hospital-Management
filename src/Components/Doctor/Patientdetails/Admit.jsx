@@ -106,7 +106,7 @@ function Admit({setadmit, id , name}){
             <div>
               <label
                 className="block mb-2 text-lg font-medium text-gray-900 dark:text-white">
-                Staff Id
+                Staff Name
               </label>
               <select
               id="Staff"
@@ -114,7 +114,7 @@ function Admit({setadmit, id , name}){
               required
               onChange={(e) => {setstaffid(e.target.value)}}
             >
-              <option value="">Choose Staffid</option>
+              <option value="">Choose Staff</option>
               {staffinfo.map((staff) => (
                 <option key={staff.id} value={staff.id}>  {staff.name} </option>
               ))}
