@@ -23,13 +23,11 @@ function Testdetails() {
   },[])
 
 
-    return(
-        <div class="ml-4 ">
-        <h1 className="font-bold text-xl p-4 text-center mt-10">Test Details</h1>
-
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  return(
+    <div class="ml-4 ">
+      <h1 className="font-bold text-xl p-4 text-center mt-10">Test Details</h1>
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-auto table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-
           <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
             <tr>
               <th scope="col" class="px-6 py-3"> Patient Id </th>
@@ -41,7 +39,7 @@ function Testdetails() {
               <th scope="col" class="px-6 py-3"> Result </th>
             </tr>
           </thead>
-          
+
           <tbody>
             {testinfo.map((test)=>(
               <tr class="bg-white border-b font-medium text-sm text-gray-700  dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
