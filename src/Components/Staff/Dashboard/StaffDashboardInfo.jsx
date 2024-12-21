@@ -189,18 +189,20 @@ function StaffDashboardInfo() {
                   <td className="px-6 py-3">{appointment.disease}</td>
                   <td className="px-6 py-3">{appointment.status}</td>
                   <td className="px-6 py-3">
-                    <button
-                      className="px-3 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600"
-                      onClick={() => handleConfirm(appointment.patientid)}
-                    >
-                      Confirm
-                    </button>
-                    <button
-                      className="ml-2 px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600"
-                      onClick={() => handleReject(appointment.patientid)}
-                    >
-                      Reject
-                    </button>
+                    <div>
+                      <button
+                        className="px-3 py-2 mb-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600"
+                        onClick={() => handleConfirm(appointment.patientid)}
+                      >
+                        Confirm
+                      </button>
+                      <button
+                        className="px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600"
+                        onClick={() => handleReject(appointment.patientid)}
+                      >
+                        Reject
+                      </button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
