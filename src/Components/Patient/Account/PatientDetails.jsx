@@ -89,10 +89,6 @@ function PatientDetails() {
                 <td className="py-2 px-4 text-gray-600 font-medium">Aadhar Number</td>
                 <td className="py-2 px-4 text-gray-900">{patient.aadharno}</td>
               </tr>
-              <tr className="border-b">
-                <td className="py-2 px-4 text-gray-600 font-medium">Medical History</td>
-                <td className="py-2 px-4 text-gray-900">{patient.medicalhistory}</td>
-              </tr>
             </tbody>
           ))}
         </table>

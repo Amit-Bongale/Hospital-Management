@@ -9,7 +9,6 @@ function PatientTestForm({ setisopen , patientid}) {
   let [status , setstatus] = useState()
   let [result , setresult] = useState([])
   let [fee , setfee] = useState()
-  let [testid, settestid] = useState()
   
   function Send(e){
     e.preventDefault()
@@ -17,11 +16,10 @@ function PatientTestForm({ setisopen , patientid}) {
       "status": status,
       "result": result,
       "fee": fee,
-      "patientid": patientid,
     }
 
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/test/updatetest/${testid}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/test/updatetest/${patientid}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(test),
@@ -53,7 +51,6 @@ function PatientTestForm({ setisopen , patientid}) {
         }
         const tests = Array.isArray(data) ? data : [data];
         settestinfo(tests);
-        settestid(data._id)
         console.log(data);
       })
       .catch((error) => console.log("Fetching Error:", error));
@@ -66,7 +63,7 @@ function PatientTestForm({ setisopen , patientid}) {
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
       <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-3 "> Test Form</h2>
-        {testid}
+    
         <form onSubmit={Send}>
           <div>
           {testinfo.map((test)=>(
@@ -162,10 +159,10 @@ function PatientTestForm({ setisopen , patientid}) {
                       onChange={(e) => {setstatus(e.target.value)}}
                     >
                       <option value="" key=""></option>
-                      <option value="Test Pending" key="">Test Pending</option>
+                      <option value="Pending" key="">Pending</option>
                       <option value="Testing" key="">Testing</option>
-                      <option value="Result Pending" key="">Result Pending</option>
-                      <option value="Test Result" key="">Test Result</option>
+                      <option value="Result Processign" key="">Result Pending</option>
+                      <option value="Completed" key="">Completed</option>
                     </select>
                 </div>
 

@@ -15,7 +15,6 @@ function EditPatientDetails({setisopen , patientid}) {
     let [address , setaddress] = useState()
     let [bloodgroup , setbloodgroup] = useState()
     let [emergencycontact , setemergencycontact] = useState()
-    let [history , sethistory] = useState()
     let [password , setpassword] = useState()
   
     useEffect(() => {
@@ -40,7 +39,6 @@ function EditPatientDetails({setisopen , patientid}) {
           setaddress(data.address);
           setbloodgroup(data.bloodgroup);
           setemergencycontact(data.emergencycontact);
-          sethistory(data.medicalhistory);
           setage(data.age)
           setpassword(data.password)
         })
@@ -64,7 +62,6 @@ function EditPatientDetails({setisopen , patientid}) {
         "emergencycontact" : emergencycontact,
         "bloodgroup" : bloodgroup,
         "aadharno": aadharno,
-        "medicalhistory" : history,
         'password' : password
       };
   
@@ -300,23 +297,6 @@ function EditPatientDetails({setisopen , patientid}) {
                   onChange={(e) => setemergencycontact(e.target.value)}
                 />
               </div>
-            </div>
-            
-            <div>
-              <label
-                for="medical history"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Medical History
-              </label>
-              <input
-                type="text"
-                id="medical history"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Allery / Mediacl conditions"
-                value={history}
-                onChange={(e) => sethistory(e.target.value)}
-              />
             </div>
   
             <div>

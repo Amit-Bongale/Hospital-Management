@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
-  Search,
-  FileText,
-  User,
-  Calendar,
-  CheckCircle,
-  ClipboardPlus,
-  BookCheck
+  Search, FileText, Calendar, CheckCircle, ClipboardPlus,
+  BookCheck, Stethoscope , CircleDashed, AlertCircle, XCircle
 } from "lucide-react";
 
 function PatientTestReport() {
@@ -26,9 +21,7 @@ function PatientTestReport() {
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_URL}/test/patienttestdetail/${patientId}`,
-      {
-        method: "POST",
-      }
+      { method: "POST",}
     )
       .then((res) => res.json())
       .then((data) => {
@@ -58,6 +51,34 @@ function PatientTestReport() {
     });
   };
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Pending":
+        return "bg-yellow-200 text-black";
+      case "Completed":
+        return "bg-green-100 text-green-800";
+      case "rejected":
+        return "bg-red-100 text-red-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case "Pending":
+        return <CircleDashed className="w-5 h-5 text-yellow-500" />;
+      case "Completed":
+        return <CheckCircle className="w-5 h-5 text-green-500" />;
+      case "upcoming":
+        return <AlertCircle className="w-5 h-5 text-blue-500" />;
+      case "rejected":
+        return <XCircle className="w-5 h-5 text-red-500" />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="w-full max-w-6xl mx-auto p-4">
       <div className=" w-[80vw] flex justify-between">
@@ -70,7 +91,7 @@ function PatientTestReport() {
         </div>
 
         {/* Filters */}
-        <div className="flex gap-4 mb-6 p-6">
+        <div className="flex gap-4 mb-2 p-6">
           <div className="relative flex-1 w-60 right-20">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
             <input
@@ -114,7 +135,7 @@ function PatientTestReport() {
 
           <div className="p-6 flex gap-32">
             <div className="flex items-center space-x-4">
-              <User className="text-blue-600" />
+              <Stethoscope className="text-blue-600" />
               <div>
                 <p className="text-gray-600">Doctor ID</p>
                 <p className="font-semibold">{test.doctorid}</p>
@@ -131,30 +152,33 @@ function PatientTestReport() {
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <CheckCircle className="text-green-600" />
-              <div>
-                <p className="text-gray-600">Status</p>
-                <p
-                  className={`font-bold ${
-                    test.status === "Normal" ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  {test.status}
-                </p>
+            <div className="flex flex-col ">
+              <p className="text-gray-600 mt-2 ml-9"> Status </p>
+              <div className="flex flex-c items-center justify-center mt-1 space-x-2">
+                <div>
+                  {getStatusIcon(test.status)}
+                </div>
+                <div>
+                  <p className={`px-3 py-1 rounded-full text-base font-bold ${getStatusColor(test.status)}`}> {test.status} </p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="px-6 py-4">
-            <div className="flex items-center space-x-4">
-              <ClipboardPlus className="text-blue-600" />
-              <div>
-                <p className="text-gray-600"> Test Result</p>
-                <p className="font-semibold">{test.result}</p>
+          {
+            test.result ? (
+              <div className="px-6 py-4">
+                <div className="flex items-center space-x-4">
+                  <ClipboardPlus className="text-blue-600" />
+                  <div>
+                    <p className="text-gray-600"> Test Result</p>
+                    <p className="font-semibold">{test.result}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            ) : ( <></>)
+          }
+          
         </div>
       ))}
     </div>

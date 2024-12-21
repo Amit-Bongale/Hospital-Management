@@ -87,6 +87,7 @@ function PatientTestInfo({ _id}) {
               <th scope="col" class="px-6 py-3"> DOCTOR ID </th>
               <th scope="col" class="px-6 py-3"> STAFF ID </th>
               <th scope="col" class="px-6 py-3"> TEST NAME </th>
+              <th scope="col" class="px-6 py-3"> Status </th>
               <th scope="col" class="px-6 py-3"> </th>
               <th scope="col" class="px-6 py-3"> </th>
             </tr>
@@ -100,6 +101,7 @@ function PatientTestInfo({ _id}) {
               <td  class="px-6 py-3"> {test.doctorid} </td>
               <td  class="px-6 py-3"> {test.staffid} </td> 
               <td  class="px-6 py-3"> {test.testname} </td> 
+              <td  class="px-6 py-3"> {test.status} </td> 
               <td  class="px-6 py-3"> 
                 <button class="px-6 py-3"  onClick={() =>{ settestpatient(true); setpatientid(test._id)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
