@@ -59,11 +59,9 @@ function AppointmentDetails() {
     switch (status) {
       case "Pending":
         return "bg-yellow-200 text-black";
-      case "completed":
+      case "approved":
         return "bg-green-100 text-green-800";
-      case "upcoming":
-        return "bg-blue-100 text-blue-800";
-      case "cancelled":
+      case "rejected":
         return "bg-red-100 text-red-800";
       default:
         return "bg-gray-100 text-gray-800";
@@ -74,11 +72,11 @@ function AppointmentDetails() {
     switch (status) {
       case "Pending":
         return <CircleDashed className="w-5 h-5 text-yellow-500" />;
-      case "completed":
+      case "approved":
         return <CheckCircle className="w-5 h-5 text-green-500" />;
       case "upcoming":
         return <AlertCircle className="w-5 h-5 text-blue-500" />;
-      case "cancelled":
+      case "rejected":
         return <XCircle className="w-5 h-5 text-red-500" />;
       default:
         return null;

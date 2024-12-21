@@ -7,30 +7,17 @@ function DoctorStatusInfo() {
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/doctordetailsqueue` , { method: "POST" })
       .then((res) => res.json())
-      .then((data) => setdoctsinfo(data))
+      .then((data) => {setdoctsinfo(data); console.log(data)})
       .catch((err) => console.log("Error Fetching Data :" , err))
     } catch (error) {
       console.log("Error :" , error)
     }
   },[])
 
-
   return (
     <div>
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-center p-4">
-        <table class="table-auto text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400 ">
-          <thead class="text-sm text-gray-700 uppercase bg-gray-50 text-center">
-            <tr>
-              <th scope="col" class="px-6 py-3"> DOCTOR ID </th>
-              <th scope="col" class="px-6 py-3"> DOCTOR NAME </th>
-              <th scope="col" class="px-6 py-3"> AVALIABLITY </th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-
       <div className="w-full p-4">
         <h1 className="font-bold text-xl p-4 pl-8">Doctors Details</h1>
         <div class="relative overflow-x-auto  sm:rounded-lg p-6">
@@ -43,6 +30,8 @@ function DoctorStatusInfo() {
                 <th scope="col" class="px-6 py-3"> Specialization </th>
                 <th scope="col" class="px-6 py-3"> Mobile </th>
                 <th scope="col" class="px-6 py-3"> Status </th>
+                <th scope="col" class="px-6 py-3"> Patient Waiting </th>
+
               </tr>
             </thead>
 
@@ -61,6 +50,7 @@ function DoctorStatusInfo() {
                       doctor.status ?  <span className="bg-green-700 py-2 px-6 text-white rounded-2xl"> Active </span> : <span className="bg-red-700 py-2 px-6 text-white rounded-2xl"> Inactive </span>
                     }
                   </td>
+                  <td class="px-6 py-4"> {doctor.queueCount} </td>
                 </tr>
               </tbody>
             ))}

@@ -1,30 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import NewPatientForm from './AddPatientForm/NewPatientForm';
-import OldPatientForm from './AddPatientForm/OldPatientForm';
-import { Plus, UserSearch, Search } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import NewPatientForm from "./AddPatientForm/NewPatientForm";
+import OldPatientForm from "./AddPatientForm/OldPatientForm";
+import { Plus, UserSearch, Search } from "lucide-react";
 
 function StaffDashboardInfo() {
   const [newpatient, setnewpatient] = useState(false);
   const [oldpatient, setoldpatient] = useState(false);
   const [queueinfo, setqueueinfo] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [appointmentinfo, setappointmentinfo] = useState([]);
+  const [update, setupdate] = useState();
 
   useEffect(() => {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient`, {
-        method: 'POST',
+        method: "POST",
       })
         .then((res) => res.json())
         .then((data) => {
           setqueueinfo(data);
           console.log(data);
         })
-        .catch((error) => console.log('Fetching Error:', error));
+        .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
-      console.log('error :', error);
+      console.log("error :", error);
     }
-  }, [newpatient, oldpatient]);
+  }, [newpatient, oldpatient, searchTerm, update]);
+
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/appointment/allappointment`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setappointmentinfo(data);
+          console.log(data);
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+  }, [newpatient, oldpatient, update]);
 
   // Filter queue based on searchTerm
   const filteredQueue = queueinfo.filter(
@@ -33,55 +50,38 @@ function StaffDashboardInfo() {
       queue.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  useEffect(() => {
+  const handleConfirm = (id) => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/appointment/allsppointment`, {
-        method: 'POST',
+      fetch(`${process.env.REACT_APP_API_URL}/appointment/approve/${id}`, {
+        method: "POST",
       })
         .then((res) => res.json())
         .then((data) => {
-          setappointmentinfo(data);
+          alert(data.message);
           console.log(data);
+          setupdate(id);
         })
-        .catch((error) => console.log('Fetching Error:', error));
+        .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
-      console.log('error :', error);
-    }
-  }, []);
-
-  const handleConfirm = (patientId) => {
-    const appointment = appointmentinfo.find(
-      (appointment) => appointment.patientid === patientId
-    );
-
-    if (appointment) {
-      // Add to queue
-      const newQueueItem = {
-        id: appointment.patientid,
-        name: appointment.name,
-        gender: appointment.gender,
-        disease: appointment.disease,
-        mobileno: appointment.mobileno,
-        type: 'Appointment',
-        status: 'queue',
-      };
-
-      setqueueinfo([...queueinfo, newQueueItem]);
-
-      // Remove from appointments
-      setappointmentinfo(
-        appointmentinfo.filter((item) => item.patientid !== patientId)
-      );
-
-      console.log(`Appointment with Patient ID ${patientId} confirmed.`);
+      console.log("error :", error);
     }
   };
 
-  const handleReject = (patientId) => {
-    setappointmentinfo(
-      appointmentinfo.filter((appointment) => appointment.patientid !== patientId)
-    );
-    console.log(`Appointment with Patient ID ${patientId} rejected and deleted.`);
+  const handleReject = (id) => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/appointment/reject/${id}`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert(data.message);
+          console.log(data);
+          setupdate(id);
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
   };
 
   return (
@@ -109,9 +109,87 @@ function StaffDashboardInfo() {
           </span>
         </div>
 
+        {/* Appointment Requests */}
+        {appointmentinfo.length === 0 ? (
+          <div className=" w-full text-center"> </div>
+        ) : (
+
+        <div className="mb-4 p-4">
+          
+          <div className="flex">
+            <h1 className="ml-14  mb-2 text-2xl font-bold text-gray-800">
+              Appointment Requests
+            </h1>
+          </div>
+          
+            <div className="relative shadow-md sm:rounded-lg justify-center ml-4 mt-2">
+              <table className="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead className="text-sm text-gray-700 uppercase bg-gray-50 text-center">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">
+                      PATIENT ID
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      DOCTOR ID
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      DOCTOR SPECIALIZATION
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      SCHEDULED DATE
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      SCHEDULED TIME
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      DISEASE
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      STATUS
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      ACTIONS
+                    </th>
+                    <th scope="col" className="px-6 py-3"></th>
+                  </tr>
+                </thead>
+
+                {appointmentinfo.map((appointment) => (
+                  <tbody className="text-center" key={appointment.patientid}>
+                    <tr>
+                      <td className="px-6 py-3"> {appointment.patientid} </td>
+                      <td className="px-6 py-3"> {appointment.doctorid} </td>
+                      <td className="px-6 py-3"> {appointment.doctorspecialization} </td>
+                      <td className="px-6 py-3">
+                        {new Date(appointment.scheduleddate).toLocaleDateString("en-IN")}
+                      </td>
+                      <td className="px-6 py-3">{appointment.scheduledtime}</td>
+                      <td className="px-6 py-3">{appointment.disease}</td>
+                      <td className="px-6 py-3">{appointment.status}</td>
+                      <td className="px-6 py-3">
+                        <button className="px-3 py-2 mb-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600"
+                          onClick={() => handleConfirm(appointment._id)}
+                        > Confirm </button>
+                      </td>
+                      <td className="px-6 py-3 items-center">
+                        <button
+                          className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600"
+                          onClick={() => handleReject(appointment._id)} > Reject </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                ))}
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* Patients Queue */}
         <div className="flex">
-          <h1 className="ml-20 mt-7 text-2xl font-bold text-gray-800">Patient's Queue</h1>
-          <div className="relative ml-[650px] mt-5">
+          <h1 className="ml-16 mt-7 text-2xl font-bold text-gray-800">
+            Patient's Queue
+          </h1>
+          <div className="relative ml-[700px] m-5">
             <input
               type="text"
               placeholder="Search..."
@@ -123,17 +201,31 @@ function StaffDashboardInfo() {
           </div>
         </div>
 
-        <div className="relative shadow-md sm:rounded-lg justify-center ml-20 mt-2">
-          <table className="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <div className="relative justify-center ml-8 mt-2">
+          <table className="table-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 sm:rounded-lg shadow-md  ">
             <thead className="text-sm text-gray-700 uppercase bg-gray-50 text-center">
               <tr>
-                <th scope="col" className="px-6 py-3">PATIENT ID</th>
-                <th scope="col" className="px-6 py-3">PATIENT NAME</th>
-                <th scope="col" className="px-6 py-3">GENDER</th>
-                <th scope="col" className="px-6 py-3">DISEASE</th>
-                <th scope="col" className="px-6 py-3">MOBILE NO</th>
-                <th scope="col" className="px-6 py-3">TYPE</th>
-                <th scope="col" className="px-6 py-3">STATUS</th>
+                <th scope="col" className="px-6 py-3">
+                  PATIENT ID
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  PATIENT NAME
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  GENDER
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  DISEASE
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  MOBILE NO
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  TYPE
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  STATUS
+                </th>
               </tr>
             </thead>
 
@@ -155,60 +247,6 @@ function StaffDashboardInfo() {
 
         {newpatient ? <NewPatientForm setisopen={setnewpatient} /> : null}
         {oldpatient ? <OldPatientForm setisopen={setoldpatient} /> : null}
-      </div>
-
-      <div>
-        <div className="flex">
-          <h1 className="ml-20 mt-10 text-2xl font-bold text-gray-800">Appointment Queue</h1>
-        </div>
-        <div className="relative shadow-md sm:rounded-lg justify-center ml-20 mt-2">
-          <table className="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="text-sm text-gray-700 uppercase bg-gray-50 text-center">
-              <tr>
-                <th scope="col" className="px-6 py-3">PATIENT ID</th>
-                <th scope="col" className="px-6 py-3">DOCTOR ID</th>
-                <th scope="col" className="px-6 py-3">DOCTOR SPECIALIZATION</th>
-                <th scope="col" className="px-6 py-3">SCHEDULED DATE</th>
-                <th scope="col" className="px-6 py-3">SCHEDULED TIME</th>
-                <th scope="col" className="px-6 py-3">DISEASE</th>
-                <th scope="col" className="px-6 py-3">STATUS</th>
-                <th scope="col" className="px-6 py-3">ACTIONS</th>
-              </tr>
-            </thead>
-
-            {appointmentinfo.map((appointment) => (
-              <tbody className="text-center" key={appointment.patientid}>
-                <tr>
-                  <td className="px-6 py-3">{appointment.patientid}</td>
-                  <td className="px-6 py-3">{appointment.doctorid}</td>
-                  <td className="px-6 py-3">{appointment.doctorspecialization}</td>
-                  <td className="px-6 py-3">
-                    {new Date(appointment.scheduleddate).toLocaleDateString('en-IN')}
-                  </td>
-                  <td className="px-6 py-3">{appointment.scheduledtime}</td>
-                  <td className="px-6 py-3">{appointment.disease}</td>
-                  <td className="px-6 py-3">{appointment.status}</td>
-                  <td className="px-6 py-3">
-                    <div>
-                      <button
-                        className="px-3 py-2 mb-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600"
-                        onClick={() => handleConfirm(appointment.patientid)}
-                      >
-                        Confirm
-                      </button>
-                      <button
-                        className="px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600"
-                        onClick={() => handleReject(appointment.patientid)}
-                      >
-                        Reject
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-          </table>
-        </div>
       </div>
     </div>
   );
