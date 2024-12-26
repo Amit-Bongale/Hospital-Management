@@ -1,4 +1,8 @@
 import React from "react";
+import hospitalimg1 from "../../../Assets/Images/hospital building 1.jpg";
+import hospitalimg2 from "../../../Assets/Images/hospital building 2.png";
+
+
 
 function AboutHospital() {
   return (
@@ -23,14 +27,14 @@ function AboutHospital() {
           </div>
           <div class="grid grid-cols-2 gap-4 mt-8">
             <img
-              class="w-full rounded-lg"
-              src="https://thumbs.dreamstime.com/b/hospital-building-modern-parking-lot-59693686.jpg"
-              alt="hospital 1"
+              class="mt-4 w-full lg:mt-10 rounded-lg"
+              src={hospitalimg1}
+              alt="office content 2"
             />
             <img
-              class="mt-4 w-full lg:mt-10 rounded-lg"
-              src="https://avekshahospital.com/wp-content/uploads/2022/04/Building-Hero-1.jpg"
-              alt="office content 2"
+              class="w-full rounded-lg"
+              src={hospitalimg2}
+              alt="hospital 1"
             />
           </div>
         </div>
