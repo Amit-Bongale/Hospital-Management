@@ -23,6 +23,38 @@ function Adminnav() {
     }
   }
 
+  const id = useSelector((state) => state.admin.adminid);
+  
+    function logout(){
+  
+      let data = {
+        'id' : id,
+      }
+  
+      try {
+        fetch(
+          `${process.env.REACT_APP_API_URL}/admin/logout`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          }
+        )
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            console.log(data.message);
+            alert(data.message);
+          }
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+      } catch (error) {
+        console.log("error :", error);
+      }
+  
+      dispatch(adminlogout(id))
+    }
+
   return (
     <nav className="bg-gray-50 w-[265px] z-50 mr-4">
       <div className="fixed w-[265px] bg-gray-50 h-[100vh] border-r-2">
@@ -74,7 +106,6 @@ function Adminnav() {
             </Link>
           </span>
 
-
         </div> : <></>}
 
         {/* <span className="grid items-start px-2 text-xl font-medium lg:px-4">
@@ -108,7 +139,7 @@ function Adminnav() {
 
 
         <button
-          onClick={() => dispatch(adminlogout())}
+          onClick={() => logout()}
           className="bg-black text-white py-3 px-6 rounded-3xl m-4 flex gap-2"
         >
           <LogOut className="w-5 h-5"/>

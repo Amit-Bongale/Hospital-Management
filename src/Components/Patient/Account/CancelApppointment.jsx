@@ -33,7 +33,7 @@ function CancelApppointment({ setisopen, id }) {
                       class="text-base font-semibold leading-6 text-gray-900"
                       id="modal-title"
                     >
-                      Delete Account
+                      Cancel Appointment
                     </h3>
 
                     <div class="mt-2">

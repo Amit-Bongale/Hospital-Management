@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch , useSelector } from 'react-redux'
 import { stafflogout } from '../../../Redux/Staff/Staff'
 
 import { Link } from "react-router-dom";
@@ -10,6 +10,38 @@ import { LayoutDashboard, BedSingle, NotepadText , CalendarFold, Book , LogOut }
 function Staffnav() {
 
   const dispatch = useDispatch()
+
+  const id = useSelector((state) => state.staff.staffid);
+
+  function logout(){
+
+    let data = {
+      'id' : id,
+    }
+
+    try {
+      fetch(
+        `${process.env.REACT_APP_API_URL}/staff/logout`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            console.log(data.message);
+            alert(data.message);
+          }
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+
+    dispatch(stafflogout(id))
+  }
 
   return (
     <nav className="bg-gray-50 w-2/12 z-50">
@@ -75,7 +107,7 @@ function Staffnav() {
           </span>
         </div>
 
-        <button onClick={() => dispatch(stafflogout())} 
+        <button onClick={() => logout()} 
         className='bg-black text-white py-3 px-6 rounded-3xl m-4 flex gap-2'>
           <LogOut className="w-5 h-5" />
           Logout

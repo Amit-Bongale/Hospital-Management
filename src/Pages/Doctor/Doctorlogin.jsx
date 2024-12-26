@@ -14,39 +14,39 @@ function Doctorlogin() {
   let [id, setid] = useState();
   let [password, setpassword] = useState();
 
-    function Send(e) {
-        
-      e.preventDefault();
+  function Send(e) {
+      
+    e.preventDefault();
 
-      let data = {
-        'id': id,
-        'password': password,
-      };
+    let data = {
+      'id': id,
+      'password': password,
+    };
 
-      try {
-        fetch(`${process.env.REACT_APP_API_URL}/doctor/login`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message) {
-            console.log(data.message);
-            alert(data.message);
-          }
-          if (data.success) {
-            console.log('User Info:', data.user);
-            dispatch(doctorlogin({ doctorid : data.user.id , doctorname : data.user.name }));
-            window.location.href = "/doctor/dashboard";
-          }
-          console.log(data);
-        })
-        .catch((error) => console.log("Fetching Error:", error));
-      } catch (error) {
-        console.log("error :", error);
-      }
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          console.log(data.message);
+          alert(data.message);
+        }
+        if (data.success) {
+          console.log('User Info:', data.user);
+          dispatch(doctorlogin({ doctorid : data.user.id , doctorname : data.user.name }));
+          window.location.href = "/doctor/dashboard";
+        }
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
     }
+  }
 
   return (
     <div>

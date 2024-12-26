@@ -4,14 +4,20 @@ export const StaffSlice = createSlice({
   name: 'Staff',
   initialState: {
     loggedin: false,
+    staffid : '',
+    staffname: '',
   },
 
   reducers: {
-    stafflogin: (state) => {
+    stafflogin: (state , action) => {
       state.loggedin = true
+      state.staffid = action.payload.staffid
+      state.staffname = action.payload.staffname
     },
     stafflogout: (state) => {
       state.loggedin = false
+      state.staffid = ''
+      state.staffname = ''
     },
   },
 

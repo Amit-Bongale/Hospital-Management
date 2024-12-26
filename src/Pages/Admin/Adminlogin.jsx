@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 import { useDispatch } from 'react-redux'
 import { adminlogin } from '../../Redux/Admin/Admin'
@@ -7,6 +8,43 @@ import { adminlogin } from '../../Redux/Admin/Admin'
 function Adminlogin() {
 
     const dispatch = useDispatch()
+
+    let [id, setid] = useState();
+    let [password, setpassword] = useState();
+    
+    function Send(e) {
+        
+        e.preventDefault();
+
+        let data = {
+            'id': id,
+            'password': password,
+        };
+
+        try {
+            fetch(`${process.env.REACT_APP_API_URL}/admin/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+            if (data.message) {
+                console.log(data.message);
+                alert(data.message);
+            }
+            if (data.success) {
+                console.log('User Info:', data.user);
+                dispatch(adminlogin({ doctorid : data.user.id , doctorname : data.user.name }));
+                window.location.href = "/admin/dashboard";
+            }
+            console.log(data);
+            })
+            .catch((error) => console.log("Fetching Error:", error));
+        } catch (error) {
+            console.log("error :", error);
+        }
+    }
 
   return (
     <div>
@@ -18,22 +56,21 @@ function Adminlogin() {
                         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-center">
                             Admin Login
                         </h1>
-                        <form class="space-y-4 md:space-y-6" action="#">
+                        <form class="space-y-4 md:space-y-6" onSubmit={Send}>
                             <div>
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required=""/>
+                                <label for="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID</label>
+                                <input type="text" name="id" id="id" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Your ID" required
+                                onChange={(val) => setid(val.target.value)}/>
                             </div>
+                            
                             <div>
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required=""/>
+                                <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required
+                                onChange={(val) => setpassword(val.target.value)}/>
                             </div>
 
-
-                            <Link to={'/admin/dashboard'}>
-                                <button  onClick={() => dispatch(adminlogin())} type="submit" 
-                                class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-3 text-center mt-6 ">
-                                Login in</button>
-                            </Link>
+                            <button type="submit" 
+                            class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-base px-5 py-3 text-center mt-6 "> Login in </button>
 
                             <Link to={'/chooserole'}>
                                 <button  type="submit" 

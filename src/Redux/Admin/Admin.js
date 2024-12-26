@@ -4,15 +4,21 @@ export const AdminSlice = createSlice({
   name: 'Admin',
   initialState: {
     loggedin: false,
-    showuser : false
+    showuser : false,
+    adminid : '',
+    adminname : '',
   },
 
   reducers: {
-    adminlogin: (state) => {
+    adminlogin: (state, action) => {
       state.loggedin = true
+      state.adminid = action.payload.adminid
+      state.adminname = action.payload.adminname
     },
     adminlogout: (state) => {
       state.loggedin = false
+      state.adminid = ""
+      state.adminname = ""
     },
 
     openusers: (state) => {
