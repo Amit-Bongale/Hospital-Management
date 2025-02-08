@@ -24,7 +24,7 @@ function Doctorcard() {
   return (
     <div>
       <div>
-        <h1 class="text-4xl font-bold text-gray-900 m-4 ml-10 ">
+        <h1 class="text-2xl md:text-4xl font-bold text-gray-900 m-4 md:ml-10 ">
           Our Experienced Doctors
         </h1>
       </div>

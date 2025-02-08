@@ -13,15 +13,15 @@ function AboutHospital() {
       </h1> */}
 
       <section class="bg-white dark:bg-gray-900">
-        <div class="gap-16 items-center py-4 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div class="gap-16 items-center py-4 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6 ">
           <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-            <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
+            <h2 class="mb-4 md:text-4xl text-2xl tracking-tight font-bold text-gray-900 text-center md:text-left dark:text-white">
              Most Advanced and Coordinated Care
             </h2>
-            <p class="mb-4">
+            <p class="mb-4 text-justify" >
              At or Hospital, we pride ourselves on delivering advanced and seamless healthcare services designed to meet the diverse needs of our patients. With cutting-edge technology and a patient-first approach, we ensure that every individual receives the highest quality of care. 
             </p>
-            <p>
+            <p className="hidden md:block">
              Whether it's routine check-ups or complex surgeries, our team of experts is here to guide you every step of the way. We provide a safe, comfortable, and healing environment where patients can focus on recovery with confidence.
             </p>
           </div>

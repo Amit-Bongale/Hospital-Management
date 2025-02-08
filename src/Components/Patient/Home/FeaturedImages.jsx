@@ -5,10 +5,10 @@ function FeaturedImages() {
     <div>
         <section className="py-12 bg-white">
         <div className="max-w-6xl mx-auto text-center px-6">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
             Best Medical Service That all can Trust.
           </h2>
-          <p className="text-lg text-gray-600 mb-10">
+          <p className="text-md text-justify md:text-lg text-gray-600 mb-10">
           At Our Hospital, we don’t just provide healthcare; we build trust. Our hospital is more than a place of treatment—it’s a center for healing, education, and community care. Every patient we serve becomes a part of our extended family, and we are committed to ensuring their journey toward wellness is supported every step of the way
           </p>
         </div>
