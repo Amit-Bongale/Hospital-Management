@@ -7,7 +7,7 @@ import ActivePatients from '../../Components/Admin/Dashboard/ActivePatients'
 import ActiveStaff from '../../Components/Admin/Dashboard/ActiveStaff'
 import ActiveRooms from '../../Components/Admin/Dashboard/ActiveRooms'
 import TotalIncome from '../../Components/Admin/Dashboard/TotalIncome'
-import Performance from '../../Components/Admin/Dashboard/Performance'
+// import Performance from '../../Components/Admin/Dashboard/Performance'
 
 function AdminDashboard() {
 

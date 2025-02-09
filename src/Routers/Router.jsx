@@ -84,7 +84,7 @@ function Router() {
         <Route path='admission' element={ <Admission/> } />
         <Route path='schedule' element={ <Schedule/> } />
         <Route path='testdetails' element={ <Testdetails/> } />
-    
+        
       </Route>
 
 
