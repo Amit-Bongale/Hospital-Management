@@ -62,7 +62,7 @@ function PatientAdmitForm({ setisopen , patientid }) {
     } catch (error) {
       console.log("error :", error);
     }
-  }, []);
+  },[patientid]);
 
   return (
     <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">

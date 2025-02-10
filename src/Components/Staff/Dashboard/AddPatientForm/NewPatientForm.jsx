@@ -36,7 +36,7 @@ function NewPatientForm({ setisopen }) {
     }
   },[])
 
-  
+  // Create New Patient and adds to queue
   function Send(){
 
     let data = {
@@ -56,6 +56,8 @@ function NewPatientForm({ setisopen }) {
       // "slot" : slot,
       // "type" : type,
     }
+
+    console.log(slot)
 
     try {
       fetch(`${process.env.REACT_APP_API_URL}/patient/createnewpatient`, {
