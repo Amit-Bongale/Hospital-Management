@@ -8,6 +8,8 @@ import {
 function PatientTestReport() {
   const [testinfo, setTestInfo] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [doctors, setDoctors] = useState([]);
+
 
   // const [selectedCategory, setSelectedCategory] = useState("all");
   // const [selectedStatus, setSelectedStatus] = useState("all");
@@ -79,6 +81,29 @@ function PatientTestReport() {
     }
   };
 
+  
+  // fetch doctors name
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setDoctors(data);
+          console.log("doctors: ",data);
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+  }, []);
+
+  const getDoctorName = (doctorId) => {
+    const doctor = doctors.find((doc) => doc.id === doctorId);
+    return doctor ? doctor.name : "--";
+  };
+
   return (
     <div className="w-full max-w-6xl mx-auto p-4">
       <div className=" w-[80vw] flex justify-between">
@@ -137,8 +162,8 @@ function PatientTestReport() {
             <div className="flex items-center space-x-4">
               <Stethoscope className="text-blue-600" />
               <div>
-                <p className="text-gray-600">Doctor ID</p>
-                <p className="font-semibold">{test.doctorid}</p>
+                <p className="text-gray-600">Doctor name</p>
+                <p className="font-semibold">Dr. {getDoctorName(test.doctorid)}</p>
               </div>
             </div>
 

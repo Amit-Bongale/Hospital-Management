@@ -10,7 +10,10 @@ function StaffDashboardInfo() {
   const [searchTerm, setSearchTerm] = useState("");
   const [appointmentinfo, setappointmentinfo] = useState([]);
   const [update, setupdate] = useState();
+  const [doctors, setDoctors] = useState([]);
 
+
+  // fetch patients in queue
   useEffect(() => {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient`, {
@@ -27,6 +30,7 @@ function StaffDashboardInfo() {
     }
   }, [newpatient, oldpatient, searchTerm, update]);
 
+  // fetch appointment info
   useEffect(() => {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/appointment/allappointment`, {
@@ -82,6 +86,28 @@ function StaffDashboardInfo() {
     } catch (error) {
       console.log("error :", error);
     }
+  };
+
+  // fetch doctors name
+  useEffect(() => {
+    try {
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setDoctors(data);
+          console.log("doctors: ",data);
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+  }, []);
+
+  const getDoctorName = (doctorId) => {
+    const doctor = doctors.find((doc) => doc.id === doctorId);
+    return doctor ? doctor.name : "--";
   };
 
   return (
@@ -155,7 +181,7 @@ function StaffDashboardInfo() {
                 </thead>
 
                 {appointmentinfo.map((appointment) => (
-                  <tbody className="text-center" key={appointment.patientid}>
+                  <tbody className="text-center" key={appointment._id}>
                     <tr>
                       <td className="px-6 py-3"> {appointment.patientid} </td>
                       <td className="px-6 py-3"> {appointment.doctorid} </td>
@@ -233,7 +259,7 @@ function StaffDashboardInfo() {
             </thead>
 
             {filteredQueue.map((queue) => (
-              <tbody className="text-center" key={queue.id}>
+              <tbody className="text-center" key={queue._id}>
                 <tr>
                   <td className="px-6 py-3">{queue.id}</td>
                   <td className="px-6 py-3">{queue.name}</td>
@@ -242,7 +268,7 @@ function StaffDashboardInfo() {
                   <td className="px-6 py-3">{queue.mobileno}</td>
                   <td className="px-6 py-3">{queue.type}</td>
                   <td className="px-6 py-3">{queue.status}</td>
-                  <td className="px-6 py-3">{queue.doctorid}</td>
+                  <td className="px-6 py-3">{getDoctorName(queue.doctorid)}</td>
                 </tr>
               </tbody>
             ))}

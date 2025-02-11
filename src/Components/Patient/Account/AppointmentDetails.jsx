@@ -184,7 +184,7 @@ function AppointmentDetails() {
                     <div>
                       <div className="flex items-center space-x-2">
                         <h3 className="text-lg font-medium text-gray-900">
-                          {appointment.doctorname}
+                          Dr. {appointment.doctorname}
                         </h3>
                         <span className="text-sm text-gray-500">
                           ({appointment.doctorspecialization})

@@ -41,7 +41,7 @@ function Doctorcard() {
                   alt="doctor profile"
                 />
                 <div class="mt-6">
-                  <h4 class="font-bold text-xl"> {doctor.name}</h4>
+                  <h4 class="font-bold text-xl"> Dr. {doctor.name}</h4>
                   <p class="mt-1 text-gray-600"> {doctor.specialization}</p>
                   <div class="mt-4">
                     <Link to="user/appointmentbooking">

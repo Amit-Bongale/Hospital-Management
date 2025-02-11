@@ -71,7 +71,7 @@ function PatientMedicalHistory() {
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <Stethoscope className="h-4 w-4" />
-                    <span>{record?.doctorname}</span>
+                    <span>Dr.{record?.doctorname}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span
