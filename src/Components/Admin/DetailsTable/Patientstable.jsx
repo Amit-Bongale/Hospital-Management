@@ -54,9 +54,9 @@ function Patientstable() {
               <th scope="col" class="px-6 py-3">
                 address
               </th>
-              <th scope="col" class="px-6 py-3">
+              {/* <th scope="col" class="px-6 py-3">
                 Status
-              </th>
+              </th> */}
               <th scope="col" class="px-6 py-3">
                 <span class="sr-only">Edit</span>
               </th>
@@ -75,9 +75,9 @@ function Patientstable() {
                 <td class="px-6 py-4">{patient.phone}</td>
                 <td class="px-6 py-4">{patient.address}</td>
                 
-                <td class="px-6 py-4">
-                  <span className="bg-yellow-400 py-2 px-6 text-black rounded-2xl"> Treating </span>
-                </td>
+                {/* <td class="px-6 py-4">
+                  <span className="bg-yellow-400 py-2 px-6 text-black rounded-2xl"> {patient.status} </span>
+                </td> */}
                 <td class="px-6 py-4 text-right">
                   <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   onClick={() => {setedit(true); setpatientid(patient.id); }}>

@@ -226,6 +226,9 @@ function StaffDashboardInfo() {
                 <th scope="col" className="px-6 py-3">
                   STATUS
                 </th>
+                <th scope="col" className="px-6 py-3">
+                  Doctor
+                </th>
               </tr>
             </thead>
 
@@ -239,6 +242,7 @@ function StaffDashboardInfo() {
                   <td className="px-6 py-3">{queue.mobileno}</td>
                   <td className="px-6 py-3">{queue.type}</td>
                   <td className="px-6 py-3">{queue.status}</td>
+                  <td className="px-6 py-3">{queue.doctorid}</td>
                 </tr>
               </tbody>
             ))}
