@@ -28,6 +28,7 @@ function Doctorlogin() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {

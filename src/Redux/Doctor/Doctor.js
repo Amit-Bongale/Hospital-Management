@@ -6,6 +6,7 @@ export const DoctorSlice = createSlice({
     loggedin: false,
     doctorid : '',
     doctorname: '',
+    role: 'doctor',
   },
 
   reducers: {

@@ -18,6 +18,7 @@ function StaffDashboardInfo() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {
@@ -35,6 +36,7 @@ function StaffDashboardInfo() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/appointment/allappointment`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {
@@ -58,6 +60,7 @@ function StaffDashboardInfo() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/appointment/approve/${id}`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {
@@ -93,6 +96,7 @@ function StaffDashboardInfo() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {

@@ -6,6 +6,7 @@ export const PatientSlice = createSlice({
     loggedin : false,
     patientId: null,
     patientName: null,
+    role: 'patient',
   },
 
   reducers: {

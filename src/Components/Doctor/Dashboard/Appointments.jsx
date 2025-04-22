@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-
 import { useSelector } from "react-redux";
-
-import {
-  User, 
-  Activity,
-  NotepadText,
-  UserSearch,
-} from 'lucide-react';
-
 import Viewpatient from "../Patientdetails/Viewpatient";
 
+import {io} from "socket.io-client";
+
+import {User, Activity,NotepadText,UserSearch} from 'lucide-react';
+
+
 function Appointments() {
+
+  // const socket = io(process.env.REACT_APP_API_URL)
+  const socket = io(process.env.REACT_APP_API_UR, {
+    withCredentials: true,
+    transports: ["websocket"], // prevents polling fallback
+  });
    
   let docid = useSelector((state) => state.doctor.doctorid)
 
@@ -26,6 +28,7 @@ function Appointments() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/allpatient/${docid}`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {
@@ -37,6 +40,16 @@ function Appointments() {
       console.log("error :", error);
     }
   }, [view, docid]);
+
+  useEffect(() => {
+    // Join doctor-specific room
+    socket.emit("joinRoom",{ role: 'doctor', id: docid});
+
+    // Listen for new patient event
+    socket.on("newPatientInQueue", (newPatient) => {
+      setqueueinfo(prev => [...prev, newPatient]);
+    });
+  }, [docid, socket]);
 
   if (queueinfo.length === 0){
     return(

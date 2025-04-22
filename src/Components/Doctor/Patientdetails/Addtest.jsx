@@ -29,6 +29,7 @@ function Addtest({settest ,id, name}){
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {
@@ -50,11 +51,11 @@ function Addtest({settest ,id, name}){
       fetch(`${process.env.REACT_APP_API_URL}/staff/allstaff`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-          })
+        credentials: "include",
+    })
         .then((res) => res.json())
         .then((data) => {
           setstaffinfo(data);
-
           console.log('staff dataa:', data);
         })
         .catch((err) => console.log("Error Fetching Data :", err));
@@ -62,12 +63,8 @@ function Addtest({settest ,id, name}){
       console.log("Error :", error);
     }
   
-  },[]
-  )
+  },[])
 
-  // setpatientid(data.patientid)
-
-    
     return(
       <div className="w-[100vw] h-full  absolute top-0 left-0 flex justify-center items-center  ">
         <div className=" bg-white w-[55%] h-[90%] py-6 px-8 z-20  border-2 shadow-xl rounded-3xl">
@@ -104,7 +101,6 @@ function Addtest({settest ,id, name}){
               </div>
               
             </div> */}
-
 
             <div>
               <label

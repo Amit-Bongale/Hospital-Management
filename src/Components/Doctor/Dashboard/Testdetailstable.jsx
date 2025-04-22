@@ -2,13 +2,14 @@ import React from "react";
 import { useEffect , useState } from "react";
 
 function Testdetails() {
+  
   let [testinfo , settestinfo] = useState([])
 
   useEffect(()=>{
-
     try {
       fetch(`${process.env.REACT_APP_API_URL}/test/testdetails`, {
         method: "POST",
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {
@@ -19,9 +20,7 @@ function Testdetails() {
     } catch (error) {
       console.log("error :", error);
     }
-
   },[])
-
 
   return(
     <div class="ml-4 ">

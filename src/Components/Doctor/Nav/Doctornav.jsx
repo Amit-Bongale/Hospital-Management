@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { doctorlogout } from "../../../Redux/Doctor/Doctor";
 import { useSelector } from 'react-redux';
 
-//import Admission from '../../Doctor/Dashboard/Admission'
 import { LayoutDashboard, BedSingle, NotepadText , CalendarFold, LogOut } from 'lucide-react';
+
+import {io} from "socket.io-client";
+const socket = io(process.env.REACT_APP_API_URL)
 
 
 function Doctornav() {
@@ -19,6 +21,7 @@ function Doctornav() {
     let data = {
       'id' : id,
     }
+
     try {
       fetch(
         `${process.env.REACT_APP_API_URL}/doctor/logout`,
@@ -26,6 +29,7 @@ function Doctornav() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
+          credentials: "include",
         }
       )
         .then((res) => res.json())
@@ -39,6 +43,9 @@ function Doctornav() {
     } catch (error) {
       console.log("error :", error);
     }
+
+    socket.emit("logout", { role: 'doctor', id: id});
+    socket.disconnect();
 
     dispatch(doctorlogout(id))
   }

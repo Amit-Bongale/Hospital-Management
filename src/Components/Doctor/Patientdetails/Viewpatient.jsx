@@ -69,6 +69,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
+          credentials: "include",
         }
       )
         .then((res) => res.json())
@@ -92,6 +93,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: id }),
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => alert(data.message))
@@ -105,6 +107,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${id}`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {
@@ -126,7 +129,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
   useEffect(() => {
     fetch(
       `${process.env.REACT_APP_API_URL}/medicalhistory/patientmedicalhistory/latest/${id}`,
-      { method: "POST" }
+      { method: "POST", credentials: "include", }
     )
       .then((res) => res.json())
       .then((data) => {
@@ -141,6 +144,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/test/patienttestdetail/${id}`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {

@@ -67,7 +67,7 @@ function PatientDetails() {
               </tr>
               <tr className="border-b">
                 <td className="py-2 px-4 text-gray-600 font-medium">Date of Birth</td>
-                <td className="py-2 px-4 text-gray-900">{(patient.dob).split('T')[0]}</td>
+                <td className="py-2 px-4 text-gray-900">{(patient.dob)?.split('T')[0]}</td>
               </tr>
               <tr className="border-b">
                 <td className="py-2 px-4 text-gray-600 font-medium">Age</td>

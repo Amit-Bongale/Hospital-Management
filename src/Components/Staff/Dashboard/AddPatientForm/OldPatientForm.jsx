@@ -19,7 +19,7 @@ function OldPatientForm({ setisopen }) {
   // fetch doctor details 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST" })
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors` , { method: "POST", credentials: "include" })
       .then((res) => res.json())
       .then((data) => setdoctorinfo(data))
       .catch((err) => console.log("Error Fetching Data :" , err))
@@ -45,6 +45,7 @@ function OldPatientForm({ setisopen }) {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/queue/createqueue`, {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(queue),
       })
@@ -67,6 +68,8 @@ function OldPatientForm({ setisopen }) {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/patient/findpatient/${id}`, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {

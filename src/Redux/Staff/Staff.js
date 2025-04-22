@@ -6,6 +6,7 @@ export const StaffSlice = createSlice({
     loggedin: false,
     staffid : '',
     staffname: '',
+    role: 'staff',
   },
 
   reducers: {

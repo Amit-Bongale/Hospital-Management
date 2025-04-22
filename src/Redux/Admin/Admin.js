@@ -7,6 +7,7 @@ export const AdminSlice = createSlice({
     showuser : false,
     adminid : '',
     adminname : '',
+    role: 'admin',
   },
 
   reducers: {
