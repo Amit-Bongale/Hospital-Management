@@ -14,6 +14,7 @@ function EditWard({setisopen , wardid}) {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/ward/findward/${wardid}`, {
         method: "POST",
+        credentials: 'include',
       })
         .then((res) => res.json())
         .then((data) => {
@@ -43,6 +44,7 @@ function EditWard({setisopen , wardid}) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        credentials: 'include',
       })
       .then((res) => res.json())
       .then((data) => alert(data.message))

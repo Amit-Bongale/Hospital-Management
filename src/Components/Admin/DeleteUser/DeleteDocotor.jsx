@@ -9,6 +9,7 @@ function DeleteDocotor({ setisopen , doctorid }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 'id' : doctorid }),
+        credentials: 'include',
       })
       .then((res) => res.json())
       .then((data) => alert(data.message))

@@ -20,6 +20,7 @@ function EditStaff({ setisopen, staffid } ) {
       fetch(`${process.env.REACT_APP_API_URL}/staff/findstaff/${staffid}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
+        credentials: 'include',
       })
         .then((res) => res.json())
         .then((data) => {
@@ -59,6 +60,7 @@ function EditStaff({ setisopen, staffid } ) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        credentials: 'include',
       })
       .then((res) => res.json())
       .then((data) => { alert(data.message)})

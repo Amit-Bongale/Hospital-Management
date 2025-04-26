@@ -15,6 +15,7 @@ function WardDetails() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/ward/details`, {
         method: "POST",
+        credentials: 'include',
       })
         .then((res) => res.json())
         .then((data) => setwarddetails(data))

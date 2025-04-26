@@ -9,7 +9,12 @@ function ActivePatients() {
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/queue/active`)
+      fetch(`${process.env.REACT_APP_API_URL}/queue/active`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+      )
       .then((res) => res.json())
       .then((data) => {
         setactivepatients(data)

@@ -9,6 +9,7 @@ function DeleteWard({setisopen , wardid}) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 'id' : wardid }),
+            credentials: 'include',
           })
           .then((res) => res.json())
           .then((data) => alert(data.message))

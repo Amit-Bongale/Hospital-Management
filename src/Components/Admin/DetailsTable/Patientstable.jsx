@@ -16,7 +16,7 @@ function Patientstable() {
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/patient/allpatients` , { method: "POST" })
+      fetch(`${process.env.REACT_APP_API_URL}/patient/allpatients` , { method: "POST" , credentials: 'include', })
       .then((res) => res.json())
       .then((data) => setpatientinfo(data))
       .catch((err) => console.log("Error Fetching Data :" , err))

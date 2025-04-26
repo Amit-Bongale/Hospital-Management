@@ -21,6 +21,7 @@ function EditDoctor({ setisopen, doctorid }) {
       fetch(`${process.env.REACT_APP_API_URL}/doctor/finddoctor/${doctorid}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: 'include',
       })
         .then((res) => res.json())
         .then((data) => {
@@ -60,6 +61,7 @@ function EditDoctor({ setisopen, doctorid }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
+        credentials: 'include',
       })
       .then((res) => res.json())
       .then((data) => alert(data.message))

@@ -3,14 +3,15 @@ import React from 'react'
 function DeleteStaff({setisopen , staffid }) {
 
   console.log(staffid)
+  
   function deletestaff(){
-
 
     try {
       fetch(`${process.env.REACT_APP_API_URL}/staff/deletestaff`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 'id' : staffid }),
+        credentials: 'include',
       })
       .then((res) => res.json())
       .then((data) => alert(data.message))

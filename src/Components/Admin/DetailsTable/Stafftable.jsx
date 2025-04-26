@@ -15,6 +15,7 @@ function Stafftable() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/staff/allstaff`, {
         method: "POST",
+        credentials: 'include',
       })
         .then((res) => res.json())
         .then((data) => setstaffinfo(data))

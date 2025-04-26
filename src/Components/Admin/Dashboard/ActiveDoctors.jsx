@@ -10,7 +10,12 @@ function ActiveDoctors() {
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/doctor/doctorstats`)
+      fetch(`${process.env.REACT_APP_API_URL}/doctor/doctorstats`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+      )
       .then((res) => res.json())
       .then((data) => {
         settotaldoctor(data.totalDoctors)

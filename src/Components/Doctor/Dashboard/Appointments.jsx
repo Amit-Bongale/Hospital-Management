@@ -80,7 +80,6 @@ function Appointments() {
     <div className=" w-[80vw] mt-6 ml-2">
       {queueinfo.map((queue) => (
         <div>
-         
           <div className="w-full m-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border-2 border-gray-200">
             <div className="p-4 flex items-center justify-between space-x-4">
               {/* Patient Info Section */}

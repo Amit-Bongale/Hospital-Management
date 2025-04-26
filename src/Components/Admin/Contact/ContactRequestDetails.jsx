@@ -9,6 +9,7 @@ function ContactRequestDetails() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/contactus/allrequest`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {

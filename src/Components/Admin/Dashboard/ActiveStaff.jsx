@@ -11,7 +11,10 @@ function ActiveStaff() {
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/staff/staffstats`)
+      fetch(`${process.env.REACT_APP_API_URL}/staff/staffstats`,   {
+        method: "GET",
+        credentials: "include",
+      })
       .then((res) => res.json())
       .then((data) => {
         settotalstaff(data.totalstaff)

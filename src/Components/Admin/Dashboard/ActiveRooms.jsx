@@ -10,7 +10,10 @@ function ActiveRooms() {
 
   useEffect(() => {
     try {
-      fetch(`${process.env.REACT_APP_API_URL}/ward/wardstats`)
+      fetch(`${process.env.REACT_APP_API_URL}/ward/wardstats`,   {
+        method: "GET",
+        credentials: "include",
+      })
       .then((res) => res.json())
       .then((data) => {
         settotalbed(data.totalbeds)
