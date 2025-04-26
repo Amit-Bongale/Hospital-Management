@@ -11,11 +11,11 @@ import {User, Activity,NotepadText,UserSearch} from 'lucide-react';
 function Appointments() {
 
   // const socket = io(process.env.REACT_APP_API_URL)
-  const socket = io(process.env.REACT_APP_API_UR, {
+  const socket = io(process.env.REACT_APP_API_URL, {
     withCredentials: true,
     transports: ["websocket"], // prevents polling fallback
   });
-   
+  
   let docid = useSelector((state) => state.doctor.doctorid)
 
   let [view, setview] = useState(false);
@@ -30,26 +30,43 @@ function Appointments() {
         method: "POST",
         credentials: "include",
       })
-        .then((res) => res.json())
-        .then((data) => {
-          setqueueinfo(data);
-          console.log(data);
-        })
-        .catch((error) => console.log("Fetching Error:", error));
+      .then((res) => res.json())
+      .then((data) => {
+        setqueueinfo(data);
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }
   }, [view, docid]);
 
   useEffect(() => {
+
     // Join doctor-specific room
-    socket.emit("joinRoom",{ role: 'doctor', id: docid});
+    socket.emit("joinRoom", { role: "doctor", id: docid });
 
     // Listen for new patient event
-    socket.on("newPatientInQueue", (newPatient) => {
-      setqueueinfo(prev => [...prev, newPatient]);
-    });
+    const handleNewPatient = (newPatient) => {
+      console.log("New patient in queue:", newPatient);
+      setqueueinfo((prev) => {
+        // Check if the patient already exists in the queue
+        const exists = prev.some((patient) => patient.id === newPatient.id);
+        if (!exists) {
+          return [...prev, newPatient];
+        }
+        return prev;
+      });
+    };
+
+    socket.on("newPatientInQueue", handleNewPatient);
+
+    // Cleanup listener on component unmount
+    return () => {
+      socket.off("newPatientInQueue", handleNewPatient);
+    };
   }, [docid, socket]);
+
 
   if (queueinfo.length === 0){
     return(
@@ -116,6 +133,7 @@ function Appointments() {
           </div>
         </div>
       ))}
+
       {view ? <Viewpatient setview={setview} id={id} appointmenttype={appontmenttype}/> : <></>}
       
     </div>

@@ -78,6 +78,7 @@ function StaffDashboardInfo() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/appointment/reject/${id}`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {

@@ -35,7 +35,7 @@ function AppointmentDetails() {
     try {
       fetch(
         `${process.env.REACT_APP_API_URL}/appointment/details/${patientid}`,
-        { method: "POST", }
+        { method: "POST", credentials: "include" }
       )
       .then((res) => res.json())
       .then((data) => {
