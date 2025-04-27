@@ -21,6 +21,7 @@ function PatientBillInfo() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/bill/bills`, {
         method: "POST",
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {

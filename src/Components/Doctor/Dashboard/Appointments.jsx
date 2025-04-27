@@ -68,6 +68,20 @@ function Appointments() {
   }, [docid, socket]);
 
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case "Followup":
+        return "bg-yellow-200 text-black";
+      case "Casual":
+        return "bg-gray-100 text-gray-600";
+      case "Emergency":
+        return "bg-red-100 text-white";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+
   if (queueinfo.length === 0){
     return(
       <div className="flex items-center justify-center text-center w-[80vw] h-[100vh]">
@@ -94,8 +108,8 @@ function Appointments() {
                       {queue.name}
                     </h3>
 
-                    <span className="px-2 py-1 text-sm rounded-full bg-gray-100 text-gray-600 border border-gray-200">
-                      <div className="flex items-center text-gray-500 text-sm ">
+                    <span className={`px-2 py-1 text-sm rounded-full ${getStatusColor(queue.type)} border border-gray-200`} >
+                      <div className={`flex items-center text-gray-500 text-sm`}>
                         <NotepadText className="w-4 h-4 mr-1" />
                         <span>{queue.type}</span>
                       </div> 
@@ -103,7 +117,7 @@ function Appointments() {
                   </div>
 
                   <div className="flex items-center space-x-8 mt-3">
-                    <div className="flex items-center text-gray-500 text-sm">
+                    <div className='flex items-center text-gray-500 text-sm'>
                       <Activity className="w-4 h-4 mr-1" />
                       <span>{queue.disease}</span>
                     </div>

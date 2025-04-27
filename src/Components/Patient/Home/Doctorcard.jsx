@@ -9,6 +9,7 @@ function Doctorcard() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/doctor/alldoctors`, {
         method: "POST",
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {

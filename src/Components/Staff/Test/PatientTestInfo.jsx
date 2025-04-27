@@ -16,6 +16,7 @@ function PatientTestInfo({ _id}) {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/test/testdetails`, {
         method: "POST",
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {
@@ -35,6 +36,7 @@ function PatientTestInfo({ _id}) {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/test/deletetest`, {
         method: 'POST',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 'id' : _id }),
       })

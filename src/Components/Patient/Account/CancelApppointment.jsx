@@ -6,9 +6,10 @@ function CancelApppointment({ setisopen, id }) {
     console.log(id);
     try {
         fetch(`${process.env.REACT_APP_API_URL}/appointment/cancelappointment`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ 'id' : id }),
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 'id' : id }),
+          credentials: "include",
         })
         .then((res) => res.json())
         .then((data) => alert(data.message))

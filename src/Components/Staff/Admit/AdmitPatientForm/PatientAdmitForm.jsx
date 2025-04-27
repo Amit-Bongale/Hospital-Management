@@ -28,6 +28,7 @@ function PatientAdmitForm({ setisopen , patientid }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(admission),
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {

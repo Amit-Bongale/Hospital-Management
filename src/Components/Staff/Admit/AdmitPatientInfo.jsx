@@ -18,6 +18,7 @@ function AdmitPatientInfo() {
     try {
       fetch(`${process.env.REACT_APP_API_URL}/admission/admissiondetails`, {
         method: "POST",
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {
@@ -41,6 +42,7 @@ function AdmitPatientInfo() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 'id' : patientid }),
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => alert(data.message))

@@ -18,6 +18,7 @@ function Layout() {
       fetch(`${process.env.REACT_APP_API_URL}/bill/findbill/${billno}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
       })
         .then((res) => res.json())
         .then((data) => {
@@ -38,7 +39,7 @@ function Layout() {
     try {
       fetch(
         `${process.env.REACT_APP_API_URL}/patient/findpatient/${patientid}`,
-        { method: "POST" }
+        { method: "POST", credentials: "include", }
       )
         .then((res) => res.json())
         .then((data) => {
@@ -53,7 +54,7 @@ function Layout() {
     try {
       fetch(
         `${process.env.REACT_APP_API_URL}/medicalhistory/prescription/${patientid}`,
-        { method: "POST" }
+        { method: "POST", credentials: "include", }
       )
         .then((res) => res.json())
         .then((data) => {
@@ -68,7 +69,7 @@ function Layout() {
 
     try {
       fetch(`${process.env.REACT_APP_API_URL}/test/last/${patientid}`, {
-        method: "POST",
+        method: "POST",credentials: "include"
       })
         .then((res) => res.json())
         .then((data) => {
@@ -92,6 +93,7 @@ function Layout() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({billno}),
+          credentials: "include",
         }
       )
         .then((res) => res.json())

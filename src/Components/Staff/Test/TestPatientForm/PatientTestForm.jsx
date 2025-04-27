@@ -23,6 +23,7 @@ function PatientTestForm({ setisopen , patientid}) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(test),
+        credentials: "include",
       })
       .then((res) => res.json())
       .then((data) => {
