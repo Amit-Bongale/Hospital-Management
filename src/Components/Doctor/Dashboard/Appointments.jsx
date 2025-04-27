@@ -41,6 +41,7 @@ function Appointments() {
     }
   }, [view, docid]);
 
+  
   useEffect(() => {
 
     // Join doctor-specific room
@@ -70,12 +71,12 @@ function Appointments() {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case "Followup":
+      case "Follow up":
         return "bg-yellow-200 text-black";
-      case "Casual":
+      case "Consultation":
         return "bg-gray-100 text-gray-600";
       case "Emergency":
-        return "bg-red-100 text-white";
+        return "bg-red-500 text-white";
       default:
         return "bg-gray-100 text-gray-800";
     }
@@ -109,7 +110,7 @@ function Appointments() {
                     </h3>
 
                     <span className={`px-2 py-1 text-sm rounded-full ${getStatusColor(queue.type)} border border-gray-200`} >
-                      <div className={`flex items-center text-gray-500 text-sm`}>
+                      <div className={`flex items-center text-sm`}>
                         <NotepadText className="w-4 h-4 mr-1" />
                         <span>{queue.type}</span>
                       </div> 

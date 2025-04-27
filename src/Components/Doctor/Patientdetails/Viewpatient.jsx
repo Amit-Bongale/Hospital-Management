@@ -38,21 +38,34 @@ function Viewpatient({ setview, id, appointmenttype }) {
   const doctorid = useSelector((state) => state.doctor.doctorid);
   const doctorname = useSelector((state) => state.doctor.doctorname);
 
-  const {
+  let {
     transcript,
     listening,
     resetTranscript,
     // browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  function handlePrescription() {
+  useEffect(() => {
+    setmedicine(transcript);
+  }, [transcript]);
+
+  function handleReset() {
+    setmedicine("");
+    resetTranscript();
+  }
+
+  function handlePrescription(){
+    if (!medicines.trim()) return;
     setprescription((prev) =>
       prev.trim() ? prev + "\n" + medicines : medicines
     );
     setmedicine("");
+    resetTranscript();
   }
 
+
   function Send() {
+
     let data = {
       patientid: id,
       doctorid: doctorid,
@@ -131,13 +144,13 @@ function Viewpatient({ setview, id, appointmenttype }) {
       `${process.env.REACT_APP_API_URL}/medicalhistory/patientmedicalhistory/latest/${id}`,
       { method: "POST", credentials: "include", }
     )
-      .then((res) => res.json())
-      .then((data) => {
-        const historyData = Array.isArray(data) ? data : [data];
-        setMedicalHistory(historyData);
-        console.log(historyData);
-      })
-      .catch((error) => console.log("Fetching Error:", error));
+    .then((res) => res.json())
+    .then((data) => {
+      const historyData = Array.isArray(data) ? data : [data];
+      setMedicalHistory(historyData);
+      console.log(historyData);
+    })
+    .catch((error) => console.log("Fetching Error:", error));
   }, [id]);
 
   useEffect(() => {
@@ -146,14 +159,14 @@ function Viewpatient({ setview, id, appointmenttype }) {
         method: "POST",
         credentials: "include",
       })
-        .then((res) => res.json())
-        .then((data) => {
-          settestresult(data.result);
-          settestname(data.testname);
+      .then((res) => res.json())
+      .then((data) => {
+        settestresult(data.result);
+        settestname(data.testname);
 
-          console.log(data);
-        })
-        .catch((error) => console.log("Fetching Error:", error));
+        console.log(data);
+      })
+      .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {
       console.log("error :", error);
     }
@@ -161,7 +174,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
 
   return (
     <div className="w-[100vw] h-full fixed  top-0 left-28 flex justify-center items-center  ">
-      <div className=" bg-white w-[75%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto rounded-md scrollbar">
+      <div className=" bg-white w-[75%] h-[90%] py-6 px-8 z-20 border-2 shadow-xl  overflow-y-auto       rounded-md scrollbar">
         <h2 className="text-2xl font-bold py-2 mb-5 border-b-2 ">
           View Patient
         </h2>
@@ -170,7 +183,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
             <table className="w-full text-left">
               <tbody>
                 <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">
+                  <td className="py-1 px-4 text-gray-600 font-medium w-72">
                     Patient ID :{" "}
                   </td>
                   <td className="py-1 px-4 text-gray-900">{patient.id}</td>
@@ -256,6 +269,13 @@ function Viewpatient({ setview, id, appointmenttype }) {
                 <table className="border-collapse border border-gray-300">
                   <tbody>
                     <div>
+                      <tr className="bg-gray-100 w-full">
+                        <th> Date</th>
+                        <th>Disease</th>
+                        <th>Prescription</th>
+                        <th>Doctor</th>
+                      </tr>
+                      
                       {medicalHistory.map((history, index) => (
                         <tr
                           key={index}
@@ -263,33 +283,32 @@ function Viewpatient({ setview, id, appointmenttype }) {
                         >
                           <td className="py-2 px-4 border border-gray-300">
                             <span className="flex items-center gap-2">
-                              <Calendar className="h-4 w-4" />
+                              <Calendar className="h-4 w-4"/>
                               {new Date(history.date).toLocaleDateString("EN-IN")}
                             </span>
                           </td>
-                          <td className="py-2 px-4 border border-gray-300">
-                            <span className="flex items-center gap-2">
+                          <td className="py-2 px-4 border border-gray-300 text-wrap">
+                            <span className="flex items-center gap-2 w-96 text-wrap">
                               <Activity className="h-4 w-4" />
                               {history.disease}
                             </span>
                           </td>
                           <td className="py-2 px-4 border border-gray-300">
                             {history.prescription ? (
-                              <div>
-                                <span className="flex items-center gap-2 text-wrap">
-                                  <ClipboardList className="h-4 w-4" />
+                              <div className="flex">
+                                <ClipboardList className="h-4 w-4 mt-1" />
+                                <span className="flex-col items-center gap-2 text-wrap w-[350px]">
                                   {history.prescription
                                     .split("\n")
                                     .map((line, index) => (
-                                      <div key={index} className="flex">
+                                      <div key={index} className="flex text-wrap">
                                         <Dot /> {line}
-                                        <br />
                                       </div>
                                     ))}
                                 </span>
                               </div>
                             ) : (
-                              <div> </div>
+                              <div> No Prescription Found</div>
                             )}
                           </td>
                           <td className="py-2 px-4 border border-gray-300">
@@ -340,39 +359,34 @@ function Viewpatient({ setview, id, appointmenttype }) {
               id="prescription"
               rows={2}
               type="text"
-              class="bg-gray-50 border  border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="bg-gray-50 border  border-gray-300 text-gray-900 mr-96 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Add prescription"
               onChange={(e) => {
                 setmedicine(e.target.value);
               }}
-              value={transcript || medicines}
+              value={medicines}
             />
             <button
-              className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5  text-center"
               onClick={() => handlePrescription()}
             >
-              {" "}
-              ADD{" "}
+              ADD
             </button>
           </div>
 
           <div className="flex flex-col gap-4 mt-4 p-4">
-            {/* <p>Microphone: {listening ? "on" : "off"}</p> */}
-            {listening ? (
+            { listening ? (
               <button onClick={() => SpeechRecognition.stopListening()}>
-                {" "}
-                <MicOff className="h-6 w-6" />{" "}
+                <MicOff className="h-6 w-6" />
               </button>
             ) : (
               <button onClick={() => SpeechRecognition.startListening()}>
                 <Mic className="h-6 w-6" />
               </button>
             )}
-            <button onClick={resetTranscript}>
-              {" "}
+            <button onClick={handleReset}>
               <RotateCcw className="h-6 w-6" />{" "}
             </button>
-            {/* <p> {transcript}</p> */}
           </div>
         </div>
 
@@ -389,8 +403,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
               className="text-white bg-black mt-4 hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               onClick={() => setprescription("")}
             >
-              {" "}
-              Clear{" "}
+              Clear
             </button>
           </div>
         )}
