@@ -246,14 +246,6 @@ function Viewpatient({ setview, id, appointmenttype }) {
                     {patient.bloodgroup}
                   </td>
                 </tr>
-                <tr className="">
-                  <td className="py-1 px-4 text-gray-600 font-medium">
-                    Aaadhar Number :
-                  </td>
-                  <td className="py-1 px-4 text-gray-900">
-                    {patient.aadharno}
-                  </td>
-                </tr>
                 <tr>
                   <td className="py-1 px-4 text-gray-600 font-medium">
                     Medical History :
@@ -424,7 +416,7 @@ function Viewpatient({ setview, id, appointmenttype }) {
 
         <div className="mt-6 flex justify-between items-center">
           <div className="flex">
-            <div cals>
+            <div>
               <button
                 onClick={() => settest(true)}
                 type="Add test"

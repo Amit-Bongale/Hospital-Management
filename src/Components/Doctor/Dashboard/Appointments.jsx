@@ -10,7 +10,6 @@ import {User, Activity,NotepadText,UserSearch} from 'lucide-react';
 
 function Appointments() {
 
-  // const socket = io(process.env.REACT_APP_API_URL)
   const socket = io(process.env.REACT_APP_API_URL, {
     withCredentials: true,
     transports: ["websocket"], // prevents polling fallback
@@ -81,7 +80,6 @@ function Appointments() {
         return "bg-gray-100 text-gray-800";
     }
   };
-
 
   if (queueinfo.length === 0){
     return(

@@ -319,7 +319,7 @@ function Layout() {
               <tbody>
                 {prescription.map((medicine) => (
                   <tr>
-                    {medicine.prescription.split('\n').map((line, index) => (
+                    {medicine.prescription?.split('\n').map((line, index) => (
                       <div key={index} className="flex">
                         <Dot/> {line}
                         <br />

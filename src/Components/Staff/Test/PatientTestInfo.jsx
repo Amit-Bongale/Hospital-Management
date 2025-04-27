@@ -1,15 +1,20 @@
 import React from 'react'
 import { useState , useEffect } from 'react'
-
 import { Search } from 'lucide-react';
-
 import PatientTestForm from './TestPatientForm/PatientTestForm'
+import {io} from "socket.io-client";
 
 function PatientTestInfo({ _id}) {
+
   const [testpatient , settestpatient] = useState(false)
   const [testinfo , settestinfo] = useState([])
   const [patientid , setpatientid] = useState()
   const [searchTerm, setSearchTerm] = useState("");
+
+  const socket = io(process.env.REACT_APP_API_URL, {
+    withCredentials: true,
+    transports: ["websocket"], // prevents polling fallback
+  });
 
   useEffect(()=>{
 
@@ -29,6 +34,32 @@ function PatientTestInfo({ _id}) {
     }
 
   },[testpatient , patientid])
+
+
+  useEffect(() => {
+
+    // Join doctor-specific room
+    socket.emit("joinRoom", { role: "staff"});
+
+    const handleNewPatient = (newPatient) => {
+      console.log("New patient in Appointment:", newPatient);
+      settestinfo((prev) => {
+        const exists = prev.some((patient) => patient.id === newPatient.id);
+        if (!exists) {
+          return [...prev, newPatient];
+        }
+        return prev;
+      });
+    };
+
+    // Listen for new patient event
+    socket.on("newTest", handleNewPatient);
+
+    // Cleanup listener on component unmount
+    return () => {
+      socket.off("newTest", handleNewPatient);
+    };
+  }, [socket]);
 
 
   function deletetest(){
@@ -107,8 +138,8 @@ function PatientTestInfo({ _id}) {
               <td  class="px-6 py-3"> 
                 <button class="px-6 py-3"  onClick={() =>{ settestpatient(true); setpatientid(test._id)}} className="text-blue-600 hover:cursor-pointer"> Edit </button>
               </td>
-              <td class="px-6 py-3">  
-                  <button class="px-6 py-3" onClick={() => {deletetest();}} className="text-red-600 hover:cursor-pointer"> Delete </button>
+              <td class="px-6">  
+                  <button class="px-6 mb-2" onClick={() => {deletetest();}} className="text-red-600 hover:cursor-pointer"> Delete </button>
               </td>
             </tr>
           </tbody>

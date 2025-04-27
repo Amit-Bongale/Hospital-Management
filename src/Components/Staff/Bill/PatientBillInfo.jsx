@@ -3,14 +3,20 @@ import { useState , useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Printer, Search } from 'lucide-react';
+import {io} from "socket.io-client";
 
-import PatientBillForm from "./BillPatientForm/PatientBillForm";
+
 
 function PatientBillInfo() {
-  let [billpatient, setbillpatient] = useState(false);
+
   let [queueinfo , setqueueinfo] = useState([]) 
 
   const [searchTerm, setSearchTerm] = useState("");
+
+  const socket = io(process.env.REACT_APP_API_URL, {
+    withCredentials: true,
+    transports: ["websocket"], // prevents polling fallback
+  });
 
   function calculatetotal(a,b,c){
     return a+b+c
@@ -34,32 +40,41 @@ function PatientBillInfo() {
     }
   },[])
 
+  useEffect(() => {
+    // Join doctor-specific room
+    socket.emit("joinRoom", { role: "staff"});
 
-    // Filter patients by patientid or patientname
-    const filteredQueue = queueinfo.filter(
-      (patient) =>
-        patient.patientid.toString().includes(searchTerm) ||
-        patient.patientname.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const handleNewPatient = (newPatient) => {
+      console.log("New patient in Appointment:", newPatient);
+      setqueueinfo((prev) => {
+        const exists = prev.some((patient) => patient.id === newPatient.id);
+        if (!exists) {
+          return [...prev, newPatient];
+        }
+        return prev;
+      });
+    };
+
+    // Listen for new patient event
+    socket.on("newBill", handleNewPatient);
+
+    // Cleanup listener on component unmount
+    return () => {
+      socket.off("newBill", handleNewPatient);
+    };
+
+  }, [socket]);
+
+
+  // Filter patients by patientid or patientname
+  const filteredQueue = queueinfo.filter(
+    (patient) =>
+      patient.patientid.toString().includes(searchTerm) ||
+      patient.patientname.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div>
-      {/* <div className="flex">
-        <span className="grid items-start px-2 text-xl font-medium lg:px-4">
-          <button
-            onClick={() => setbillpatient(true)}
-            className="bg-black text-white py-3 px-6 rounded-3xl my-4"
-          >
-            {" "}
-            Bill{" "}
-          </button>
-        </span>
-      </div> */}
-
-      {billpatient ? <PatientBillForm setisopen={setbillpatient} /> : <></>}
-
-      {/*  */}
-
       <div>
         <div className="p-6 max-w-full bg-white">
           {/* Header and Search */}

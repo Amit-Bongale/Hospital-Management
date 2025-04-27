@@ -1,9 +1,18 @@
 import React from "react";
 import { useEffect , useState } from "react";
+import { useSelector } from "react-redux";
+import {io} from "socket.io-client";
 
 function Testdetails() {
   
-  let [testinfo , settestinfo] = useState([])
+  let [testinfo , settestinfo] = useState([]);
+
+  const socket = io(process.env.REACT_APP_API_URL, {
+    withCredentials: true,
+    transports: ["websocket"], // prevents polling fallback
+  });
+  
+  let docid = useSelector((state) => state.doctor.doctorid)
 
   useEffect(()=>{
     try {
@@ -20,7 +29,31 @@ function Testdetails() {
     } catch (error) {
       console.log("error :", error);
     }
-  },[])
+  },[docid])
+
+  useEffect(() => {
+      // Join doctor-specific room
+      socket.emit("joinRoom",  { role: "doctor", id: docid });
+  
+      const handleNewPatient = (newPatient) => {
+        console.log("New patient in Appointment:", newPatient);
+        settestinfo((prev) => {
+          const exists = prev.some((patient) => patient.id === newPatient.id);
+          if (!exists) {
+            return [...prev, newPatient];
+          }
+          return prev;
+        });
+      };
+  
+      // Listen for new patient event
+      socket.on("Testupdates", handleNewPatient);
+  
+      // Cleanup listener on component unmount
+      return () => {
+        socket.off("Testupdates", handleNewPatient);
+      };
+    }, [socket, docid]);
 
   return(
     <div class="ml-4 ">

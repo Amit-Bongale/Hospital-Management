@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import NewPatientForm from "./AddPatientForm/NewPatientForm";
 import OldPatientForm from "./AddPatientForm/OldPatientForm";
 import { Plus, UserSearch, Search } from "lucide-react";
+import {io} from "socket.io-client";
 
 function StaffDashboardInfo() {
+
   const [newpatient, setnewpatient] = useState(false);
   const [oldpatient, setoldpatient] = useState(false);
   const [queueinfo, setqueueinfo] = useState([]);
@@ -11,6 +13,11 @@ function StaffDashboardInfo() {
   const [appointmentinfo, setappointmentinfo] = useState([]);
   const [update, setupdate] = useState();
   const [doctors, setDoctors] = useState([]);
+
+  const socket = io(process.env.REACT_APP_API_URL, {
+    withCredentials: true,
+    transports: ["websocket"], // prevents polling fallback
+  });
 
 
   // fetch patients in queue
@@ -48,6 +55,33 @@ function StaffDashboardInfo() {
       console.log("error :", error);
     }
   }, [newpatient, oldpatient, update]);
+
+
+  useEffect(() => {
+
+    // Join doctor-specific room
+    socket.emit("joinRoom", { role: "staff"});
+
+    const handleNewPatient = (newPatient) => {
+      console.log("New patient in Appointment:", newPatient);
+      setappointmentinfo((prev) => {
+        const exists = prev.some((patient) => patient.id === newPatient.id);
+        if (!exists) {
+          return [...prev, newPatient];
+        }
+        return prev;
+      });
+    };
+
+    // Listen for new patient event
+    socket.on("newAppointment", handleNewPatient);
+
+    // Cleanup listener on component unmount
+    return () => {
+      socket.off("newPatientInQueue", handleNewPatient);
+    };
+  }, [socket]);
+  
 
   // Filter queue based on searchTerm
   const filteredQueue = queueinfo.filter(
@@ -144,7 +178,6 @@ function StaffDashboardInfo() {
         {appointmentinfo.length === 0 ? (
           <div className=" w-full text-center"> </div>
         ) : (
-
         <div className="mb-4 p-4">
           
           <div className="flex">
