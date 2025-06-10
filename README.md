@@ -49,6 +49,7 @@ A modern, responsive Hospital Management System built using ReactJS and Tailwind
 git clone https://github.com/your-username/amit-bongale-hospital-management.git
 cd amit-bongale-hospital-management
 
+```
 
 ## Folder Highlights
 src/Components/
@@ -63,17 +64,14 @@ Includes protected routes to ensure only authenticated users access specific pag
 src/Pages/
 All route-level views categorized by user roles.
 
+---
 
 ## Future Enhancements
-Backend API Integration (MongoDB + Node.js/Express)
-
-Authentication & Authorization (JWT)
-
-Notification System (e.g., Email, SMS via Twilio)
 
 Responsive Admin Analytics Dashboard with Charts
 
 Unit and Integration Testing
 
+integrative chatbot
 
-
+Providing realtime analysis of reoports using AI to doctors
