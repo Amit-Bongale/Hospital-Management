@@ -4,11 +4,6 @@ A modern, responsive Hospital Management System built using ReactJS and Tailwind
 
 ---
 
-## 📁 Project Structure
-
-
----
-
 ## 🚀 Features
 
 ### ✅ Admin
