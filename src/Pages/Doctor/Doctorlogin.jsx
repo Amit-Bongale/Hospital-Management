@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { doctorlogin } from "../../Redux/Doctor/Doctor";
@@ -10,6 +10,7 @@ import { useState } from "react";
 function Doctorlogin() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   let [id, setid] = useState();
   let [password, setpassword] = useState();
@@ -39,7 +40,9 @@ function Doctorlogin() {
         if (data.success) {
           console.log('User Info:', data.user);
           dispatch(doctorlogin({ doctorid : data.user.id , doctorname : data.user.name }));
-          window.location.href = "/doctor/dashboard";
+          setTimeout(() => {
+            navigate("/doctor/dashboard");
+          }, 600);
         }
         console.log(data);
       })

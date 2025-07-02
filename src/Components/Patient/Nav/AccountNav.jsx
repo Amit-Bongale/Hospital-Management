@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate } from 'react-router-dom'
 
-import { useDispatch } from "react-redux";
+import { useDispatch  } from "react-redux";
 import { patientlogout } from '../../../Redux/Patient/Patient';
 
 import { useSelector } from 'react-redux'
@@ -9,13 +9,39 @@ import { useSelector } from 'react-redux'
 import { House , UserPen, Calendar , FileClock , ClipboardPlus, CircleUserRound , LogOut  } from 'lucide-react';
 
 
-
 function AccountNav() {
 
   const dispatch = useDispatch()
-  
+  const navigate = useNavigate();
 
   const name = useSelector((state) => state.patient.patientName)
+
+
+  function logout() {
+    try {
+      fetch(
+        `${process.env.REACT_APP_API_URL}/patient/logout`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(),
+          credentials: "include",
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message) {
+            alert(data.message);
+          }
+          navigate("/");
+        })
+        .catch((error) => console.log("Fetching Error:", error));
+    } catch (error) {
+      console.log("error :", error);
+    }
+
+    dispatch(patientlogout())
+  }
 
 
   return (
@@ -68,19 +94,15 @@ function AccountNav() {
           </Link>
         </span>
 
-     
-
-        <Link to='/'>
+        <Link>
           <button
-            onClick={() => dispatch(patientlogout())}
+            onClick={() => logout()}
             className="bg-black text-white py-3 px-5 rounded-3xl m-4 flex gap-2 items-center"
           >
             <LogOut className="w-5 h-5" />
             logout
           </button>
         </Link>
-        
-
         
       </div>
     </nav>

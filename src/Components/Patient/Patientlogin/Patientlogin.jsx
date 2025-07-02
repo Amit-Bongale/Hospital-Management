@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 import { useDispatch } from 'react-redux'
@@ -7,6 +7,7 @@ import { patientlogin } from "../../../Redux/Patient/Patient";
 
 function Patientlogin() {
 
+  const navigate = useNavigate();
   const dispatch = useDispatch()
 
   let [id, setid] = useState("");
@@ -35,9 +36,10 @@ function Patientlogin() {
           alert(data.message);
         }
         if (data.success) {
-          // console.log('User Info:', data.user);
           dispatch(patientlogin({ id: data.user.id , name: data.user.name }))
-          window.location.href = '/'
+          setTimeout(() => {
+            navigate("/");
+          }, 600);
         }
         console.log(data);
       })

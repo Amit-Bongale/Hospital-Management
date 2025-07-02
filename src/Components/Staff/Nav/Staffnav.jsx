@@ -2,6 +2,7 @@ import React from 'react'
 
 import { useDispatch , useSelector } from 'react-redux'
 import { stafflogout } from '../../../Redux/Staff/Staff'
+import { useNavigate } from 'react-router-dom';
 
 import { Link } from "react-router-dom";
 
@@ -9,6 +10,7 @@ import { LayoutDashboard, BedSingle, NotepadText , CalendarFold, Book , LogOut }
 
 function Staffnav() {
 
+  const navigate = useNavigate();
   const dispatch = useDispatch()
 
   const id = useSelector((state) => state.staff.staffid);
@@ -32,9 +34,9 @@ function Staffnav() {
         .then((res) => res.json())
         .then((data) => {
           if (data.message) {
-            console.log(data.message);
             alert(data.message);
           }
+          navigate("/stafflogin");
         })
         .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {

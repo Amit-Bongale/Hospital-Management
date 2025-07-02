@@ -8,17 +8,17 @@ import PatientReducer  from './Patient/Patient.js'
 import StaffReducer from './Staff/Staff.js'
 import AdminReducer from './Admin/Admin.js';
 
-
-const persistConfig = {
-  key: 'root',
+const makePersistConfig = (key) => ({
+  key,
   storage,
-};
+});
+
   
 const rootreducer = {
-  doctor : persistReducer(persistConfig, DoctorReducer),
-  patient : persistReducer(persistConfig , PatientReducer ),
-  staff : persistReducer(persistConfig , StaffReducer),
-  admin : persistReducer(persistConfig, AdminReducer),
+  doctor: persistReducer(makePersistConfig('doctor'), DoctorReducer),
+  patient: persistReducer(makePersistConfig('patient'), PatientReducer),
+  staff: persistReducer(makePersistConfig('staff'), StaffReducer),
+  admin: persistReducer(makePersistConfig('admin'), AdminReducer),
 }
 
 const store = configureStore({

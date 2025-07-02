@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import { useDispatch } from 'react-redux'
@@ -8,6 +8,7 @@ import { adminlogin } from '../../Redux/Admin/Admin'
 function Adminlogin() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate();
 
     let [id, setid] = useState();
     let [password, setpassword] = useState();
@@ -36,9 +37,11 @@ function Adminlogin() {
             if (data.success) {
                 console.log('User Info:', data.user);
                 dispatch(adminlogin({ doctorid : data.user.id , doctorname : data.user.name }));
-                window.location.href = "/admin/dashboard";
+                setTimeout(() => {
+                    navigate("/admin/dashboard");
+                }, 600);
             }
-            console.log(data);
+                console.log(data);
             })
             .catch((error) => console.log("Fetching Error:", error));
         } catch (error) {

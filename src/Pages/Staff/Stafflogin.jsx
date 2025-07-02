@@ -1,12 +1,14 @@
 import React from 'react'
 
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState  } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useDispatch } from 'react-redux'
 import {stafflogin} from '../../Redux/Staff/Staff'
 
 function Stafflogin() {
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     
@@ -32,13 +34,15 @@ function Stafflogin() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.message) {
-                console.log(data.message);
-                alert(data.message);
+                    console.log(data.message);
+                    alert(data.message);
                 }
                 if (data.success) {
-                console.log('User Info:', data.user);
-                dispatch(stafflogin({ staffid : data.user.id , staffname : data.user.name }));
-                window.location.href = "/staff/dashboard";
+                    // console.log('User Info:', data.user);
+                    dispatch(stafflogin({ staffid : data.user.id , staffname : data.user.name }));
+                    setTimeout(() => {
+                        navigate("/staff/dashboard");
+                    }, 600);
                 }
                 console.log(data);
             })
