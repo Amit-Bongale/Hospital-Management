@@ -46,7 +46,7 @@ import MyAppointments from '../Pages/Patient/Account/MyAppointments'
 import MedicalHistory from '../Pages/Patient/Account/MedicalHistory'
 import TestReports from '../Pages/Patient/Account/TestReports'
 
-
+import NotFound from '../Pages/NotFound'
 
 function Router() {
 
@@ -117,6 +117,8 @@ function Router() {
         <Route path ='wards' element={<ManageWards/>} />
 
       </Route>
+
+      <Route path="*" element={<NotFound />} />
 
     </Routes>
   )

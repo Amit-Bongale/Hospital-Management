@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
-// import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import { Outlet , Navigate } from 'react-router-dom'
+
+import Loader from '../../Components/Admin/Loader/Loader';
 
 function Staffroute() {
 
@@ -29,7 +30,7 @@ function Staffroute() {
     });
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div>

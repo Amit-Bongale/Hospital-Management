@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { doctorlogout } from "../../../Redux/Doctor/Doctor";
@@ -12,7 +12,9 @@ const socket = io(process.env.REACT_APP_API_URL)
 
 
 function Doctornav() {
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const id = useSelector((state) => state.doctor.doctorid);
 
@@ -38,6 +40,7 @@ function Doctornav() {
             console.log(data.message);
             alert(data.message);
           }
+          navigate("/doctorlogin");
         })
         .catch((error) => console.log("Fetching Error:", error));
     } catch (error) {

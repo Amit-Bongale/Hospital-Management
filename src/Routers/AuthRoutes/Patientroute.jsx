@@ -1,6 +1,7 @@
 import { useState , useEffect } from 'react';
 import { Outlet , Navigate } from 'react-router-dom'
 
+import Loader from '../../Components/Admin/Loader/Loader';
 
 function Patientroute() {
   const [IsLoggedin , setIsLoggedin ] = useState(false);
@@ -28,7 +29,7 @@ function Patientroute() {
     });
   }, []);
   
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div>

@@ -1,6 +1,8 @@
 import { useState , useEffect } from 'react'
 import { Outlet , Navigate } from 'react-router-dom'
 
+import Loader from '../../Components/Admin/Loader/Loader';
+
 function Adminroute() {
 
   const [IsLoggedin , setIsLoggedin ] = useState(false);
@@ -28,7 +30,7 @@ function Adminroute() {
     });
   }, []);
   
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div>

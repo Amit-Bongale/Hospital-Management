@@ -39,7 +39,7 @@ function Adminlogin() {
                 dispatch(adminlogin({ doctorid : data.user.id , doctorname : data.user.name }));
                 setTimeout(() => {
                     navigate("/admin/dashboard");
-                }, 600);
+                }, 800);
             }
                 console.log(data);
             })

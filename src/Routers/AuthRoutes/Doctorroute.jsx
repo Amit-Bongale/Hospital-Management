@@ -1,5 +1,6 @@
 import { useState , useEffect } from 'react';
 import { Outlet , Navigate } from 'react-router-dom'
+import Loader from '../../Components/Admin/Loader/Loader';
 
 function Doctorroute() {
     
@@ -14,9 +15,7 @@ function Doctorroute() {
     })
     .then((res) => res.json())
     .then((data) => {
-      console.log("User data called");
-      console.log("data: ",data);
-      if(data.LoggedIn && data.role === "patient") {
+      if(data.LoggedIn && data.role === "doctor") {
         setIsLoggedin(true);
       } else {
         setIsLoggedin(false);
@@ -28,7 +27,7 @@ function Doctorroute() {
     });
   }, []);
   
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div>

@@ -12,7 +12,6 @@ const makePersistConfig = (key) => ({
   key,
   storage,
 });
-
   
 const rootreducer = {
   doctor: persistReducer(makePersistConfig('doctor'), DoctorReducer),

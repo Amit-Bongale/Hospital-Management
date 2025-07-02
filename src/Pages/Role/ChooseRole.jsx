@@ -32,7 +32,7 @@ function ChooseRole() {
                         </div>
 
                         <div class="flex px-6 pb-8 sm:px-8">
-                            <Link to={'/adminlogin'} >
+                            <Link to={'/admin/dashboard'} >
                             <button class="flex items-center justify-center w-full text-base px-10 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black  focus-visible:ring-black" > Login </button> </Link>
                         </div>
                     </div>
@@ -49,7 +49,7 @@ function ChooseRole() {
                         </div>
 
                         <div class="flex px-6 pb-8 sm:px-8">
-                            <Link to={'/doctorlogin'} >
+                            <Link to={'/doctor/dashboard'} >
                             <button class="flex items-center justify-center w-full text-base px-10 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black  focus-visible:ring-black" > Login </button> </Link>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ function ChooseRole() {
                         </div>
 
                         <div class="flex px-6 pb-8 sm:px-8">
-                            <Link to={'/stafflogin'} >
+                            <Link to={'/staff/dashboard'} >
                             <button class="flex items-center justify-center w-full text-base px-10 py-2.5 text-center text-white duration-200 bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent hover:border-black hover:text-black focus:outline-none focus-visible:outline-black  focus-visible:ring-black" > Login </button> </Link>
                         </div>
                     </div>

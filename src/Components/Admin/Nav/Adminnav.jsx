@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { adminlogout } from "../../../Redux/Admin/Admin";
@@ -12,6 +12,7 @@ import {openusers , hideusers} from '../../../Redux/Admin/Admin'
 function Adminnav() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const showuser = useSelector((state) => state.admin.showuser)
 
@@ -47,12 +48,12 @@ function Adminnav() {
             console.log(data.message);
             alert(data.message);
           }
+          navigate("/adminlogin");
         })
         .catch((error) => console.log("Fetching Error:", error));
       } catch (error) {
         console.log("error :", error);
       }
-  
       dispatch(adminlogout(id))
     }
 
@@ -86,7 +87,6 @@ function Adminnav() {
             <Link
               to="/admin/managedoctors"
               className="flex items-center gap-1 rounded-lg px-3 py-2 text-gray-600 transition-all hover:text-black" >
-                
               <button> Doctors </button>
             </Link>
           </span>
@@ -140,7 +140,7 @@ function Adminnav() {
 
 
         <button
-          onClick={() => logout()}
+          onClick={logout()}
           className="bg-black text-white py-3 px-6 rounded-3xl m-4 flex gap-2"
         >
           <LogOut className="w-5 h-5"/>
